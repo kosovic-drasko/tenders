@@ -19,6 +19,7 @@
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
+    "entities": ["HvalePonude", "Ponude", "Ponudjaci", "Postupci", "Specifikacije", "TenderiHome", "Vrednovanje", "Prvorangirani"],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
@@ -42,7 +43,7 @@
     "skipFakeData": false,
     "skipUserManagement": false,
     "testFrameworks": [],
-    "websocket": false,
+    "websocket": "spring-websocket",
     "withAdminUi": true
   }
 }
