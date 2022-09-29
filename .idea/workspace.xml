@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/domain/HvalePonude.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/repository/HvalePonudeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ExcelFileServicesPonude.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ExcelFileServicesSpecifikacije.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/utils/ExcelUtilsPonude.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/utils/ExcelUtilsSpecifikacije.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/view-maximalni_bod.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/view-prvorangirani.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/view-vrednovanje.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.jhipster/TenderiHome.json" beforeDir="false" afterPath="$PROJECT_DIR$/.jhipster/TenderiHome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/PonudeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/PonudeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/SpecifikacijeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/SpecifikacijeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064050_added_entity_TenderiHome.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220819151216_added_entity_Vrednovanje.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220819162640_added_entity_Prvorangirani.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/web/rest/PonudeResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/PonudeResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/web/rest/PonudjaciResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/PonudjaciResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/web/rest/PostupciResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/PostupciResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664462385363</updated>
-      <workItem from="1664462387541" duration="6722000" />
+      <workItem from="1664462387541" duration="7071000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1664464684865</created>
@@ -132,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664465578348</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="init">
+      <created>1664474047359</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664474047359</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
