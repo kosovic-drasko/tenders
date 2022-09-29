@@ -3,7 +3,7 @@
   "changelogDate": "20220813064050",
   "dto": "no",
   "embedded": false,
-  "entityTableName": "tenderi_home",
+
   "fields": [],
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
