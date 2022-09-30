@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="Drasko" id="view_ponude_ponudjaci">
+        <createView catalogName="tenders" schemaName="public" viewName="view_ponude_ponudjaci">
+            SELECT `ponude`.`sifra_postupka` AS `sifra_postupka`,`ponude`.`sifra_ponude` AS `sifra_ponude`,`ponude`.`broj_partije` AS `broj_partije`,`ponude`.`naziv_proizvodjaca` AS `naziv_proizvodjaca`,`ponudjaci`.`naziv_ponudjaca` AS `naziv_ponudjaca`,`ponude`.`zasticeni_naziv` AS `zasticeni_naziv`,`ponude`.`ponudjena_vrijednost` AS `ponudjena_vrijednost`,`ponude`.`rok_isporuke` AS `rok_isporuke`,`ponude`.`jedinicna_cijena` AS `jedinicna_cijena`
+                   from (`ponude` join `ponudjaci` on((`ponude`.`sifra_ponudjaca` = `ponudjaci`.`id`)))
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>
