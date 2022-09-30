@@ -13,10 +13,7 @@
     <div>
       <div *ngIf="vrednovanjes?.body?.length != 0">
         <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
-        <mat-button-toggle
-          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']"
-          matTooltip=" Excel fajl"
-          (click)="exporter.exportTable('xlsx', { fileName: 'Bodovanje', sheet: 'sheet_name', Props: { Author: 'Talha' } })"
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl"
           ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt=""
         /></mat-button-toggle>
       </div>
@@ -26,17 +23,7 @@
         <span>Nema zapisa Bodovanja</span>
       </div>
 
-      <table
-        mat-table
-        id="ExampleTable"
-        matTableExporter
-        [dataSource]="dataSource"
-        matSort
-        matSortStart="desc"
-        #exporter="matTableExporter"
-        matSort
-        matSortStart="desc"
-      >
+      <table mat-table id="ExampleTable" matTableExporter [dataSource]="dataSource" matSort matSortStart="desc" matSort matSortStart="desc">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
           <td mat-cell *matCellDef="let element">{{ element.id }}</td>
