@@ -6,9 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject, from } from 'rxjs';
 
-import { PonudjaciFormService } from './ponudjaci-form.service';
 import { PonudjaciService } from '../service/ponudjaci.service';
-import { IPonudjaci } from '../ponudjaci.model';
+import { IPonudjaci, Ponudjaci } from '../ponudjaci.model';
 
 import { PonudjaciUpdateComponent } from './ponudjaci-update.component';
 
@@ -16,7 +15,6 @@ describe('Ponudjaci Management Update Component', () => {
   let comp: PonudjaciUpdateComponent;
   let fixture: ComponentFixture<PonudjaciUpdateComponent>;
   let activatedRoute: ActivatedRoute;
-  let ponudjaciFormService: PonudjaciFormService;
   let ponudjaciService: PonudjaciService;
 
   beforeEach(() => {
@@ -38,7 +36,6 @@ describe('Ponudjaci Management Update Component', () => {
 
     fixture = TestBed.createComponent(PonudjaciUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
-    ponudjaciFormService = TestBed.inject(PonudjaciFormService);
     ponudjaciService = TestBed.inject(PonudjaciService);
 
     comp = fixture.componentInstance;
@@ -51,16 +48,15 @@ describe('Ponudjaci Management Update Component', () => {
       activatedRoute.data = of({ ponudjaci });
       comp.ngOnInit();
 
-      expect(comp.ponudjaci).toEqual(ponudjaci);
+      expect(comp.editForm.value).toEqual(expect.objectContaining(ponudjaci));
     });
   });
 
   describe('save', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPonudjaci>>();
+      const saveSubject = new Subject<HttpResponse<Ponudjaci>>();
       const ponudjaci = { id: 123 };
-      jest.spyOn(ponudjaciFormService, 'getPonudjaci').mockReturnValue(ponudjaci);
       jest.spyOn(ponudjaciService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ ponudjaci });
@@ -73,20 +69,18 @@ describe('Ponudjaci Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(ponudjaciFormService.getPonudjaci).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(ponudjaciService.update).toHaveBeenCalledWith(expect.objectContaining(ponudjaci));
+      expect(ponudjaciService.update).toHaveBeenCalledWith(ponudjaci);
       expect(comp.isSaving).toEqual(false);
     });
 
     it('Should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPonudjaci>>();
-      const ponudjaci = { id: 123 };
-      jest.spyOn(ponudjaciFormService, 'getPonudjaci').mockReturnValue({ id: null });
+      const saveSubject = new Subject<HttpResponse<Ponudjaci>>();
+      const ponudjaci = new Ponudjaci();
       jest.spyOn(ponudjaciService, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ ponudjaci: null });
+      activatedRoute.data = of({ ponudjaci });
       comp.ngOnInit();
 
       // WHEN
@@ -96,15 +90,14 @@ describe('Ponudjaci Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(ponudjaciFormService.getPonudjaci).toHaveBeenCalled();
-      expect(ponudjaciService.create).toHaveBeenCalled();
+      expect(ponudjaciService.create).toHaveBeenCalledWith(ponudjaci);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).toHaveBeenCalled();
     });
 
     it('Should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPonudjaci>>();
+      const saveSubject = new Subject<HttpResponse<Ponudjaci>>();
       const ponudjaci = { id: 123 };
       jest.spyOn(ponudjaciService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
@@ -117,7 +110,7 @@ describe('Ponudjaci Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(ponudjaciService.update).toHaveBeenCalled();
+      expect(ponudjaciService.update).toHaveBeenCalledWith(ponudjaci);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
     });

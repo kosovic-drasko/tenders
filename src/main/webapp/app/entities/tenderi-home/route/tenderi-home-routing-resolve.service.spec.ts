@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, ActivatedRoute, Router, convertToParamMap } fro
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { ITenderiHome } from '../tenderi-home.model';
+import { ITenderiHome, TenderiHome } from '../tenderi-home.model';
 import { TenderiHomeService } from '../service/tenderi-home.service';
 
 import { TenderiHomeRoutingResolveService } from './tenderi-home-routing-resolve.service';
@@ -15,7 +15,7 @@ describe('TenderiHome routing resolve service', () => {
   let mockActivatedRouteSnapshot: ActivatedRouteSnapshot;
   let routingResolveService: TenderiHomeRoutingResolveService;
   let service: TenderiHomeService;
-  let resultTenderiHome: ITenderiHome | null | undefined;
+  let resultTenderiHome: ITenderiHome | undefined;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe('TenderiHome routing resolve service', () => {
       expect(resultTenderiHome).toEqual({ id: 123 });
     });
 
-    it('should return null if id is not provided', () => {
+    it('should return new ITenderiHome if id is not provided', () => {
       // GIVEN
       service.find = jest.fn();
       mockActivatedRouteSnapshot.params = {};
@@ -67,12 +67,12 @@ describe('TenderiHome routing resolve service', () => {
 
       // THEN
       expect(service.find).not.toBeCalled();
-      expect(resultTenderiHome).toEqual(null);
+      expect(resultTenderiHome).toEqual(new TenderiHome());
     });
 
     it('should route to 404 page if data not found in server', () => {
       // GIVEN
-      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse<ITenderiHome>({ body: null })));
+      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse({ body: null as unknown as TenderiHome })));
       mockActivatedRouteSnapshot.params = { id: 123 };
 
       // WHEN

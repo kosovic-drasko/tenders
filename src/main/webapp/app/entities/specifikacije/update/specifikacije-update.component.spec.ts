@@ -6,9 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject, from } from 'rxjs';
 
-import { SpecifikacijeFormService } from './specifikacije-form.service';
 import { SpecifikacijeService } from '../service/specifikacije.service';
-import { ISpecifikacije } from '../specifikacije.model';
+import { ISpecifikacije, Specifikacije } from '../specifikacije.model';
 
 import { SpecifikacijeUpdateComponent } from './specifikacije-update.component';
 
@@ -16,7 +15,6 @@ describe('Specifikacije Management Update Component', () => {
   let comp: SpecifikacijeUpdateComponent;
   let fixture: ComponentFixture<SpecifikacijeUpdateComponent>;
   let activatedRoute: ActivatedRoute;
-  let specifikacijeFormService: SpecifikacijeFormService;
   let specifikacijeService: SpecifikacijeService;
 
   beforeEach(() => {
@@ -38,7 +36,6 @@ describe('Specifikacije Management Update Component', () => {
 
     fixture = TestBed.createComponent(SpecifikacijeUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
-    specifikacijeFormService = TestBed.inject(SpecifikacijeFormService);
     specifikacijeService = TestBed.inject(SpecifikacijeService);
 
     comp = fixture.componentInstance;
@@ -51,16 +48,15 @@ describe('Specifikacije Management Update Component', () => {
       activatedRoute.data = of({ specifikacije });
       comp.ngOnInit();
 
-      expect(comp.specifikacije).toEqual(specifikacije);
+      expect(comp.editForm.value).toEqual(expect.objectContaining(specifikacije));
     });
   });
 
   describe('save', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<ISpecifikacije>>();
+      const saveSubject = new Subject<HttpResponse<Specifikacije>>();
       const specifikacije = { id: 123 };
-      jest.spyOn(specifikacijeFormService, 'getSpecifikacije').mockReturnValue(specifikacije);
       jest.spyOn(specifikacijeService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ specifikacije });
@@ -73,20 +69,18 @@ describe('Specifikacije Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(specifikacijeFormService.getSpecifikacije).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(specifikacijeService.update).toHaveBeenCalledWith(expect.objectContaining(specifikacije));
+      expect(specifikacijeService.update).toHaveBeenCalledWith(specifikacije);
       expect(comp.isSaving).toEqual(false);
     });
 
     it('Should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<ISpecifikacije>>();
-      const specifikacije = { id: 123 };
-      jest.spyOn(specifikacijeFormService, 'getSpecifikacije').mockReturnValue({ id: null });
+      const saveSubject = new Subject<HttpResponse<Specifikacije>>();
+      const specifikacije = new Specifikacije();
       jest.spyOn(specifikacijeService, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ specifikacije: null });
+      activatedRoute.data = of({ specifikacije });
       comp.ngOnInit();
 
       // WHEN
@@ -96,15 +90,14 @@ describe('Specifikacije Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(specifikacijeFormService.getSpecifikacije).toHaveBeenCalled();
-      expect(specifikacijeService.create).toHaveBeenCalled();
+      expect(specifikacijeService.create).toHaveBeenCalledWith(specifikacije);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).toHaveBeenCalled();
     });
 
     it('Should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<ISpecifikacije>>();
+      const saveSubject = new Subject<HttpResponse<Specifikacije>>();
       const specifikacije = { id: 123 };
       jest.spyOn(specifikacijeService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
@@ -117,7 +110,7 @@ describe('Specifikacije Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(specifikacijeService.update).toHaveBeenCalled();
+      expect(specifikacijeService.update).toHaveBeenCalledWith(specifikacije);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
     });

@@ -6,14 +6,13 @@ import { SpecifikacijeComponent } from '../list/specifikacije.component';
 import { SpecifikacijeDetailComponent } from '../detail/specifikacije-detail.component';
 import { SpecifikacijeUpdateComponent } from '../update/specifikacije-update.component';
 import { SpecifikacijeRoutingResolveService } from './specifikacije-routing-resolve.service';
-import { ASC } from 'app/config/navigation.constants';
 
 const specifikacijeRoute: Routes = [
   {
     path: '',
     component: SpecifikacijeComponent,
     data: {
-      defaultSort: 'id,' + ASC,
+      defaultSort: 'id,asc',
     },
     canActivate: [UserRouteAccessService],
   },

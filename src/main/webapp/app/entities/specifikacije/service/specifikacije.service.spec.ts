@@ -1,18 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ISpecifikacije } from '../specifikacije.model';
-import { sampleWithRequiredData, sampleWithNewData, sampleWithPartialData, sampleWithFullData } from '../specifikacije.test-samples';
+import { ISpecifikacije, Specifikacije } from '../specifikacije.model';
 
 import { SpecifikacijeService } from './specifikacije.service';
-
-const requireRestSample: ISpecifikacije = {
-  ...sampleWithRequiredData,
-};
 
 describe('Specifikacije Service', () => {
   let service: SpecifikacijeService;
   let httpMock: HttpTestingController;
+  let elemDefault: ISpecifikacije;
   let expectedResult: ISpecifikacije | ISpecifikacije[] | boolean | null;
 
   beforeEach(() => {
@@ -22,27 +18,44 @@ describe('Specifikacije Service', () => {
     expectedResult = null;
     service = TestBed.inject(SpecifikacijeService);
     httpMock = TestBed.inject(HttpTestingController);
+
+    elemDefault = {
+      id: 0,
+      sifraPostupka: 0,
+      brojPartije: 0,
+      atc: 'AAAAAAA',
+      inn: 'AAAAAAA',
+      farmaceutskiOblikLijeka: 'AAAAAAA',
+      jacinaLijeka: 'AAAAAAA',
+      trazenaKolicina: 0,
+      pakovanje: 'AAAAAAA',
+      jedinicaMjere: 'AAAAAAA',
+      procijenjenaVrijednost: 0,
+    };
   });
 
   describe('Service methods', () => {
     it('should find an element', () => {
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
+      const returnedFromService = Object.assign({}, elemDefault);
 
       service.find(123).subscribe(resp => (expectedResult = resp.body));
 
       const req = httpMock.expectOne({ method: 'GET' });
       req.flush(returnedFromService);
-      expect(expectedResult).toMatchObject(expected);
+      expect(expectedResult).toMatchObject(elemDefault);
     });
 
     it('should create a Specifikacije', () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const specifikacije = { ...sampleWithNewData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
+      const returnedFromService = Object.assign(
+        {
+          id: 0,
+        },
+        elemDefault
+      );
 
-      service.create(specifikacije).subscribe(resp => (expectedResult = resp.body));
+      const expected = Object.assign({}, returnedFromService);
+
+      service.create(new Specifikacije()).subscribe(resp => (expectedResult = resp.body));
 
       const req = httpMock.expectOne({ method: 'POST' });
       req.flush(returnedFromService);
@@ -50,11 +63,26 @@ describe('Specifikacije Service', () => {
     });
 
     it('should update a Specifikacije', () => {
-      const specifikacije = { ...sampleWithRequiredData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
+      const returnedFromService = Object.assign(
+        {
+          id: 1,
+          sifraPostupka: 1,
+          brojPartije: 1,
+          atc: 'BBBBBB',
+          inn: 'BBBBBB',
+          farmaceutskiOblikLijeka: 'BBBBBB',
+          jacinaLijeka: 'BBBBBB',
+          trazenaKolicina: 1,
+          pakovanje: 'BBBBBB',
+          jedinicaMjere: 'BBBBBB',
+          procijenjenaVrijednost: 1,
+        },
+        elemDefault
+      );
 
-      service.update(specifikacije).subscribe(resp => (expectedResult = resp.body));
+      const expected = Object.assign({}, returnedFromService);
+
+      service.update(expected).subscribe(resp => (expectedResult = resp.body));
 
       const req = httpMock.expectOne({ method: 'PUT' });
       req.flush(returnedFromService);
@@ -62,9 +90,22 @@ describe('Specifikacije Service', () => {
     });
 
     it('should partial update a Specifikacije', () => {
-      const patchObject = { ...sampleWithPartialData };
-      const returnedFromService = { ...requireRestSample };
-      const expected = { ...sampleWithRequiredData };
+      const patchObject = Object.assign(
+        {
+          brojPartije: 1,
+          atc: 'BBBBBB',
+          inn: 'BBBBBB',
+          farmaceutskiOblikLijeka: 'BBBBBB',
+          jacinaLijeka: 'BBBBBB',
+          trazenaKolicina: 1,
+          procijenjenaVrijednost: 1,
+        },
+        new Specifikacije()
+      );
+
+      const returnedFromService = Object.assign(patchObject, elemDefault);
+
+      const expected = Object.assign({}, returnedFromService);
 
       service.partialUpdate(patchObject).subscribe(resp => (expectedResult = resp.body));
 
@@ -74,66 +115,79 @@ describe('Specifikacije Service', () => {
     });
 
     it('should return a list of Specifikacije', () => {
-      const returnedFromService = { ...requireRestSample };
+      const returnedFromService = Object.assign(
+        {
+          id: 1,
+          sifraPostupka: 1,
+          brojPartije: 1,
+          atc: 'BBBBBB',
+          inn: 'BBBBBB',
+          farmaceutskiOblikLijeka: 'BBBBBB',
+          jacinaLijeka: 'BBBBBB',
+          trazenaKolicina: 1,
+          pakovanje: 'BBBBBB',
+          jedinicaMjere: 'BBBBBB',
+          procijenjenaVrijednost: 1,
+        },
+        elemDefault
+      );
 
-      const expected = { ...sampleWithRequiredData };
+      const expected = Object.assign({}, returnedFromService);
 
       service.query().subscribe(resp => (expectedResult = resp.body));
 
       const req = httpMock.expectOne({ method: 'GET' });
       req.flush([returnedFromService]);
       httpMock.verify();
-      expect(expectedResult).toMatchObject([expected]);
+      expect(expectedResult).toContainEqual(expected);
     });
 
     it('should delete a Specifikacije', () => {
-      const expected = true;
-
       service.delete(123).subscribe(resp => (expectedResult = resp.ok));
 
       const req = httpMock.expectOne({ method: 'DELETE' });
       req.flush({ status: 200 });
-      expect(expectedResult).toBe(expected);
+      expect(expectedResult);
     });
 
     describe('addSpecifikacijeToCollectionIfMissing', () => {
       it('should add a Specifikacije to an empty array', () => {
-        const specifikacije: ISpecifikacije = sampleWithRequiredData;
+        const specifikacije: ISpecifikacije = { id: 123 };
         expectedResult = service.addSpecifikacijeToCollectionIfMissing([], specifikacije);
         expect(expectedResult).toHaveLength(1);
         expect(expectedResult).toContain(specifikacije);
       });
 
       it('should not add a Specifikacije to an array that contains it', () => {
-        const specifikacije: ISpecifikacije = sampleWithRequiredData;
+        const specifikacije: ISpecifikacije = { id: 123 };
         const specifikacijeCollection: ISpecifikacije[] = [
           {
             ...specifikacije,
           },
-          sampleWithPartialData,
+          { id: 456 },
         ];
         expectedResult = service.addSpecifikacijeToCollectionIfMissing(specifikacijeCollection, specifikacije);
         expect(expectedResult).toHaveLength(2);
       });
 
       it("should add a Specifikacije to an array that doesn't contain it", () => {
-        const specifikacije: ISpecifikacije = sampleWithRequiredData;
-        const specifikacijeCollection: ISpecifikacije[] = [sampleWithPartialData];
+        const specifikacije: ISpecifikacije = { id: 123 };
+        const specifikacijeCollection: ISpecifikacije[] = [{ id: 456 }];
         expectedResult = service.addSpecifikacijeToCollectionIfMissing(specifikacijeCollection, specifikacije);
         expect(expectedResult).toHaveLength(2);
         expect(expectedResult).toContain(specifikacije);
       });
 
       it('should add only unique Specifikacije to an array', () => {
-        const specifikacijeArray: ISpecifikacije[] = [sampleWithRequiredData, sampleWithPartialData, sampleWithFullData];
-        const specifikacijeCollection: ISpecifikacije[] = [sampleWithRequiredData];
+        const specifikacijeArray: ISpecifikacije[] = [{ id: 123 }, { id: 456 }, { id: 47391 }];
+        const specifikacijeCollection: ISpecifikacije[] = [{ id: 123 }];
         expectedResult = service.addSpecifikacijeToCollectionIfMissing(specifikacijeCollection, ...specifikacijeArray);
         expect(expectedResult).toHaveLength(3);
       });
 
       it('should accept varargs', () => {
-        const specifikacije: ISpecifikacije = sampleWithRequiredData;
-        const specifikacije2: ISpecifikacije = sampleWithPartialData;
+        const specifikacije: ISpecifikacije = { id: 123 };
+        const specifikacije2: ISpecifikacije = { id: 456 };
         expectedResult = service.addSpecifikacijeToCollectionIfMissing([], specifikacije, specifikacije2);
         expect(expectedResult).toHaveLength(2);
         expect(expectedResult).toContain(specifikacije);
@@ -141,60 +195,16 @@ describe('Specifikacije Service', () => {
       });
 
       it('should accept null and undefined values', () => {
-        const specifikacije: ISpecifikacije = sampleWithRequiredData;
+        const specifikacije: ISpecifikacije = { id: 123 };
         expectedResult = service.addSpecifikacijeToCollectionIfMissing([], null, specifikacije, undefined);
         expect(expectedResult).toHaveLength(1);
         expect(expectedResult).toContain(specifikacije);
       });
 
       it('should return initial array if no Specifikacije is added', () => {
-        const specifikacijeCollection: ISpecifikacije[] = [sampleWithRequiredData];
+        const specifikacijeCollection: ISpecifikacije[] = [{ id: 123 }];
         expectedResult = service.addSpecifikacijeToCollectionIfMissing(specifikacijeCollection, undefined, null);
         expect(expectedResult).toEqual(specifikacijeCollection);
-      });
-    });
-
-    describe('compareSpecifikacije', () => {
-      it('Should return true if both entities are null', () => {
-        const entity1 = null;
-        const entity2 = null;
-
-        const compareResult = service.compareSpecifikacije(entity1, entity2);
-
-        expect(compareResult).toEqual(true);
-      });
-
-      it('Should return false if one entity is null', () => {
-        const entity1 = { id: 123 };
-        const entity2 = null;
-
-        const compareResult1 = service.compareSpecifikacije(entity1, entity2);
-        const compareResult2 = service.compareSpecifikacije(entity2, entity1);
-
-        expect(compareResult1).toEqual(false);
-        expect(compareResult2).toEqual(false);
-      });
-
-      it('Should return false if primaryKey differs', () => {
-        const entity1 = { id: 123 };
-        const entity2 = { id: 456 };
-
-        const compareResult1 = service.compareSpecifikacije(entity1, entity2);
-        const compareResult2 = service.compareSpecifikacije(entity2, entity1);
-
-        expect(compareResult1).toEqual(false);
-        expect(compareResult2).toEqual(false);
-      });
-
-      it('Should return false if primaryKey matches', () => {
-        const entity1 = { id: 123 };
-        const entity2 = { id: 123 };
-
-        const compareResult1 = service.compareSpecifikacije(entity1, entity2);
-        const compareResult2 = service.compareSpecifikacije(entity2, entity1);
-
-        expect(compareResult1).toEqual(true);
-        expect(compareResult2).toEqual(true);
       });
     });
   });

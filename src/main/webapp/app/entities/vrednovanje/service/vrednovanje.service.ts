@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IVrednovanje, NewVrednovanje } from '../vrednovanje.model';
-
-export type PartialUpdateVrednovanje = Partial<IVrednovanje> & Pick<IVrednovanje, 'id'>;
+import { IVrednovanje, getVrednovanjeIdentifier } from '../vrednovanje.model';
 
 export type EntityResponseType = HttpResponse<IVrednovanje>;
 export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
@@ -27,26 +25,16 @@ export class VrednovanjeService {
     return this.http.get<IVrednovanje[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
-  getVrednovanjeIdentifier(vrednovanje: Pick<IVrednovanje, 'id'>): number {
-    return vrednovanje.id;
-  }
-
-  compareVrednovanje(o1: Pick<IVrednovanje, 'id'> | null, o2: Pick<IVrednovanje, 'id'> | null): boolean {
-    return o1 && o2 ? this.getVrednovanjeIdentifier(o1) === this.getVrednovanjeIdentifier(o2) : o1 === o2;
-  }
-
-  addVrednovanjeToCollectionIfMissing<Type extends Pick<IVrednovanje, 'id'>>(
-    vrednovanjeCollection: Type[],
-    ...vrednovanjesToCheck: (Type | null | undefined)[]
-  ): Type[] {
-    const vrednovanjes: Type[] = vrednovanjesToCheck.filter(isPresent);
+  addVrednovanjeToCollectionIfMissing(
+    vrednovanjeCollection: IVrednovanje[],
+    ...vrednovanjesToCheck: (IVrednovanje | null | undefined)[]
+  ): IVrednovanje[] {
+    const vrednovanjes: IVrednovanje[] = vrednovanjesToCheck.filter(isPresent);
     if (vrednovanjes.length > 0) {
-      const vrednovanjeCollectionIdentifiers = vrednovanjeCollection.map(
-        vrednovanjeItem => this.getVrednovanjeIdentifier(vrednovanjeItem)!
-      );
+      const vrednovanjeCollectionIdentifiers = vrednovanjeCollection.map(vrednovanjeItem => getVrednovanjeIdentifier(vrednovanjeItem)!);
       const vrednovanjesToAdd = vrednovanjes.filter(vrednovanjeItem => {
-        const vrednovanjeIdentifier = this.getVrednovanjeIdentifier(vrednovanjeItem);
-        if (vrednovanjeCollectionIdentifiers.includes(vrednovanjeIdentifier)) {
+        const vrednovanjeIdentifier = getVrednovanjeIdentifier(vrednovanjeItem);
+        if (vrednovanjeIdentifier == null || vrednovanjeCollectionIdentifiers.includes(vrednovanjeIdentifier)) {
           return false;
         }
         vrednovanjeCollectionIdentifiers.push(vrednovanjeIdentifier);

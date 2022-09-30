@@ -1,5 +1,5 @@
 {
-  "tenderApp": {
+  "tenderiApp": {
     "ponudjaci": {
       "home": {
         "title": "Ponudjacis",
@@ -21,7 +21,8 @@
       "nazivPonudjaca": "Naziv Ponudjaca",
       "odgovornoLice": "Odgovorno Lice",
       "adresaPonudjaca": "Adresa Ponudjaca",
-      "bankaRacun": "Banka Racun"
+      "bankaRacun": "Banka Racun",
+      "ponude": "Ponude"
     }
   }
 }

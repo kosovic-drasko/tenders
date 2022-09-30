@@ -1,5 +1,11 @@
 export interface ITenderiHome {
-  id: number;
+  id?: number;
 }
 
-export type NewTenderiHome = Omit<ITenderiHome, 'id'> & { id: null };
+export class TenderiHome implements ITenderiHome {
+  constructor(public id?: number) {}
+}
+
+export function getTenderiHomeIdentifier(tenderiHome: ITenderiHome): number | undefined {
+  return tenderiHome.id;
+}

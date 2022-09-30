@@ -6,14 +6,13 @@ import { PostupciComponent } from '../list/postupci.component';
 import { PostupciDetailComponent } from '../detail/postupci-detail.component';
 import { PostupciUpdateComponent } from '../update/postupci-update.component';
 import { PostupciRoutingResolveService } from './postupci-routing-resolve.service';
-import { ASC } from 'app/config/navigation.constants';
 
 const postupciRoute: Routes = [
   {
     path: '',
     component: PostupciComponent,
     data: {
-      defaultSort: 'id,' + ASC,
+      defaultSort: 'id,asc',
     },
     canActivate: [UserRouteAccessService],
   },

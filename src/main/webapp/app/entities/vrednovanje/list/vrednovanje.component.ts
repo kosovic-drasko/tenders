@@ -1,99 +1,99 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
-import { combineLatest, Observable, switchMap, tap } from 'rxjs';
-
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IVrednovanje } from '../vrednovanje.model';
-import { ASC, DESC, SORT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
-import { EntityArrayResponseType, VrednovanjeService } from '../service/vrednovanje.service';
-import { SortService } from 'app/shared/sort/sort.service';
+import { VrednovanjeService } from '../service/vrednovanje.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'jhi-vrednovanje',
   templateUrl: './vrednovanje.component.html',
+  styleUrls: ['./vrednovanje.scss'],
 })
-export class VrednovanjeComponent implements OnInit {
-  vrednovanjes?: IVrednovanje[];
+export class VrednovanjeComponent implements AfterViewInit, OnInit {
+  vrednovanjes?: HttpResponse<IVrednovanje[]>;
   isLoading = false;
+  ukupnaProcijenjena?: number;
+  ukupnoPonudjena?: number;
+  public displayedColumns = [
+    'sifra postupka',
+    'sifra ponude',
+    'broj partije',
+    'atc',
+    'zasticeni naziv',
+    'procijenjena vrijednost',
+    'kolicina',
+    'ponudjena vrijednost',
+    'rok isporuke',
+    'naziv ponudjaca',
+    'naziv proizvodjaca',
+    'bod cijena',
+    'bod rok',
+    'bod ukupno',
+  ];
+  public dataSource = new MatTableDataSource<IVrednovanje>();
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Input() postupak: any;
+  // @ViewChild(MatTableExporterDirective) exporter: MatTableExporterDirective ;
+  constructor(protected vrednovanjeService: VrednovanjeService, protected activatedRoute: ActivatedRoute, protected router: Router) {}
 
-  predicate = 'id';
-  ascending = true;
+  // importAsXlsx(){
+  //
+  //   this.exporter.exportTable('xlsx', {fileName:'test', sheet: 'sheet_name'});
+  //
+  // }
 
-  constructor(
-    protected vrednovanjeService: VrednovanjeService,
-    protected activatedRoute: ActivatedRoute,
-    public router: Router,
-    protected sortService: SortService
-  ) {}
-
-  trackId = (_index: number, item: IVrednovanje): number => this.vrednovanjeService.getVrednovanjeIdentifier(item);
-
-  ngOnInit(): void {
-    this.load();
-  }
-
-  load(): void {
-    this.loadFromBackendWithRouteInformations().subscribe({
-      next: (res: EntityArrayResponseType) => {
-        this.onResponseSuccess(res);
+  loadPage(): void {
+    this.isLoading = true;
+    this.vrednovanjeService.query().subscribe({
+      next: (res: HttpResponse<IVrednovanje[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.vrednovanjes = res;
+        this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
       },
     });
   }
-
-  navigateToWithComponentValues(): void {
-    this.handleNavigation(this.predicate, this.ascending);
-  }
-
-  protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
-    return combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data]).pipe(
-      tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-      switchMap(() => this.queryBackend(this.predicate, this.ascending))
-    );
-  }
-
-  protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
-    const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA]).split(',');
-    this.predicate = sort[0];
-    this.ascending = sort[1] === ASC;
-  }
-
-  protected onResponseSuccess(response: EntityArrayResponseType): void {
-    const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
-    this.vrednovanjes = this.refineData(dataFromBody);
-  }
-
-  protected refineData(data: IVrednovanje[]): IVrednovanje[] {
-    return data.sort(this.sortService.startSort(this.predicate, this.ascending ? 1 : -1));
-  }
-
-  protected fillComponentAttributesFromResponseBody(data: IVrednovanje[] | null): IVrednovanje[] {
-    return data ?? [];
-  }
-
-  protected queryBackend(predicate?: string, ascending?: boolean): Observable<EntityArrayResponseType> {
+  loadPageSifra(): void {
     this.isLoading = true;
-    const queryObject = {
-      sort: this.getSortQueryParam(predicate, ascending),
-    };
-    return this.vrednovanjeService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
+    this.vrednovanjeService
+      .query({
+        'sifraPostupka.in': this.postupak,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IVrednovanje[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.vrednovanjes = res;
+          this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+          this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+        },
+        error: () => {
+          this.isLoading = false;
+        },
+      });
   }
-
-  protected handleNavigation(predicate?: string, ascending?: boolean): void {
-    const queryParamsObj = {
-      sort: this.getSortQueryParam(predicate, ascending),
-    };
-
-    this.router.navigate(['./'], {
-      relativeTo: this.activatedRoute,
-      queryParams: queryParamsObj,
-    });
-  }
-
-  protected getSortQueryParam(predicate = this.predicate, ascending = this.ascending): string[] {
-    const ascendingQueryParam = ascending ? ASC : DESC;
-    if (predicate === '') {
-      return [];
+  ngOnInit(): void {
+    if (this.postupak !== undefined) {
+      this.loadPageSifra();
     } else {
-      return [predicate + ',' + ascendingQueryParam];
+      this.loadPage();
     }
+  }
+
+  protected onError(): void {
+    console.log('Greska');
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }

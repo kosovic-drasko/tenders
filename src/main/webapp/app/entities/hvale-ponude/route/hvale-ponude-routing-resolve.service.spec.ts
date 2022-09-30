@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, ActivatedRoute, Router, convertToParamMap } fro
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { IHvalePonude } from '../hvale-ponude.model';
+import { IHvalePonude, HvalePonude } from '../hvale-ponude.model';
 import { HvalePonudeService } from '../service/hvale-ponude.service';
 
 import { HvalePonudeRoutingResolveService } from './hvale-ponude-routing-resolve.service';
@@ -15,7 +15,7 @@ describe('HvalePonude routing resolve service', () => {
   let mockActivatedRouteSnapshot: ActivatedRouteSnapshot;
   let routingResolveService: HvalePonudeRoutingResolveService;
   let service: HvalePonudeService;
-  let resultHvalePonude: IHvalePonude | null | undefined;
+  let resultHvalePonude: IHvalePonude | undefined;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe('HvalePonude routing resolve service', () => {
       expect(resultHvalePonude).toEqual({ id: 123 });
     });
 
-    it('should return null if id is not provided', () => {
+    it('should return new IHvalePonude if id is not provided', () => {
       // GIVEN
       service.find = jest.fn();
       mockActivatedRouteSnapshot.params = {};
@@ -67,12 +67,12 @@ describe('HvalePonude routing resolve service', () => {
 
       // THEN
       expect(service.find).not.toBeCalled();
-      expect(resultHvalePonude).toEqual(null);
+      expect(resultHvalePonude).toEqual(new HvalePonude());
     });
 
     it('should route to 404 page if data not found in server', () => {
       // GIVEN
-      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse<IHvalePonude>({ body: null })));
+      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse({ body: null as unknown as HvalePonude })));
       mockActivatedRouteSnapshot.params = { id: 123 };
 
       // WHEN

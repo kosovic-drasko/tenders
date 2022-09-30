@@ -30,10 +30,8 @@ describe('Vrednovanje Management Component', () => {
                 page: '1',
                 size: '1',
                 sort: 'id,desc',
-                'filter[someId.in]': 'dc4279ea-cfb9-11ec-9d64-0242ac120002',
               })
             ),
-            snapshot: { queryParams: {} },
           },
         },
       ],
@@ -65,13 +63,34 @@ describe('Vrednovanje Management Component', () => {
     expect(comp.vrednovanjes?.[0]).toEqual(expect.objectContaining({ id: 123 }));
   });
 
-  describe('trackId', () => {
-    it('Should forward to vrednovanjeService', () => {
-      const entity = { id: 123 };
-      jest.spyOn(service, 'getVrednovanjeIdentifier');
-      const id = comp.trackId(0, entity);
-      expect(service.getVrednovanjeIdentifier).toHaveBeenCalledWith(entity);
-      expect(id).toBe(entity.id);
-    });
+  it('should load a page', () => {
+    // WHEN
+    comp.loadPage(1);
+
+    // THEN
+    expect(service.query).toHaveBeenCalled();
+    expect(comp.vrednovanjes?.[0]).toEqual(expect.objectContaining({ id: 123 }));
+  });
+
+  it('should calculate the sort attribute for an id', () => {
+    // WHEN
+    comp.ngOnInit();
+
+    // THEN
+    expect(service.query).toHaveBeenCalledWith(expect.objectContaining({ sort: ['id,desc'] }));
+  });
+
+  it('should calculate the sort attribute for a non-id attribute', () => {
+    // INIT
+    comp.ngOnInit();
+
+    // GIVEN
+    comp.predicate = 'name';
+
+    // WHEN
+    comp.loadPage(1);
+
+    // THEN
+    expect(service.query).toHaveBeenLastCalledWith(expect.objectContaining({ sort: ['name,desc', 'id'] }));
   });
 });

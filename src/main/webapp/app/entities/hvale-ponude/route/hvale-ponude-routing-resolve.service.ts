@@ -4,18 +4,18 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { IHvalePonude } from '../hvale-ponude.model';
+import { IHvalePonude, HvalePonude } from '../hvale-ponude.model';
 import { HvalePonudeService } from '../service/hvale-ponude.service';
 
 @Injectable({ providedIn: 'root' })
-export class HvalePonudeRoutingResolveService implements Resolve<IHvalePonude | null> {
+export class HvalePonudeRoutingResolveService implements Resolve<IHvalePonude> {
   constructor(protected service: HvalePonudeService, protected router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IHvalePonude | null | never> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IHvalePonude> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        mergeMap((hvalePonude: HttpResponse<IHvalePonude>) => {
+        mergeMap((hvalePonude: HttpResponse<HvalePonude>) => {
           if (hvalePonude.body) {
             return of(hvalePonude.body);
           } else {
@@ -25,6 +25,6 @@ export class HvalePonudeRoutingResolveService implements Resolve<IHvalePonude | 
         })
       );
     }
-    return of(null);
+    return of(new HvalePonude());
   }
 }

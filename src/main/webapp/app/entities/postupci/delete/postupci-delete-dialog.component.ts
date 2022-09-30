@@ -3,7 +3,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IPostupci } from '../postupci.model';
 import { PostupciService } from '../service/postupci.service';
-import { ITEM_DELETED_EVENT } from 'app/config/navigation.constants';
 
 @Component({
   templateUrl: './postupci-delete-dialog.component.html',
@@ -19,7 +18,7 @@ export class PostupciDeleteDialogComponent {
 
   confirmDelete(id: number): void {
     this.postupciService.delete(id).subscribe(() => {
-      this.activeModal.close(ITEM_DELETED_EVENT);
+      this.activeModal.close('deleted');
     });
   }
 }

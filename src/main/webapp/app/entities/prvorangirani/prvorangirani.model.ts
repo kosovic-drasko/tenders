@@ -1,5 +1,5 @@
 export interface IPrvorangirani {
-  id: number;
+  id?: number;
   sifraPostupka?: number | null;
   nazivPonudjaca?: string | null;
   sifraPonude?: number | null;
@@ -18,4 +18,28 @@ export interface IPrvorangirani {
   bodUkupno?: number | null;
 }
 
-export type NewPrvorangirani = Omit<IPrvorangirani, 'id'> & { id: null };
+export class Prvorangirani implements IPrvorangirani {
+  constructor(
+    public id?: number,
+    public sifraPostupka?: number | null,
+    public nazivPonudjaca?: string | null,
+    public sifraPonude?: number | null,
+    public brojPartije?: number | null,
+    public atc?: string | null,
+    public trazenaKolicina?: number | null,
+    public procijenjenaVrijednost?: number | null,
+    public nazivProizvodjaca?: string | null,
+    public zasticeniNaziv?: string | null,
+    public jedinicnaCijena?: number | null,
+    public ponudjenaVrijednost?: number | null,
+    public rokIsporuke?: number | null,
+    public vrstaPostupka?: string | null,
+    public bodCijena?: number | null,
+    public bodRok?: number | null,
+    public bodUkupno?: number | null
+  ) {}
+}
+
+export function getPrvorangiraniIdentifier(prvorangirani: IPrvorangirani): number | undefined {
+  return prvorangirani.id;
+}

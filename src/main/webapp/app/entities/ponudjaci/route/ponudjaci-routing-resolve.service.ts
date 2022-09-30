@@ -4,18 +4,18 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { IPonudjaci } from '../ponudjaci.model';
+import { IPonudjaci, Ponudjaci } from '../ponudjaci.model';
 import { PonudjaciService } from '../service/ponudjaci.service';
 
 @Injectable({ providedIn: 'root' })
-export class PonudjaciRoutingResolveService implements Resolve<IPonudjaci | null> {
+export class PonudjaciRoutingResolveService implements Resolve<IPonudjaci> {
   constructor(protected service: PonudjaciService, protected router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IPonudjaci | null | never> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IPonudjaci> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        mergeMap((ponudjaci: HttpResponse<IPonudjaci>) => {
+        mergeMap((ponudjaci: HttpResponse<Ponudjaci>) => {
           if (ponudjaci.body) {
             return of(ponudjaci.body);
           } else {
@@ -25,6 +25,6 @@ export class PonudjaciRoutingResolveService implements Resolve<IPonudjaci | null
         })
       );
     }
-    return of(null);
+    return of(new Ponudjaci());
   }
 }

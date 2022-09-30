@@ -4,18 +4,18 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { ITenderiHome } from '../tenderi-home.model';
+import { ITenderiHome, TenderiHome } from '../tenderi-home.model';
 import { TenderiHomeService } from '../service/tenderi-home.service';
 
 @Injectable({ providedIn: 'root' })
-export class TenderiHomeRoutingResolveService implements Resolve<ITenderiHome | null> {
+export class TenderiHomeRoutingResolveService implements Resolve<ITenderiHome> {
   constructor(protected service: TenderiHomeService, protected router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<ITenderiHome | null | never> {
+  resolve(route: ActivatedRouteSnapshot): Observable<ITenderiHome> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        mergeMap((tenderiHome: HttpResponse<ITenderiHome>) => {
+        mergeMap((tenderiHome: HttpResponse<TenderiHome>) => {
           if (tenderiHome.body) {
             return of(tenderiHome.body);
           } else {
@@ -25,6 +25,6 @@ export class TenderiHomeRoutingResolveService implements Resolve<ITenderiHome | 
         })
       );
     }
-    return of(null);
+    return of(new TenderiHome());
   }
 }

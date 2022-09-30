@@ -4,18 +4,18 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { IPrvorangirani } from '../prvorangirani.model';
+import { IPrvorangirani, Prvorangirani } from '../prvorangirani.model';
 import { PrvorangiraniService } from '../service/prvorangirani.service';
 
 @Injectable({ providedIn: 'root' })
-export class PrvorangiraniRoutingResolveService implements Resolve<IPrvorangirani | null> {
+export class PrvorangiraniRoutingResolveService implements Resolve<IPrvorangirani> {
   constructor(protected service: PrvorangiraniService, protected router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IPrvorangirani | null | never> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IPrvorangirani> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        mergeMap((prvorangirani: HttpResponse<IPrvorangirani>) => {
+        mergeMap((prvorangirani: HttpResponse<Prvorangirani>) => {
           if (prvorangirani.body) {
             return of(prvorangirani.body);
           } else {
@@ -25,6 +25,6 @@ export class PrvorangiraniRoutingResolveService implements Resolve<IPrvorangiran
         })
       );
     }
-    return of(null);
+    return of(new Prvorangirani());
   }
 }

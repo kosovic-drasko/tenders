@@ -1,5 +1,5 @@
 export interface IHvalePonude {
-  id: number;
+  id?: number;
   sifraPostupka?: number | null;
   brojPartije?: number | null;
   inn?: string | null;
@@ -9,4 +9,19 @@ export interface IHvalePonude {
   procijenjenaVrijednost?: number | null;
 }
 
-export type NewHvalePonude = Omit<IHvalePonude, 'id'> & { id: null };
+export class HvalePonude implements IHvalePonude {
+  constructor(
+    public id?: number,
+    public sifraPostupka?: number | null,
+    public brojPartije?: number | null,
+    public inn?: string | null,
+    public farmaceutskiOblikLijeka?: string | null,
+    public pakovanje?: string | null,
+    public trazenaKolicina?: number | null,
+    public procijenjenaVrijednost?: number | null
+  ) {}
+}
+
+export function getHvalePonudeIdentifier(hvalePonude: IHvalePonude): number | undefined {
+  return hvalePonude.id;
+}

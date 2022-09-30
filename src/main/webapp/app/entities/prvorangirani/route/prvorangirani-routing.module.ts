@@ -5,14 +5,13 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
 import { PrvorangiraniComponent } from '../list/prvorangirani.component';
 import { PrvorangiraniDetailComponent } from '../detail/prvorangirani-detail.component';
 import { PrvorangiraniRoutingResolveService } from './prvorangirani-routing-resolve.service';
-import { ASC } from 'app/config/navigation.constants';
 
 const prvorangiraniRoute: Routes = [
   {
     path: '',
     component: PrvorangiraniComponent,
     data: {
-      defaultSort: 'id,' + ASC,
+      defaultSort: 'id,asc',
     },
     canActivate: [UserRouteAccessService],
   },

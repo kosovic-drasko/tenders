@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { ITenderiHome, NewTenderiHome } from '../tenderi-home.model';
-
-export type PartialUpdateTenderiHome = Partial<ITenderiHome> & Pick<ITenderiHome, 'id'>;
+import { ITenderiHome, getTenderiHomeIdentifier } from '../tenderi-home.model';
 
 export type EntityResponseType = HttpResponse<ITenderiHome>;
 export type EntityArrayResponseType = HttpResponse<ITenderiHome[]>;
@@ -27,26 +25,16 @@ export class TenderiHomeService {
     return this.http.get<ITenderiHome[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
-  getTenderiHomeIdentifier(tenderiHome: Pick<ITenderiHome, 'id'>): number {
-    return tenderiHome.id;
-  }
-
-  compareTenderiHome(o1: Pick<ITenderiHome, 'id'> | null, o2: Pick<ITenderiHome, 'id'> | null): boolean {
-    return o1 && o2 ? this.getTenderiHomeIdentifier(o1) === this.getTenderiHomeIdentifier(o2) : o1 === o2;
-  }
-
-  addTenderiHomeToCollectionIfMissing<Type extends Pick<ITenderiHome, 'id'>>(
-    tenderiHomeCollection: Type[],
-    ...tenderiHomesToCheck: (Type | null | undefined)[]
-  ): Type[] {
-    const tenderiHomes: Type[] = tenderiHomesToCheck.filter(isPresent);
+  addTenderiHomeToCollectionIfMissing(
+    tenderiHomeCollection: ITenderiHome[],
+    ...tenderiHomesToCheck: (ITenderiHome | null | undefined)[]
+  ): ITenderiHome[] {
+    const tenderiHomes: ITenderiHome[] = tenderiHomesToCheck.filter(isPresent);
     if (tenderiHomes.length > 0) {
-      const tenderiHomeCollectionIdentifiers = tenderiHomeCollection.map(
-        tenderiHomeItem => this.getTenderiHomeIdentifier(tenderiHomeItem)!
-      );
+      const tenderiHomeCollectionIdentifiers = tenderiHomeCollection.map(tenderiHomeItem => getTenderiHomeIdentifier(tenderiHomeItem)!);
       const tenderiHomesToAdd = tenderiHomes.filter(tenderiHomeItem => {
-        const tenderiHomeIdentifier = this.getTenderiHomeIdentifier(tenderiHomeItem);
-        if (tenderiHomeCollectionIdentifiers.includes(tenderiHomeIdentifier)) {
+        const tenderiHomeIdentifier = getTenderiHomeIdentifier(tenderiHomeItem);
+        if (tenderiHomeIdentifier == null || tenderiHomeCollectionIdentifiers.includes(tenderiHomeIdentifier)) {
           return false;
         }
         tenderiHomeCollectionIdentifiers.push(tenderiHomeIdentifier);

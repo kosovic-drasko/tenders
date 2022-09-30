@@ -49,6 +49,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'tenderApp.ponudePonudjaci.home.title' },
         loadChildren: () => import('./ponude-ponudjaci/ponude-ponudjaci.module').then(m => m.PonudePonudjaciModule),
       },
+      {
+        path: 'pomoc',
+        data: { authorities: ['ROLE_MANAGER', 'ROLE_ADMIN'], pageTitle: 'tenderiApp.pomoc.home.title' },
+        loadChildren: () => import('./pomoc/pomoc.module').then(m => m.PomocModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

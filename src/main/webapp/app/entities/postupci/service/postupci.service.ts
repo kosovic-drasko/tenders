@@ -8,20 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IPostupci, NewPostupci } from '../postupci.model';
-
-export type PartialUpdatePostupci = Partial<IPostupci> & Pick<IPostupci, 'id'>;
-
-type RestOf<T extends IPostupci | NewPostupci> = Omit<T, 'datumObjave' | 'datumOtvaranja'> & {
-  datumObjave?: string | null;
-  datumOtvaranja?: string | null;
-};
-
-export type RestPostupci = RestOf<IPostupci>;
-
-export type NewRestPostupci = RestOf<NewPostupci>;
-
-export type PartialUpdateRestPostupci = RestOf<PartialUpdatePostupci>;
+import { IPostupci, getPostupciIdentifier } from '../postupci.model';
 
 export type EntityResponseType = HttpResponse<IPostupci>;
 export type EntityArrayResponseType = HttpResponse<IPostupci[]>;
@@ -32,62 +19,51 @@ export class PostupciService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  create(postupci: NewPostupci): Observable<EntityResponseType> {
+  create(postupci: IPostupci): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(postupci);
     return this.http
-      .post<RestPostupci>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map(res => this.convertResponseFromServer(res)));
+      .post<IPostupci>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   update(postupci: IPostupci): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(postupci);
     return this.http
-      .put<RestPostupci>(`${this.resourceUrl}/${this.getPostupciIdentifier(postupci)}`, copy, { observe: 'response' })
-      .pipe(map(res => this.convertResponseFromServer(res)));
+      .put<IPostupci>(`${this.resourceUrl}/${getPostupciIdentifier(postupci) as number}`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  partialUpdate(postupci: PartialUpdatePostupci): Observable<EntityResponseType> {
+  partialUpdate(postupci: IPostupci): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(postupci);
     return this.http
-      .patch<RestPostupci>(`${this.resourceUrl}/${this.getPostupciIdentifier(postupci)}`, copy, { observe: 'response' })
-      .pipe(map(res => this.convertResponseFromServer(res)));
+      .patch<IPostupci>(`${this.resourceUrl}/${getPostupciIdentifier(postupci) as number}`, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<RestPostupci>(`${this.resourceUrl}/${id}`, { observe: 'response' })
-      .pipe(map(res => this.convertResponseFromServer(res)));
+      .get<IPostupci>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
-      .get<RestPostupci[]>(this.resourceUrl, { params: options, observe: 'response' })
-      .pipe(map(res => this.convertResponseArrayFromServer(res)));
+      .get<IPostupci[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  getPostupciIdentifier(postupci: Pick<IPostupci, 'id'>): number {
-    return postupci.id;
-  }
-
-  comparePostupci(o1: Pick<IPostupci, 'id'> | null, o2: Pick<IPostupci, 'id'> | null): boolean {
-    return o1 && o2 ? this.getPostupciIdentifier(o1) === this.getPostupciIdentifier(o2) : o1 === o2;
-  }
-
-  addPostupciToCollectionIfMissing<Type extends Pick<IPostupci, 'id'>>(
-    postupciCollection: Type[],
-    ...postupcisToCheck: (Type | null | undefined)[]
-  ): Type[] {
-    const postupcis: Type[] = postupcisToCheck.filter(isPresent);
+  addPostupciToCollectionIfMissing(postupciCollection: IPostupci[], ...postupcisToCheck: (IPostupci | null | undefined)[]): IPostupci[] {
+    const postupcis: IPostupci[] = postupcisToCheck.filter(isPresent);
     if (postupcis.length > 0) {
-      const postupciCollectionIdentifiers = postupciCollection.map(postupciItem => this.getPostupciIdentifier(postupciItem)!);
+      const postupciCollectionIdentifiers = postupciCollection.map(postupciItem => getPostupciIdentifier(postupciItem)!);
       const postupcisToAdd = postupcis.filter(postupciItem => {
-        const postupciIdentifier = this.getPostupciIdentifier(postupciItem);
-        if (postupciCollectionIdentifiers.includes(postupciIdentifier)) {
+        const postupciIdentifier = getPostupciIdentifier(postupciItem);
+        if (postupciIdentifier == null || postupciCollectionIdentifiers.includes(postupciIdentifier)) {
           return false;
         }
         postupciCollectionIdentifiers.push(postupciIdentifier);
@@ -98,31 +74,28 @@ export class PostupciService {
     return postupciCollection;
   }
 
-  protected convertDateFromClient<T extends IPostupci | NewPostupci | PartialUpdatePostupci>(postupci: T): RestOf<T> {
-    return {
-      ...postupci,
-      datumObjave: postupci.datumObjave?.format(DATE_FORMAT) ?? null,
-      datumOtvaranja: postupci.datumOtvaranja?.format(DATE_FORMAT) ?? null,
-    };
-  }
-
-  protected convertDateFromServer(restPostupci: RestPostupci): IPostupci {
-    return {
-      ...restPostupci,
-      datumObjave: restPostupci.datumObjave ? dayjs(restPostupci.datumObjave) : undefined,
-      datumOtvaranja: restPostupci.datumOtvaranja ? dayjs(restPostupci.datumOtvaranja) : undefined,
-    };
-  }
-
-  protected convertResponseFromServer(res: HttpResponse<RestPostupci>): HttpResponse<IPostupci> {
-    return res.clone({
-      body: res.body ? this.convertDateFromServer(res.body) : null,
+  protected convertDateFromClient(postupci: IPostupci): IPostupci {
+    return Object.assign({}, postupci, {
+      datumObjave: postupci.datumObjave?.isValid() ? postupci.datumObjave.format(DATE_FORMAT) : undefined,
+      datumOtvaranja: postupci.datumOtvaranja?.isValid() ? postupci.datumOtvaranja.format(DATE_FORMAT) : undefined,
     });
   }
 
-  protected convertResponseArrayFromServer(res: HttpResponse<RestPostupci[]>): HttpResponse<IPostupci[]> {
-    return res.clone({
-      body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
-    });
+  protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
+    if (res.body) {
+      res.body.datumObjave = res.body.datumObjave ? dayjs(res.body.datumObjave) : undefined;
+      res.body.datumOtvaranja = res.body.datumOtvaranja ? dayjs(res.body.datumOtvaranja) : undefined;
+    }
+    return res;
+  }
+
+  protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
+    if (res.body) {
+      res.body.forEach((postupci: IPostupci) => {
+        postupci.datumObjave = postupci.datumObjave ? dayjs(postupci.datumObjave) : undefined;
+        postupci.datumOtvaranja = postupci.datumOtvaranja ? dayjs(postupci.datumOtvaranja) : undefined;
+      });
+    }
+    return res;
   }
 }

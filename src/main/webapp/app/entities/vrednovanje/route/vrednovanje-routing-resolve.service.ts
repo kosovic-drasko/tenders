@@ -4,18 +4,18 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { IVrednovanje } from '../vrednovanje.model';
+import { IVrednovanje, Vrednovanje } from '../vrednovanje.model';
 import { VrednovanjeService } from '../service/vrednovanje.service';
 
 @Injectable({ providedIn: 'root' })
-export class VrednovanjeRoutingResolveService implements Resolve<IVrednovanje | null> {
+export class VrednovanjeRoutingResolveService implements Resolve<IVrednovanje> {
   constructor(protected service: VrednovanjeService, protected router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IVrednovanje | null | never> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IVrednovanje> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        mergeMap((vrednovanje: HttpResponse<IVrednovanje>) => {
+        mergeMap((vrednovanje: HttpResponse<Vrednovanje>) => {
           if (vrednovanje.body) {
             return of(vrednovanje.body);
           } else {
@@ -25,6 +25,6 @@ export class VrednovanjeRoutingResolveService implements Resolve<IVrednovanje | 
         })
       );
     }
-    return of(null);
+    return of(new Vrednovanje());
   }
 }

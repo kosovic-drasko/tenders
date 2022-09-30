@@ -6,14 +6,13 @@ import { PonudjaciComponent } from '../list/ponudjaci.component';
 import { PonudjaciDetailComponent } from '../detail/ponudjaci-detail.component';
 import { PonudjaciUpdateComponent } from '../update/ponudjaci-update.component';
 import { PonudjaciRoutingResolveService } from './ponudjaci-routing-resolve.service';
-import { ASC } from 'app/config/navigation.constants';
 
 const ponudjaciRoute: Routes = [
   {
     path: '',
     component: PonudjaciComponent,
     data: {
-      defaultSort: 'id,' + ASC,
+      defaultSort: 'id,asc',
     },
     canActivate: [UserRouteAccessService],
   },

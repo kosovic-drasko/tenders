@@ -6,9 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject, from } from 'rxjs';
 
-import { PostupciFormService } from './postupci-form.service';
 import { PostupciService } from '../service/postupci.service';
-import { IPostupci } from '../postupci.model';
+import { IPostupci, Postupci } from '../postupci.model';
 
 import { PostupciUpdateComponent } from './postupci-update.component';
 
@@ -16,7 +15,6 @@ describe('Postupci Management Update Component', () => {
   let comp: PostupciUpdateComponent;
   let fixture: ComponentFixture<PostupciUpdateComponent>;
   let activatedRoute: ActivatedRoute;
-  let postupciFormService: PostupciFormService;
   let postupciService: PostupciService;
 
   beforeEach(() => {
@@ -38,7 +36,6 @@ describe('Postupci Management Update Component', () => {
 
     fixture = TestBed.createComponent(PostupciUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
-    postupciFormService = TestBed.inject(PostupciFormService);
     postupciService = TestBed.inject(PostupciService);
 
     comp = fixture.componentInstance;
@@ -51,16 +48,15 @@ describe('Postupci Management Update Component', () => {
       activatedRoute.data = of({ postupci });
       comp.ngOnInit();
 
-      expect(comp.postupci).toEqual(postupci);
+      expect(comp.editForm.value).toEqual(expect.objectContaining(postupci));
     });
   });
 
   describe('save', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPostupci>>();
+      const saveSubject = new Subject<HttpResponse<Postupci>>();
       const postupci = { id: 123 };
-      jest.spyOn(postupciFormService, 'getPostupci').mockReturnValue(postupci);
       jest.spyOn(postupciService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ postupci });
@@ -73,20 +69,18 @@ describe('Postupci Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(postupciFormService.getPostupci).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(postupciService.update).toHaveBeenCalledWith(expect.objectContaining(postupci));
+      expect(postupciService.update).toHaveBeenCalledWith(postupci);
       expect(comp.isSaving).toEqual(false);
     });
 
     it('Should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPostupci>>();
-      const postupci = { id: 123 };
-      jest.spyOn(postupciFormService, 'getPostupci').mockReturnValue({ id: null });
+      const saveSubject = new Subject<HttpResponse<Postupci>>();
+      const postupci = new Postupci();
       jest.spyOn(postupciService, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ postupci: null });
+      activatedRoute.data = of({ postupci });
       comp.ngOnInit();
 
       // WHEN
@@ -96,15 +90,14 @@ describe('Postupci Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(postupciFormService.getPostupci).toHaveBeenCalled();
-      expect(postupciService.create).toHaveBeenCalled();
+      expect(postupciService.create).toHaveBeenCalledWith(postupci);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).toHaveBeenCalled();
     });
 
     it('Should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPostupci>>();
+      const saveSubject = new Subject<HttpResponse<Postupci>>();
       const postupci = { id: 123 };
       jest.spyOn(postupciService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
@@ -117,7 +110,7 @@ describe('Postupci Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(postupciService.update).toHaveBeenCalled();
+      expect(postupciService.update).toHaveBeenCalledWith(postupci);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
     });

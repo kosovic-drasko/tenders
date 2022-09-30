@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ActivatedRoute } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
 import { TenderiHomeService } from '../service/tenderi-home.service';
@@ -16,26 +14,8 @@ describe('TenderiHome Management Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([{ path: 'tenderi-home', component: TenderiHomeComponent }]), HttpClientTestingModule],
+      imports: [HttpClientTestingModule],
       declarations: [TenderiHomeComponent],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            data: of({
-              defaultSort: 'id,asc',
-            }),
-            queryParamMap: of(
-              jest.requireActual('@angular/router').convertToParamMap({
-                page: '1',
-                size: '1',
-                sort: 'id,desc',
-              })
-            ),
-            snapshot: { queryParams: {} },
-          },
-        },
-      ],
     })
       .overrideTemplate(TenderiHomeComponent, '')
       .compileComponents();
@@ -62,15 +42,5 @@ describe('TenderiHome Management Component', () => {
     // THEN
     expect(service.query).toHaveBeenCalled();
     expect(comp.tenderiHomes?.[0]).toEqual(expect.objectContaining({ id: 123 }));
-  });
-
-  describe('trackId', () => {
-    it('Should forward to tenderiHomeService', () => {
-      const entity = { id: 123 };
-      jest.spyOn(service, 'getTenderiHomeIdentifier');
-      const id = comp.trackId(0, entity);
-      expect(service.getTenderiHomeIdentifier).toHaveBeenCalledWith(entity);
-      expect(id).toBe(entity.id);
-    });
   });
 });
