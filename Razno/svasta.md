@@ -12,3 +12,5 @@ java.time.LocalDate
 providers: [DecimalPipe],
 
 npm rm browser-sync && npm install browser-sync
+
+npm run build -- --prod
