@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="PonudePonudjaciHeading">
+    <span jhiTranslate="tenderApp.ponudePonudjaci.home.title">Ponude Ponudjacis</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="tenderApp.ponudePonudjaci.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ponude-ponudjaci"
+        [routerLink]="['/ponude-ponudjaci/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tenderApp.ponudePonudjaci.home.createLabel"> Kreiraj novi Ponude Ponudjaci </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ponudePonudjacis?.length === 0">
+    <span jhiTranslate="tenderApp.ponudePonudjaci.home.notFound">No Ponude Ponudjacis found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="ponudePonudjacis && ponudePonudjacis.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sifraPostupka">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.sifraPostupka">Sifra Postupka</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sifraPonude">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.sifraPonude">Sifra Ponude</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="brojPartije">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.brojPartije">Broj Partije</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nazivProizvodjaca">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.nazivProizvodjaca">Naziv Proizvodjaca</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nazivPonudjaca">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.nazivPonudjaca">Naziv Ponudjaca</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="zasticeniNaziv">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.zasticeniNaziv">Zasticeni Naziv</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ponudjenaVrijednost">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.ponudjenaVrijednost">Ponudjena Vrijednost</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rokIsporuke">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.rokIsporuke">Rok Isporuke</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="jedinicnaCijena">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.jedinicnaCijena">Jedinicna Cijena</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="selected">
+            <div class="d-flex">
+              <span jhiTranslate="tenderApp.ponudePonudjaci.selected">Selected</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ponudePonudjaci of ponudePonudjacis; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ponude-ponudjaci', ponudePonudjaci.id, 'view']">{{ ponudePonudjaci.id }}</a>
+          </td>
+          <td>{{ ponudePonudjaci.sifraPostupka }}</td>
+          <td>{{ ponudePonudjaci.sifraPonude }}</td>
+          <td>{{ ponudePonudjaci.brojPartije }}</td>
+          <td>{{ ponudePonudjaci.nazivProizvodjaca }}</td>
+          <td>{{ ponudePonudjaci.nazivPonudjaca }}</td>
+          <td>{{ ponudePonudjaci.zasticeniNaziv }}</td>
+          <td>{{ ponudePonudjaci.ponudjenaVrijednost }}</td>
+          <td>{{ ponudePonudjaci.rokIsporuke }}</td>
+          <td>{{ ponudePonudjaci.jedinicnaCijena }}</td>
+          <td>{{ ponudePonudjaci.selected }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ponude-ponudjaci', ponudePonudjaci.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Pregled</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ponude-ponudjaci', ponudePonudjaci.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Izmeni</span>
+              </button>
+
+              <button type="submit" (click)="delete(ponudePonudjaci)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Obriši</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

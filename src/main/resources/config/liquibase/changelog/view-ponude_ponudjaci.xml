@@ -4,7 +4,8 @@
 
     <changeSet author="Drasko" id="view_ponude_ponudjaci">
         <createView catalogName="tenders" schemaName="public" viewName="view_ponude_ponudjaci">
-            SELECT `ponude`.`sifra_postupka` AS `sifra_postupka`,`ponude`.`sifra_ponude` AS `sifra_ponude`,`ponude`.`broj_partije` AS `broj_partije`,`ponude`.`naziv_proizvodjaca` AS `naziv_proizvodjaca`,`ponudjaci`.`naziv_ponudjaca` AS `naziv_ponudjaca`,`ponude`.`zasticeni_naziv` AS `zasticeni_naziv`,`ponude`.`ponudjena_vrijednost` AS `ponudjena_vrijednost`,`ponude`.`rok_isporuke` AS `rok_isporuke`,`ponude`.`jedinicna_cijena` AS `jedinicna_cijena`
+            SELECT `ponude`.`id` AS `id`,`ponude`.`sifra_postupka` AS `sifra_postupka`,`ponude`.`sifra_ponude` AS `sifra_ponude`,`ponude`.`broj_partije` AS `broj_partije`,`ponude`.`naziv_proizvodjaca` AS `naziv_proizvodjaca`,`ponudjaci`.`naziv_ponudjaca` AS `naziv_ponudjaca`,`ponude`.`zasticeni_naziv` AS `zasticeni_naziv`,`ponude`.`ponudjena_vrijednost` AS `ponudjena_vrijednost`,`ponude`.`rok_isporuke` AS `rok_isporuke`
+                                        ,`ponude`.`selected` AS `selected` ,`ponude`.`jedinicna_cijena` AS `jedinicna_cijena`
                    from (`ponude` join `ponudjaci` on((`ponude`.`sifra_ponudjaca` = `ponudjaci`.`id`)))
         </createView>
     </changeSet>
