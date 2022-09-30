@@ -1,0 +1,16 @@
+
+entity PonudePonudjaci {
+  sifraPostupka Integer required
+  sifraPonude Integer required
+  brojPartije Integer required
+  nazivProizvodjaca String
+  nazivPonudjaca String
+  zasticeniNaziv String
+  ponudjenaVrijednost Double required
+  rokIsporuke Integer
+  jedinicnaCijena Double
+  selected Boolean
+
+}
+service PonudePonudjaci with serviceClass
+filter PonudePonudjaci
