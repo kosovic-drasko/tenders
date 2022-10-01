@@ -56,7 +56,6 @@ export class PonudeUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.updateForm();
     this.loadAllPonudjaci();
-    // console.log('___________________>', this.ponudjacis1);
   }
 
   loadAllPonudjaci(): void {

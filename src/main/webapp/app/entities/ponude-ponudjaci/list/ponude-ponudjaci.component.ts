@@ -38,6 +38,7 @@ export class PonudePonudjaciComponent implements OnInit {
     'brojPartije',
     'naziv proizvodjaca',
     'ponudjac',
+    'sifra ponudjaca',
     'zasticeni naziv',
     'ponudjena vrijednost',
     'jedinicna cijena',
