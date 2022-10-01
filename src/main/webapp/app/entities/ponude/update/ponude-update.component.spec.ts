@@ -6,9 +6,10 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subject, from } from 'rxjs';
 
-import { PonudeFormService } from './ponude-form.service';
 import { PonudeService } from '../service/ponude.service';
-import { IPonude } from '../ponude.model';
+import { IPonude, Ponude } from '../ponude.model';
+import { IPonudjaci } from 'app/entities/ponudjaci/ponudjaci.model';
+import { PonudjaciService } from 'app/entities/ponudjaci/service/ponudjaci.service';
 
 import { PonudeUpdateComponent } from './ponude-update.component';
 
@@ -16,8 +17,8 @@ describe('Ponude Management Update Component', () => {
   let comp: PonudeUpdateComponent;
   let fixture: ComponentFixture<PonudeUpdateComponent>;
   let activatedRoute: ActivatedRoute;
-  let ponudeFormService: PonudeFormService;
   let ponudeService: PonudeService;
+  let ponudjaciService: PonudjaciService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,29 +39,50 @@ describe('Ponude Management Update Component', () => {
 
     fixture = TestBed.createComponent(PonudeUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
-    ponudeFormService = TestBed.inject(PonudeFormService);
     ponudeService = TestBed.inject(PonudeService);
+    ponudjaciService = TestBed.inject(PonudjaciService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Ponudjaci query and add missing value', () => {
       const ponude: IPonude = { id: 456 };
+      const ponudjaci: IPonudjaci = { id: 40292 };
+      ponude.ponudjaci = ponudjaci;
+
+      const ponudjaciCollection: IPonudjaci[] = [{ id: 74556 }];
+      jest.spyOn(ponudjaciService, 'query').mockReturnValue(of(new HttpResponse({ body: ponudjaciCollection })));
+      const additionalPonudjacis = [ponudjaci];
+      const expectedCollection: IPonudjaci[] = [...additionalPonudjacis, ...ponudjaciCollection];
+      jest.spyOn(ponudjaciService, 'addPonudjaciToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ ponude });
       comp.ngOnInit();
 
-      expect(comp.ponude).toEqual(ponude);
+      expect(ponudjaciService.query).toHaveBeenCalled();
+      expect(ponudjaciService.addPonudjaciToCollectionIfMissing).toHaveBeenCalledWith(ponudjaciCollection, ...additionalPonudjacis);
+      expect(comp.ponudjacisSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const ponude: IPonude = { id: 456 };
+      const ponudjaci: IPonudjaci = { id: 4355 };
+      ponude.ponudjaci = ponudjaci;
+
+      activatedRoute.data = of({ ponude });
+      comp.ngOnInit();
+
+      expect(comp.editForm.value).toEqual(expect.objectContaining(ponude));
+      expect(comp.ponudjacisSharedCollection).toContain(ponudjaci);
     });
   });
 
   describe('save', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPonude>>();
+      const saveSubject = new Subject<HttpResponse<Ponude>>();
       const ponude = { id: 123 };
-      jest.spyOn(ponudeFormService, 'getPonude').mockReturnValue(ponude);
       jest.spyOn(ponudeService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
       activatedRoute.data = of({ ponude });
@@ -73,20 +95,18 @@ describe('Ponude Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(ponudeFormService.getPonude).toHaveBeenCalled();
       expect(comp.previousState).toHaveBeenCalled();
-      expect(ponudeService.update).toHaveBeenCalledWith(expect.objectContaining(ponude));
+      expect(ponudeService.update).toHaveBeenCalledWith(ponude);
       expect(comp.isSaving).toEqual(false);
     });
 
     it('Should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPonude>>();
-      const ponude = { id: 123 };
-      jest.spyOn(ponudeFormService, 'getPonude').mockReturnValue({ id: null });
+      const saveSubject = new Subject<HttpResponse<Ponude>>();
+      const ponude = new Ponude();
       jest.spyOn(ponudeService, 'create').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ ponude: null });
+      activatedRoute.data = of({ ponude });
       comp.ngOnInit();
 
       // WHEN
@@ -96,15 +116,14 @@ describe('Ponude Management Update Component', () => {
       saveSubject.complete();
 
       // THEN
-      expect(ponudeFormService.getPonude).toHaveBeenCalled();
-      expect(ponudeService.create).toHaveBeenCalled();
+      expect(ponudeService.create).toHaveBeenCalledWith(ponude);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).toHaveBeenCalled();
     });
 
     it('Should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IPonude>>();
+      const saveSubject = new Subject<HttpResponse<Ponude>>();
       const ponude = { id: 123 };
       jest.spyOn(ponudeService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');
@@ -117,9 +136,19 @@ describe('Ponude Management Update Component', () => {
       saveSubject.error('This is an error!');
 
       // THEN
-      expect(ponudeService.update).toHaveBeenCalled();
+      expect(ponudeService.update).toHaveBeenCalledWith(ponude);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Tracking relationships identifiers', () => {
+    describe('trackPonudjaciById', () => {
+      it('Should return tracked Ponudjaci primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackPonudjaciById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
     });
   });
 });

@@ -4,18 +4,18 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
-import { IPonude } from '../ponude.model';
+import { IPonude, Ponude } from '../ponude.model';
 import { PonudeService } from '../service/ponude.service';
 
 @Injectable({ providedIn: 'root' })
-export class PonudeRoutingResolveService implements Resolve<IPonude | null> {
+export class PonudeRoutingResolveService implements Resolve<IPonude> {
   constructor(protected service: PonudeService, protected router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IPonude | null | never> {
+  resolve(route: ActivatedRouteSnapshot): Observable<IPonude> | Observable<never> {
     const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
-        mergeMap((ponude: HttpResponse<IPonude>) => {
+        mergeMap((ponude: HttpResponse<Ponude>) => {
           if (ponude.body) {
             return of(ponude.body);
           } else {
@@ -25,6 +25,6 @@ export class PonudeRoutingResolveService implements Resolve<IPonude | null> {
         })
       );
     }
-    return of(null);
+    return of(new Ponude());
   }
 }

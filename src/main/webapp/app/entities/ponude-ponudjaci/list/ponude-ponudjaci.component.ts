@@ -1,118 +1,297 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
-import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IPonudePonudjaci } from '../ponude-ponudjaci.model';
-import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
-import { EntityArrayResponseType, PonudePonudjaciService } from '../service/ponude-ponudjaci.service';
-import { PonudePonudjaciDeleteDialogComponent } from '../delete/ponude-ponudjaci-delete-dialog.component';
+import { PonudePonudjaciService } from '../service/ponude-ponudjaci.service';
 import { SortService } from 'app/shared/sort/sort.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { HttpResponse } from '@angular/common/http';
+import { AccountService } from '../../../core/auth/account.service';
+import { Account } from '../../../core/auth/account.model';
+import { IPonudjaci } from '../../ponudjaci/ponudjaci.model';
+import { PonudeDeleteDialogComponent } from '../../ponude/delete/ponude-delete-dialog.component';
+import { PonudeService } from '../../ponude/service/ponude.service';
+import { IPonude } from '../../ponude/ponude.model';
+import { PonudeUpdateComponent } from '../../ponude/update/ponude-update.component';
 
 @Component({
   selector: 'jhi-ponude-ponudjaci',
   templateUrl: './ponude-ponudjaci.component.html',
 })
 export class PonudePonudjaciComponent implements OnInit {
-  ponudePonudjacis?: IPonudePonudjaci[];
+  ponudePonudjacis?: HttpResponse<IPonudePonudjaci[]>;
   isLoading = false;
-
-  predicate = 'id';
-  ascending = true;
+  ponudjaciPostupak?: any;
+  currentAccount: Account | null = null;
+  ponudjaci?: IPonudjaci[] = [];
+  ukupno?: number;
+  brPonude?: null;
+  brojObrazac?: number = 0;
+  sifraPonude?: any;
+  obrisanoSelektovano?: boolean = false;
+  obrisanoSifraPonude?: boolean = false;
+  public displayedColumns = [
+    'sifra postupka',
+    'sifraPonude',
+    'brojPartije',
+    'naziv proizvodjaca',
+    'ponudjac',
+    'zasticeni naziv',
+    'ponudjena vrijednost',
+    'jedinicna cijena',
+    'rok isporuke',
+    'kreirao',
+    'datum kreiranja',
+    'zadnji izmjenio',
+    'selected',
+    'action',
+  ];
+  public dataSource = new MatTableDataSource<IPonudePonudjaci>();
+  @ViewChild('fileInput') fileInput: any;
+  @Input() postupak: any;
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  resourceUrlExcelDownloadPostupak = SERVER_API_URL + 'api/ponude/file/';
 
   constructor(
     protected ponudePonudjaciService: PonudePonudjaciService,
+    protected ponudeService: PonudeService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected sortService: SortService,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private accountService: AccountService
   ) {}
-
-  trackId = (_index: number, item: IPonudePonudjaci): number => this.ponudePonudjaciService.getPonudePonudjaciIdentifier(item);
-
-  ngOnInit(): void {
-    this.load();
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+  loadPage(): void {
+    this.isLoading = true;
+    this.ponudePonudjaciService.query().subscribe({
+      next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.ponudePonudjacis = res;
+        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
+  }
+  loadPageSifra(): void {
+    this.isLoading = true;
+    this.ponudePonudjaciService
+      .query({
+        'sifraPostupka.in': this.postupak,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.ponudePonudjacis = res;
+          this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
+  }
+  ponisti(): void {
+    if (this.postupak !== undefined) {
+      this.brPonude = null;
+      this.loadPageSifra();
+      console.log(this.postupak);
+    } else {
+      this.brPonude = null;
+      this.loadPage();
+    }
   }
 
-  delete(ponudePonudjaci: IPonudePonudjaci): void {
-    const modalRef = this.modalService.open(PonudePonudjaciDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.ponudePonudjaci = ponudePonudjaci;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        switchMap(() => this.loadFromBackendWithRouteInformations())
-      )
+  nadji(): void {
+    if (this.postupak !== undefined) {
+      this.loadSifraPonudesifraPostupka();
+    } else {
+      this.loadPageSifraPonude();
+    }
+  }
+  loadSifraPonudesifraPostupka(): void {
+    this.isLoading = true;
+    this.ponudePonudjaciService
+      .query({
+        'sifraPostupka.in': this.postupak,
+        'sifraPonude.in': this.brPonude,
+      })
       .subscribe({
-        next: (res: EntityArrayResponseType) => {
-          this.onResponseSuccess(res);
+        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.ponudePonudjacis = res;
+          this.ukupno = res.body?.reduce((acc, ponudes) => acc + ponudes.ponudjenaVrijednost!, 0);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
         },
       });
   }
 
-  load(): void {
-    this.loadFromBackendWithRouteInformations().subscribe({
-      next: (res: EntityArrayResponseType) => {
-        this.onResponseSuccess(res);
+  loadPonudePonudjaci(sifraPostupka: number): void {
+    this.ponudeService.ponudePonudjaci(sifraPostupka).subscribe({
+      next: res => {
+        this.ponudjaciPostupak = res;
       },
     });
   }
 
-  navigateToWithComponentValues(): void {
-    this.handleNavigation(this.predicate, this.ascending);
-  }
-
-  protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
-    return combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data]).pipe(
-      tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
-      switchMap(() => this.queryBackend(this.predicate, this.ascending))
-    );
-  }
-
-  protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
-    const sort = (params.get(SORT) ?? data[DEFAULT_SORT_DATA]).split(',');
-    this.predicate = sort[0];
-    this.ascending = sort[1] === ASC;
-  }
-
-  protected onResponseSuccess(response: EntityArrayResponseType): void {
-    const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
-    this.ponudePonudjacis = this.refineData(dataFromBody);
-  }
-
-  protected refineData(data: IPonudePonudjaci[]): IPonudePonudjaci[] {
-    return data.sort(this.sortService.startSort(this.predicate, this.ascending ? 1 : -1));
-  }
-
-  protected fillComponentAttributesFromResponseBody(data: IPonudePonudjaci[] | null): IPonudePonudjaci[] {
-    return data ?? [];
-  }
-
-  protected queryBackend(predicate?: string, ascending?: boolean): Observable<EntityArrayResponseType> {
+  loadPageSifraPonude(): void {
     this.isLoading = true;
-    const queryObject = {
-      sort: this.getSortQueryParam(predicate, ascending),
-    };
-    return this.ponudePonudjaciService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
+    this.ponudePonudjaciService
+      .query({
+        'sifraPonude.in': this.brPonude,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.ponudePonudjacis = res;
+          this.ukupno = res.body?.reduce((acc, ponudes) => acc + ponudes.ponudjenaVrijednost!, 0);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
   }
 
-  protected handleNavigation(predicate?: string, ascending?: boolean): void {
-    const queryParamsObj = {
-      sort: this.getSortQueryParam(predicate, ascending),
-    };
+  ngOnInit(): void {
+    this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    if (this.postupak !== undefined) {
+      // this.loadPonudePonudjaci(this.postupak);
+      this.loadPageSifra();
+    } else {
+      this.loadPage();
+    }
+    console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
+  }
 
-    this.router.navigate(['./'], {
-      relativeTo: this.activatedRoute,
-      queryParams: queryParamsObj,
+  delete(ponude: IPonude): void {
+    const modalRef = this.modalService.open(PonudeDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.ponude = ponude;
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'deleted') {
+        this.loadPage();
+      }
     });
   }
 
-  protected getSortQueryParam(predicate = this.predicate, ascending = this.ascending): string[] {
-    const ascendingQueryParam = ascending ? ASC : DESC;
-    if (predicate === '') {
-      return [];
-    } else {
-      return [predicate + ',' + ascendingQueryParam];
-    }
+  update(
+    id?: number,
+    sifraPostupka?: number,
+    sifraPonude?: number,
+    brojPartije?: number,
+    sifraPonudjaca?: number | null,
+    nazivProizvodjaca?: string | null,
+    zasticeniNaziv?: string | null,
+    ponudjenaVrijednost?: number,
+    jedinicnaCijena?: number | null,
+    selected?: boolean | null,
+    rokIsporuke?: number
+  ): void {
+    const modalRef = this.modalService.open(PonudeUpdateComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.id = id;
+    modalRef.componentInstance.sifraPostupka = sifraPostupka;
+    modalRef.componentInstance.sifraPonude = sifraPonude;
+    modalRef.componentInstance.brojPartije = brojPartije;
+    modalRef.componentInstance.sifraPonudjaca = sifraPonudjaca;
+    modalRef.componentInstance.nazivProizvodjaca = nazivProizvodjaca;
+    modalRef.componentInstance.zasticeniNaziv = zasticeniNaziv;
+    modalRef.componentInstance.ponudjenaVrijednost = ponudjenaVrijednost;
+    modalRef.componentInstance.jedinicnaCijena = jedinicnaCijena;
+    modalRef.componentInstance.selected = selected;
+    modalRef.componentInstance.rokIsporuke = rokIsporuke;
+
+    modalRef.closed.subscribe(() => {
+      if (this.postupak !== undefined) {
+        this.loadPageSifra();
+      } else {
+        this.loadPage();
+      }
+    });
+  }
+
+  add(): void {
+    const modalRef = this.modalService.open(PonudeUpdateComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.closed.subscribe(() => {
+      this.loadPage();
+    });
+  }
+
+  obrazacExcel(): void {
+    window.location.href = `${this.resourceUrlExcelDownloadPostupak}/${this.brojObrazac}`;
+  }
+  uploadFile(): any {
+    const formData = new FormData();
+    formData.append('files', this.fileInput.nativeElement.files[0]);
+    this.ponudeService.UploadExcel(formData).subscribe(() => {
+      this.loadPage();
+    });
+  }
+
+  obrazacExcelPostupak(): void {
+    window.location.href = `${this.resourceUrlExcelDownloadPostupak}/${this.postupak}`;
+  }
+
+  // deleteSifra(): void {
+  //   this.ponudeService.deleteSifraPonude(this.brPonude).subscribe();
+  //   if (this.postupak !== undefined) {
+  //     setTimeout(() => {
+  //       this.loadPageSifra();
+  //     }, 500);
+  //   } else {
+  //     setTimeout(() => {
+  //       this.loadPage();
+  //     }, 500);
+  //   }
+  //   this.obrisanoSifraPonude = true;
+  //   setTimeout(() => {
+  //     this.obrisanoSifraPonude = false;
+  //   }, 5000);
+  // }
+  //
+  // deleteSelected(): void {
+  //   this.ponudeService.deleteSelected();
+  //   if (this.postupak !== undefined) {
+  //     setTimeout(() => {
+  //       this.loadPageSifra();
+  //     }, 500);
+  //   } else {
+  //     setTimeout(() => {
+  //       this.loadPage();
+  //     }, 500);
+  //   }
+  //   this.obrisanoSelektovano = true;
+  //   setTimeout(() => {
+  //     this.obrisanoSelektovano = false;
+  //   }, 5000);
+  // }
+
+  openBrisiSelektovano(contentBrisiSelect: any): any {
+    this.modalService.open(contentBrisiSelect, { ariaLabelledBy: 'modal-basic-title' });
+  }
+
+  openBrisiPonudu(contentBrisiPoSifriPonude: any): any {
+    this.modalService.open(contentBrisiPoSifriPonude, { ariaLabelledBy: 'modal-basic-title' });
+  }
+  updateSelected(id: number): any {
+    this.ponudeService.updateSelected(id);
+  }
+  protected onError(): void {
+    console.log('Greska');
   }
 }

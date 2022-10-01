@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IPonude, NewPonude } from '../ponude.model';
-
-export type PartialUpdatePonude = Partial<IPonude> & Pick<IPonude, 'id'>;
+import { IPonude, getPonudeIdentifier } from '../ponude.model';
 
 export type EntityResponseType = HttpResponse<IPonude>;
 export type EntityArrayResponseType = HttpResponse<IPonude[]>;
@@ -15,23 +11,43 @@ export type EntityArrayResponseType = HttpResponse<IPonude[]>;
 @Injectable({ providedIn: 'root' })
 export class PonudeService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/ponudes');
+  public urlUpdateSeleced = this.applicationConfigService.getEndpointFor('api/ponude/update/selected');
+  protected resourceUrlPonudePonudjaci = this.applicationConfigService.getEndpointFor('api/ponude-ponudjaci');
+  // protected resourceUrlPonudePostupci = this.applicationConfigService.getEndpointFor('api/ponude-postupci');
+  // protected resourceUrlPostupciSifra = this.applicationConfigService.getEndpointFor('api/sifra-postupka');
+  public resourceUrlExcelUpload = SERVER_API_URL + 'api/upload';
 
+  public resourceUrlSifraPonudeDelete = this.applicationConfigService.getEndpointFor('api/ponude-delete');
+  public urlDeleSeleced = this.applicationConfigService.getEndpointFor('api/ponude/delete/selected');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  create(ponude: NewPonude): Observable<EntityResponseType> {
+  updateSelected(id: number): void {
+    this.http.put(`${this.urlUpdateSeleced}/${id}`, null).subscribe();
+  }
+  create(ponude: IPonude): Observable<EntityResponseType> {
     return this.http.post<IPonude>(this.resourceUrl, ponude, { observe: 'response' });
   }
 
-  update(ponude: IPonude): Observable<EntityResponseType> {
-    return this.http.put<IPonude>(`${this.resourceUrl}/${this.getPonudeIdentifier(ponude)}`, ponude, { observe: 'response' });
+  deleteSifraPonude(sifraPonude: null | undefined): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${this.resourceUrlSifraPonudeDelete}/${sifraPonude}`, { observe: 'response' });
   }
 
-  partialUpdate(ponude: PartialUpdatePonude): Observable<EntityResponseType> {
-    return this.http.patch<IPonude>(`${this.resourceUrl}/${this.getPonudeIdentifier(ponude)}`, ponude, { observe: 'response' });
+  update(ponude: IPonude): Observable<EntityResponseType> {
+    return this.http.put<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, ponude, { observe: 'response' });
+  }
+
+  partialUpdate(ponude: IPonude): Observable<EntityResponseType> {
+    return this.http.patch<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, ponude, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IPonude>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+  deleteSelected(): void {
+    this.http.delete(`${this.urlDeleSeleced}`).subscribe();
+  }
+  ponudePonudjaci(sifraPostupka: number): Observable<IPonude> {
+    return this.http.get<IPonude>(`${this.resourceUrlPonudePonudjaci}/${sifraPostupka}`);
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
@@ -43,31 +59,12 @@ export class PonudeService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  getPonudeIdentifier(ponude: Pick<IPonude, 'id'>): number {
-    return ponude.id;
-  }
+  UploadExcel(formData: FormData): any {
+    const headers = new HttpHeaders();
 
-  comparePonude(o1: Pick<IPonude, 'id'> | null, o2: Pick<IPonude, 'id'> | null): boolean {
-    return o1 && o2 ? this.getPonudeIdentifier(o1) === this.getPonudeIdentifier(o2) : o1 === o2;
-  }
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
 
-  addPonudeToCollectionIfMissing<Type extends Pick<IPonude, 'id'>>(
-    ponudeCollection: Type[],
-    ...ponudesToCheck: (Type | null | undefined)[]
-  ): Type[] {
-    const ponudes: Type[] = ponudesToCheck.filter(isPresent);
-    if (ponudes.length > 0) {
-      const ponudeCollectionIdentifiers = ponudeCollection.map(ponudeItem => this.getPonudeIdentifier(ponudeItem)!);
-      const ponudesToAdd = ponudes.filter(ponudeItem => {
-        const ponudeIdentifier = this.getPonudeIdentifier(ponudeItem);
-        if (ponudeCollectionIdentifiers.includes(ponudeIdentifier)) {
-          return false;
-        }
-        ponudeCollectionIdentifiers.push(ponudeIdentifier);
-        return true;
-      });
-      return [...ponudesToAdd, ...ponudeCollection];
-    }
-    return ponudeCollection;
+    return this.http.post(this.resourceUrlExcelUpload, formData, { headers });
   }
 }

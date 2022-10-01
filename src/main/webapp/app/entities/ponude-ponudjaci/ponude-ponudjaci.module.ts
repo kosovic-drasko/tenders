@@ -5,9 +5,12 @@ import { PonudePonudjaciDetailComponent } from './detail/ponude-ponudjaci-detail
 import { PonudePonudjaciUpdateComponent } from './update/ponude-ponudjaci-update.component';
 import { PonudePonudjaciDeleteDialogComponent } from './delete/ponude-ponudjaci-delete-dialog.component';
 import { PonudePonudjaciRoutingModule } from './route/ponude-ponudjaci-routing.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { JhMaterialModule } from '../../shared/jh-material.module';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
-  imports: [SharedModule, PonudePonudjaciRoutingModule],
+  imports: [SharedModule, PonudePonudjaciRoutingModule, MatSidenavModule, JhMaterialModule, MatSortModule],
   declarations: [
     PonudePonudjaciComponent,
     PonudePonudjaciDetailComponent,

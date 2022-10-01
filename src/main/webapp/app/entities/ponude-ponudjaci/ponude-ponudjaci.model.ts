@@ -10,6 +10,9 @@ export interface IPonudePonudjaci {
   rokIsporuke?: number | null;
   jedinicnaCijena?: number | null;
   selected?: boolean | null;
+  createdBy?: string | null;
+  createdDate?: Date | null;
+  lastModifiedBy?: string | null;
 }
 
 export type NewPonudePonudjaci = Omit<IPonudePonudjaci, 'id'> & { id: null };

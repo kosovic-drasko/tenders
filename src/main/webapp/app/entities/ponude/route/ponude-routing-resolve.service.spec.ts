@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, ActivatedRoute, Router, convertToParamMap } fro
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { IPonude } from '../ponude.model';
+import { IPonude, Ponude } from '../ponude.model';
 import { PonudeService } from '../service/ponude.service';
 
 import { PonudeRoutingResolveService } from './ponude-routing-resolve.service';
@@ -15,7 +15,7 @@ describe('Ponude routing resolve service', () => {
   let mockActivatedRouteSnapshot: ActivatedRouteSnapshot;
   let routingResolveService: PonudeRoutingResolveService;
   let service: PonudeService;
-  let resultPonude: IPonude | null | undefined;
+  let resultPonude: IPonude | undefined;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe('Ponude routing resolve service', () => {
       expect(resultPonude).toEqual({ id: 123 });
     });
 
-    it('should return null if id is not provided', () => {
+    it('should return new IPonude if id is not provided', () => {
       // GIVEN
       service.find = jest.fn();
       mockActivatedRouteSnapshot.params = {};
@@ -67,12 +67,12 @@ describe('Ponude routing resolve service', () => {
 
       // THEN
       expect(service.find).not.toBeCalled();
-      expect(resultPonude).toEqual(null);
+      expect(resultPonude).toEqual(new Ponude());
     });
 
     it('should route to 404 page if data not found in server', () => {
       // GIVEN
-      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse<IPonude>({ body: null })));
+      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse({ body: null as unknown as Ponude })));
       mockActivatedRouteSnapshot.params = { id: 123 };
 
       // WHEN
