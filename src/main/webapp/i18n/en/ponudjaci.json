@@ -2,7 +2,7 @@
   "tenderiApp": {
     "ponudjaci": {
       "home": {
-        "title": "Ponudjacis",
+        "title": "Ponudjaci",
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Ponudjaci",
         "createOrEditLabel": "Create or edit a Ponudjaci",
