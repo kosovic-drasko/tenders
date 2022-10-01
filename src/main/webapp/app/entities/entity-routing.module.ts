@@ -46,7 +46,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'ponude_ponudjaci',
-        data: { pageTitle: 'tenderiApp.ponudePonudjaci.home.title' },
+        data: { pageTitle: 'tenderiApp.ponude.home.title' },
         loadChildren: () => import('./ponude-ponudjaci/ponude-ponudjaci.module').then(m => m.PonudePonudjaciModule),
       },
       {

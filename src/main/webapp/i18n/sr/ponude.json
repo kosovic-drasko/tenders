@@ -2,7 +2,7 @@
   "tenderiApp": {
     "ponude": {
       "home": {
-        "title": "Ponudes",
+        "title": "Ponude",
         "refreshListLabel": "Refresh list",
         "createLabel": "Kreiraj novi Ponude",
         "createOrEditLabel": "Kreirajte ili izmenite Ponude",
