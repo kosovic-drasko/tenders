@@ -17,5 +17,6 @@ import { MatSortModule } from '@angular/material/sort';
     PonudePonudjaciUpdateComponent,
     PonudePonudjaciDeleteDialogComponent,
   ],
+  exports: [PonudePonudjaciComponent],
 })
 export class PonudePonudjaciModule {}

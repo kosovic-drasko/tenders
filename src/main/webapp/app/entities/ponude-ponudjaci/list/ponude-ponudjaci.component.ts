@@ -45,6 +45,7 @@ export class PonudePonudjaciComponent implements OnInit {
     'kreirao',
     'datum kreiranja',
     'zadnji izmjenio',
+    'datum izmjene',
     'selected',
     'action',
   ];
