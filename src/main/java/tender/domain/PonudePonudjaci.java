@@ -11,10 +11,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * A PonudePonudjaci.
  */
 @Entity
-@Table(name = "view_ponude_ponudjaci")
+@Table(name = "ponude_ponudjaci")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class PonudePonudjaci implements Serializable {
+public class PonudePonudjaci extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -58,26 +58,6 @@ public class PonudePonudjaci implements Serializable {
     @Column(name = "jedinicna_cijena")
     private Double jedinicnaCijena;
 
-    @Column(name = "created_by")
-    private String created_by;
-
-    @Column(name = "created_date")
-    private LocalDate created_date;
-
-    @Column(name = "last_modified_by")
-    private String last_modified_by;
-
-    @Column(name = "last_modified_date")
-    private LocalDate last_modified_date;
-
-    public String getCreated_by() {
-        return created_by;
-    }
-
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
-    }
-
     @Column(name = "selected")
     private Boolean selected;
 
@@ -90,30 +70,6 @@ public class PonudePonudjaci implements Serializable {
     }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
-
-    public LocalDate getCreated_date() {
-        return created_date;
-    }
-
-    public void setCreated_date(LocalDate created_date) {
-        this.created_date = created_date;
-    }
-
-    public String getLast_modified_by() {
-        return last_modified_by;
-    }
-
-    public void setLast_modified_by(String last_modified_by) {
-        this.last_modified_by = last_modified_by;
-    }
-
-    public LocalDate getLast_modified_date() {
-        return last_modified_date;
-    }
-
-    public void setLast_modified_date(LocalDate last_modified_date) {
-        this.last_modified_date = last_modified_date;
-    }
 
     public Long getId() {
         return this.id;

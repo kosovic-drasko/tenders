@@ -72,7 +72,7 @@ export class PonudePonudjaciComponent implements OnInit {
   }
   loadPage(): void {
     this.isLoading = true;
-    this.ponudePonudjaciService.query().subscribe({
+    this.ponudePonudjaciService.queryNative().subscribe({
       next: (res: HttpResponse<IPonudePonudjaci[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];

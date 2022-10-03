@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import tender.domain.Ponude;
 import tender.domain.PonudePonudjaci;
 import tender.repository.PonudePonudjaciRepository;
 import tender.service.PonudePonudjaciQueryService;
@@ -194,5 +195,19 @@ public class PonudePonudjaciResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/ponude-ponudjaci")
+    public List<PonudePonudjaci> getPonudePonudjaciNative() {
+        log.debug("REST request to get PonudePonudjaci : {}");
+        List<PonudePonudjaci> ponudePonudjaci = ponudePonudjaciRepository.findNativeAll();
+        return ponudePonudjaci;
+    }
+
+    @GetMapping("/ponude_ponudjaci/{sifraPostupka}")
+    public List<PonudePonudjaci> getPonudePonudjaciPostupak(@PathVariable Integer sifraPostupka) {
+        log.debug("REST request to get Ponude : {}", sifraPostupka);
+        List<PonudePonudjaci> ponude_ponudjaci = ponudePonudjaciRepository.findBySifraPostupkaList(sifraPostupka);
+        return ponude_ponudjaci;
     }
 }
