@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import tender.domain.PonudePonudjaci;
 import tender.domain.Vrednovanje;
 import tender.repository.VrednovanjeRepository;
 import tender.service.VrednovanjeQueryService;
@@ -80,5 +81,19 @@ public class VrednovanjeResource {
         log.debug("REST request to get Vrednovanje : {}", id);
         Optional<Vrednovanje> vrednovanje = vrednovanjeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(vrednovanje);
+    }
+
+    @GetMapping("/vrednovanje")
+    public List<Vrednovanje> getVrednovanjeNative() {
+        log.debug("REST request to get PonudePonudjaci : {}");
+        List<Vrednovanje> vrednovanje = vrednovanjeRepository.findNativeAllVrednovanje();
+        return vrednovanje;
+    }
+
+    @GetMapping("/vrednovanje/{sifraPostupka}")
+    public List<Vrednovanje> getPVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
+        log.debug("REST request to get Ponude : {}", sifraPostupka);
+        List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPostupkaList(sifraPostupka);
+        return vrednovanje;
     }
 }

@@ -10,7 +10,7 @@
         Added the entity Vrednovanje.
     -->
     <changeSet id="20220819151216-1" author="jhipster">
-        <createTable tableName="view_vrednovanje">
+        <createTable tableName="vrednovanje">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

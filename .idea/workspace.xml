@@ -6,14 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/PonudePonudjaci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/PonudePonudjaci.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/PonudePonudjaciRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/PonudePonudjaciRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/web/rest/PonudePonudjaciResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/PonudePonudjaciResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220930100007_added_entity_PonudePonudjaci.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220930100007_added_entity_PonudePonudjaci.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/Vrednovanje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/Vrednovanje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/VrednovanjeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/VrednovanjeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/web/rest/VrednovanjeResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/VrednovanjeResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220819151216_added_entity_Vrednovanje.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220819151216_added_entity_Vrednovanje.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/master.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/service/ponude-ponudjaci.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/service/ponude-ponudjaci.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/layouts/navbar/navbar.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +140,7 @@
       <workItem from="1664563764003" duration="105000" />
       <workItem from="1664563897464" duration="15111000" />
       <workItem from="1664659484962" duration="3594000" />
-      <workItem from="1664824919821" duration="4007000" />
+      <workItem from="1664824919821" duration="6940000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1664464684865</created>
@@ -278,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664664063529</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="init">
+      <created>1664829193218</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1664829193218</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

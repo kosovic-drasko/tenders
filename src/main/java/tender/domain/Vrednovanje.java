@@ -9,7 +9,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  * A Vrednovanje.
  */
 @Entity
-@Table(name = "view_vrednovanje")
+@Table(name = "vrednovanje")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Vrednovanje implements Serializable {
