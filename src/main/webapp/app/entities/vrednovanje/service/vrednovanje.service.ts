@@ -6,7 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IVrednovanje, getVrednovanjeIdentifier } from '../vrednovanje.model';
-import { IPrvorangirani } from '../../prvorangirani/prvorangirani.model';
+import { IPonudePonudjaci } from '../../ponude-ponudjaci/ponude-ponudjaci.model';
 
 export type EntityResponseType = HttpResponse<IVrednovanje>;
 export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
@@ -15,6 +15,7 @@ export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
 export class VrednovanjeService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/vrednovanjes');
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/vrednovanje');
+  protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/vrednovanje-postupak');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -29,23 +30,7 @@ export class VrednovanjeService {
   queryNative(): Observable<EntityArrayResponseType> {
     return this.http.get<IVrednovanje[]>(this.resourceUrlNative, { observe: 'response' });
   }
-  addVrednovanjeToCollectionIfMissing(
-    vrednovanjeCollection: IVrednovanje[],
-    ...vrednovanjesToCheck: (IVrednovanje | null | undefined)[]
-  ): IVrednovanje[] {
-    const vrednovanjes: IVrednovanje[] = vrednovanjesToCheck.filter(isPresent);
-    if (vrednovanjes.length > 0) {
-      const vrednovanjeCollectionIdentifiers = vrednovanjeCollection.map(vrednovanjeItem => getVrednovanjeIdentifier(vrednovanjeItem)!);
-      const vrednovanjesToAdd = vrednovanjes.filter(vrednovanjeItem => {
-        const vrednovanjeIdentifier = getVrednovanjeIdentifier(vrednovanjeItem);
-        if (vrednovanjeIdentifier == null || vrednovanjeCollectionIdentifiers.includes(vrednovanjeIdentifier)) {
-          return false;
-        }
-        vrednovanjeCollectionIdentifiers.push(vrednovanjeIdentifier);
-        return true;
-      });
-      return [...vrednovanjesToAdd, ...vrednovanjeCollection];
-    }
-    return vrednovanjeCollection;
+  queryVrednovanjePostupak(sifraPostupka: number): Observable<EntityArrayResponseType> {
+    return this.http.get<IVrednovanje[]>(`${this.resourceUrlPostupak}/${sifraPostupka}`, { observe: 'response' });
   }
 }

@@ -6,6 +6,7 @@ import { PrvorangiraniService } from '../service/prvorangirani.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { IVrednovanje } from '../../vrednovanje/vrednovanje.model';
 
 @Component({
   selector: 'jhi-prvorangirani',
@@ -15,6 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   prvorangiranis?: HttpResponse<IPrvorangirani[]>;
   isLoading = false;
+  ukupno?: number;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
   public displayedColumns = [
@@ -38,25 +40,19 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   @Input() postupak: any;
   constructor(protected prvorangiraniService: PrvorangiraniService, protected activatedRoute: ActivatedRoute, protected router: Router) {}
 
-  loadPageSifra(): void {
-    this.isLoading = true;
-    this.prvorangiraniService
-      .query({
-        'sifraPostupka.in': this.postupak,
-      })
-      .subscribe({
-        next: (res: HttpResponse<IPrvorangirani[]>) => {
-          this.isLoading = false;
-          this.dataSource.data = res.body ?? [];
-          this.prvorangiranis = res;
-          this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
-          this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
+  loadPageSifraPostupka(): void {
+    this.prvorangiraniService.queryPrvorangiraniPostupak(this.postupak).subscribe({
+      next: (res: HttpResponse<IVrednovanje[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.prvorangiranis = res;
+        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
   }
 
   loadPage(): void {
@@ -77,7 +73,11 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.loadPage();
+    if (this.postupak !== undefined) {
+      this.loadPageSifraPostupka();
+    } else {
+      this.loadPage();
+    }
   }
 
   protected onError(): void {

@@ -90,7 +90,7 @@ public class VrednovanjeResource {
         return vrednovanje;
     }
 
-    @GetMapping("/vrednovanje/{sifraPostupka}")
+    @GetMapping("/vrednovanje-postupak/{sifraPostupka}")
     public List<Vrednovanje> getPVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
         log.debug("REST request to get Ponude : {}", sifraPostupka);
         List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPostupkaList(sifraPostupka);

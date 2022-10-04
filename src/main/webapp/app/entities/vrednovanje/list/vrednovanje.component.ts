@@ -15,6 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class VrednovanjeComponent implements AfterViewInit, OnInit {
   vrednovanjes?: HttpResponse<IVrednovanje[]>;
   isLoading = false;
+  ukupno?: number;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
   public displayedColumns = [
@@ -62,28 +63,23 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
       },
     });
   }
-  loadPageSifra(): void {
-    this.isLoading = true;
-    this.vrednovanjeService
-      .query({
-        'sifraPostupka.in': this.postupak,
-      })
-      .subscribe({
-        next: (res: HttpResponse<IVrednovanje[]>) => {
-          this.isLoading = false;
-          this.dataSource.data = res.body ?? [];
-          this.vrednovanjes = res;
-          this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
-          this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
-        },
-        error: () => {
-          this.isLoading = false;
-        },
-      });
+  loadPageSifraPostupka(): void {
+    this.vrednovanjeService.queryVrednovanjePostupak(this.postupak).subscribe({
+      next: (res: HttpResponse<IVrednovanje[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.vrednovanjes = res;
+        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
   }
   ngOnInit(): void {
     if (this.postupak !== undefined) {
-      this.loadPageSifra();
+      this.loadPageSifraPostupka();
     } else {
       this.loadPage();
     }

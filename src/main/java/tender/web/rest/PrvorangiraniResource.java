@@ -83,7 +83,7 @@ public class PrvorangiraniResource {
         return prvorangirani;
     }
 
-    @GetMapping("/prvorangirani/{sifraPostupka}")
+    @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
     public List<Prvorangirani> getPPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
         log.debug("REST request to get Ponude : {}", sifraPostupka);
         List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPostupkaListPrvorangirani(sifraPostupka);

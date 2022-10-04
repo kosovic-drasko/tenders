@@ -33,7 +33,4 @@ export class PonudePonudjaciService {
   queryPonudePonudjaciPostupak(sifraPostupka: number): Observable<EntityArrayResponseType> {
     return this.http.get<IPonudePonudjaci[]>(`${this.resourceUrlPostupak}/${sifraPostupka}`, { observe: 'response' });
   }
-  delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
-  }
 }
