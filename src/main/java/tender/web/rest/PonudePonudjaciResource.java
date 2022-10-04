@@ -204,7 +204,7 @@ public class PonudePonudjaciResource {
         return ponudePonudjaci;
     }
 
-    @GetMapping("/ponude-ponudjaci/{sifraPostupka}")
+    @GetMapping("/ponude-ponudjaci-postupak/{sifraPostupka}")
     public List<PonudePonudjaci> getPonudePonudjaciPostupak(@PathVariable Integer sifraPostupka) {
         log.debug("REST request to get Ponude : {}", sifraPostupka);
         List<PonudePonudjaci> ponude_ponudjaci = ponudePonudjaciRepository.findBySifraPostupkaList(sifraPostupka);

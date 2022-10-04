@@ -86,10 +86,16 @@ export class PonudePonudjaciComponent implements OnInit {
     });
   }
   loadPageSifraPostupka(): void {
-    this.ponudePonudjaciService.ponudePonudjaciPostupak(1).subscribe({
-      next: (res: any) => {
-        this.dataSource = res;
-        this.ponudjaciPostupak = res;
+    this.ponudePonudjaciService.queryPonudePonudjaciPostupak(this.postupak).subscribe({
+      next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.ponudePonudjacis = res;
+        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
       },
     });
   }
@@ -132,13 +138,13 @@ export class PonudePonudjaciComponent implements OnInit {
       });
   }
 
-  loadPonudePonudjaci(sifraPostupka: number): void {
-    this.ponudeService.ponudePonudjaci(sifraPostupka).subscribe({
-      next: res => {
-        this.ponudjaciPostupak = res;
-      },
-    });
-  }
+  // loadPonudePonudjaci(sifraPostupka: number): void {
+  //   this.ponudeService.ponudePonudjaci(sifraPostupka).subscribe({
+  //     next: res => {
+  //       this.ponudjaciPostupak = res;
+  //     },
+  //   });
+  // }
 
   loadPageSifraPonude(): void {
     this.isLoading = true;
@@ -161,14 +167,14 @@ export class PonudePonudjaciComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.accountService.identity().subscribe(account => (this.currentAccount = account));
-    // if (this.postupak !== undefined) {
-    //   this.loadPonudePonudjaci(this.postupak);
-    this.loadPageSifraPostupka();
-    // } else {
-    //   this.loadPage();
-    // }
-    // console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
+    this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    if (this.postupak !== undefined) {
+      // this.loadPonudePonudjaci(this.postupak);
+      this.loadPageSifraPostupka();
+    } else {
+      this.loadPage();
+    }
+    console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
   }
 
   delete(ponude: IPonude): void {

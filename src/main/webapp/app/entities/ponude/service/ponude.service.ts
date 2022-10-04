@@ -12,7 +12,7 @@ export type EntityArrayResponseType = HttpResponse<IPonude[]>;
 export class PonudeService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/ponudes');
   public urlUpdateSeleced = this.applicationConfigService.getEndpointFor('api/ponude/update/selected');
-  protected resourceUrlPonudePonudjaci = this.applicationConfigService.getEndpointFor('api/ponude-ponudjaci');
+  // protected resourceUrlPonudePonudjaci = this.applicationConfigService.getEndpointFor('api/ponude-ponudjaci');
   // protected resourceUrlPonudePostupci = this.applicationConfigService.getEndpointFor('api/ponude-postupci');
   // protected resourceUrlPostupciSifra = this.applicationConfigService.getEndpointFor('api/sifra-postupka');
   public resourceUrlExcelUpload = SERVER_API_URL + 'api/upload';
@@ -46,9 +46,9 @@ export class PonudeService {
   deleteSelected(): void {
     this.http.delete(`${this.urlDeleSeleced}`).subscribe();
   }
-  ponudePonudjaci(sifraPostupka: number): Observable<IPonude> {
-    return this.http.get<IPonude>(`${this.resourceUrlPonudePonudjaci}/${sifraPostupka}`);
-  }
+  // ponudePonudjaci(sifraPostupka: number): Observable<IPonude> {
+  //   return this.http.get<IPonude>(`${this.resourceUrlPonudePonudjaci}/${sifraPostupka}`);
+  // }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
