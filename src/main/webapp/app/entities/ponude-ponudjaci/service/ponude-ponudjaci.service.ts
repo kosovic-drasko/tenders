@@ -45,6 +45,9 @@ export class PonudePonudjaciService {
   queryNative(): Observable<EntityArrayResponseType> {
     return this.http.get<IPonudePonudjaci[]>(this.resourceUrlNative, { observe: 'response' });
   }
+  ponudePonudjaci(sifraPostupka: number): Observable<HttpResponse<IPonudePonudjaci>> {
+    return this.http.get<IPonudePonudjaci>(`${this.resourceUrlNative}/${sifraPostupka}`, { observe: 'response' });
+  }
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

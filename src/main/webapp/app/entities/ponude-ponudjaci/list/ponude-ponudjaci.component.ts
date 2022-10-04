@@ -50,7 +50,7 @@ export class PonudePonudjaciComponent implements OnInit {
     'selected',
     'action',
   ];
-  public dataSource = new MatTableDataSource<IPonudePonudjaci>();
+  public dataSource: MatTableDataSource<IPonudePonudjaci> = new MatTableDataSource<IPonudePonudjaci>();
   @ViewChild('fileInput') fileInput: any;
   @Input() postupak: any;
   @ViewChild(MatSort) sort!: MatSort;
@@ -86,23 +86,12 @@ export class PonudePonudjaciComponent implements OnInit {
     });
   }
   loadPageSifra(): void {
-    this.isLoading = true;
-    this.ponudePonudjaciService
-      .query({
-        'sifraPostupka.in': this.postupak,
-      })
-      .subscribe({
-        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
-          this.isLoading = false;
-          this.dataSource.data = res.body ?? [];
-          this.ponudePonudjacis = res;
-          this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
+    this.ponudeService.ponudePonudjaci(this.postupak).subscribe({
+      next: res => {
+        // this.dataSource=res;
+        this.ponudjaciPostupak = res;
+      },
+    });
   }
   ponisti(): void {
     if (this.postupak !== undefined) {
@@ -174,7 +163,7 @@ export class PonudePonudjaciComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     if (this.postupak !== undefined) {
-      // this.loadPonudePonudjaci(this.postupak);
+      this.loadPonudePonudjaci(this.postupak);
       this.loadPageSifra();
     } else {
       this.loadPage();
@@ -249,39 +238,39 @@ export class PonudePonudjaciComponent implements OnInit {
     window.location.href = `${this.resourceUrlExcelDownloadPostupak}/${this.postupak}`;
   }
 
-  // deleteSifra(): void {
-  //   this.ponudeService.deleteSifraPonude(this.brPonude).subscribe();
-  //   if (this.postupak !== undefined) {
-  //     setTimeout(() => {
-  //       this.loadPageSifra();
-  //     }, 500);
-  //   } else {
-  //     setTimeout(() => {
-  //       this.loadPage();
-  //     }, 500);
-  //   }
-  //   this.obrisanoSifraPonude = true;
-  //   setTimeout(() => {
-  //     this.obrisanoSifraPonude = false;
-  //   }, 5000);
-  // }
-  //
-  // deleteSelected(): void {
-  //   this.ponudeService.deleteSelected();
-  //   if (this.postupak !== undefined) {
-  //     setTimeout(() => {
-  //       this.loadPageSifra();
-  //     }, 500);
-  //   } else {
-  //     setTimeout(() => {
-  //       this.loadPage();
-  //     }, 500);
-  //   }
-  //   this.obrisanoSelektovano = true;
-  //   setTimeout(() => {
-  //     this.obrisanoSelektovano = false;
-  //   }, 5000);
-  // }
+  deleteSifra(): void {
+    this.ponudeService.deleteSifraPonude(this.brPonude).subscribe();
+    if (this.postupak !== undefined) {
+      setTimeout(() => {
+        this.loadPageSifra();
+      }, 500);
+    } else {
+      setTimeout(() => {
+        this.loadPage();
+      }, 500);
+    }
+    this.obrisanoSifraPonude = true;
+    setTimeout(() => {
+      this.obrisanoSifraPonude = false;
+    }, 5000);
+  }
+
+  deleteSelected(): void {
+    this.ponudeService.deleteSelected();
+    if (this.postupak !== undefined) {
+      setTimeout(() => {
+        this.loadPageSifra();
+      }, 500);
+    } else {
+      setTimeout(() => {
+        this.loadPage();
+      }, 500);
+    }
+    this.obrisanoSelektovano = true;
+    setTimeout(() => {
+      this.obrisanoSelektovano = false;
+    }, 5000);
+  }
 
   openBrisiSelektovano(contentBrisiSelect: any): any {
     this.modalService.open(contentBrisiSelect, { ariaLabelledBy: 'modal-basic-title' });

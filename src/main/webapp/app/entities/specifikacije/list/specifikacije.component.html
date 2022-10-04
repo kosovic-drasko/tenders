@@ -1,11 +1,11 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
-    <!--    <mat-form-field *ngIf="!postupak">-->
-    <!--      <input matInput [(ngModel)]="brPonude" placeholder="Sifra Ponude" (keyup)="nadji()" />-->
-    <!--      <button *ngIf="brPonude" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">-->
-    <!--        <mat-icon>close</mat-icon>-->
-    <!--      </button>-->
-    <!--    </mat-form-field>-->
+    <mat-form-field *ngIf="!postupak">
+      <input matInput placeholder="Sifra Ponude" />
+      <button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </mat-sidenav>
   <mat-sidenav-content>
     <div>
