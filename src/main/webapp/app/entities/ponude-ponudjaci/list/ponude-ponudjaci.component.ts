@@ -91,7 +91,7 @@ export class PonudePonudjaciComponent implements OnInit {
       next: (res: HttpResponse<IPonudePonudjaci[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
-        this.ponudePonudjacis = res;
+
         this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
       },
       error: () => {
@@ -119,13 +119,13 @@ export class PonudePonudjaciComponent implements OnInit {
     }
   }
 
-  // loadPonudePonudjaci(sifraPostupka: number): void {
-  //   this.ponudeService.ponudePonudjaci(sifraPostupka).subscribe({
-  //     next: res => {
-  //       this.ponudjaciPostupak = res;
-  //     },
-  //   });
-  // }
+  loadPonudePonudjaci(sifraPostupka: number): void {
+    this.ponudeService.ponudePonudjaci(sifraPostupka).subscribe({
+      next: res => {
+        this.ponudjaciPostupak = res;
+      },
+    });
+  }
 
   loadPageSifraPonude(): void {
     this.isLoading = true;
