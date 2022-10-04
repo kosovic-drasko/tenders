@@ -16,6 +16,7 @@ export type EntityArrayResponseType = HttpResponse<IPonudePonudjaci[]>;
 export class PonudePonudjaciService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/ponude-ponudjacis');
   protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/ponude-ponudjaci-postupak');
+  protected resourceUrlPonude = this.applicationConfigService.getEndpointFor('api/ponude-ponudjaci-ponude');
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/ponude-ponudjaci');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -32,5 +33,8 @@ export class PonudePonudjaciService {
   }
   queryPonudePonudjaciPostupak(sifraPostupka: number): Observable<EntityArrayResponseType> {
     return this.http.get<IPonudePonudjaci[]>(`${this.resourceUrlPostupak}/${sifraPostupka}`, { observe: 'response' });
+  }
+  queryPonudePonudjaciPonude(sifraPonude: number): Observable<EntityArrayResponseType> {
+    return this.http.get<IPonudePonudjaci[]>(`${this.resourceUrlPonude}/${sifraPonude}`, { observe: 'response' });
   }
 }

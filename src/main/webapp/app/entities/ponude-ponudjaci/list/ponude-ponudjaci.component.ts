@@ -28,7 +28,7 @@ export class PonudePonudjaciComponent implements OnInit {
   currentAccount: Account | null = null;
   ponudjaci?: IPonudjaci[] = [];
   ukupno?: number;
-  brPonude?: null;
+  brPonude?: any;
   brojObrazac?: number = 0;
   sifraPonude?: any;
   obrisanoSelektovano?: boolean = false;
@@ -113,30 +113,10 @@ export class PonudePonudjaciComponent implements OnInit {
 
   nadji(): void {
     if (this.postupak !== undefined) {
-      this.loadSifraPonudesifraPostupka();
+      this.loadPageSifraPonude();
     } else {
       this.loadPageSifraPonude();
     }
-  }
-  loadSifraPonudesifraPostupka(): void {
-    this.isLoading = true;
-    this.ponudePonudjaciService
-      .query({
-        'sifraPostupka.in': this.postupak,
-        'sifraPonude.in': this.brPonude,
-      })
-      .subscribe({
-        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
-          this.isLoading = false;
-          this.dataSource.data = res.body ?? [];
-          this.ponudePonudjacis = res;
-          this.ukupno = res.body?.reduce((acc, ponudes) => acc + ponudes.ponudjenaVrijednost!, 0);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
   }
 
   // loadPonudePonudjaci(sifraPostupka: number): void {
@@ -149,22 +129,18 @@ export class PonudePonudjaciComponent implements OnInit {
 
   loadPageSifraPonude(): void {
     this.isLoading = true;
-    this.ponudePonudjaciService
-      .query({
-        'sifraPonude.in': this.brPonude,
-      })
-      .subscribe({
-        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
-          this.isLoading = false;
-          this.dataSource.data = res.body ?? [];
-          this.ponudePonudjacis = res;
-          this.ukupno = res.body?.reduce((acc, ponudes) => acc + ponudes.ponudjenaVrijednost!, 0);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
+    this.ponudePonudjaciService.queryPonudePonudjaciPonude(this.brPonude).subscribe({
+      next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.ponudePonudjacis = res;
+        this.ukupno = res.body?.reduce((acc, ponudes) => acc + ponudes.ponudjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
   }
 
   ngOnInit(): void {
