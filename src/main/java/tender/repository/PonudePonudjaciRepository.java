@@ -14,19 +14,94 @@ import tender.domain.PonudePonudjaci;
 @Repository
 public interface PonudePonudjaciRepository extends JpaRepository<PonudePonudjaci, Long>, JpaSpecificationExecutor<PonudePonudjaci> {
     @Query(
-        value = "SELECT distinct `ponude`.*,`ponudjaci`.`naziv_ponudjaca` AS `naziv_ponudjaca`,`specifikacije`.*,`postupci`.`vrsta_postupka` AS `vrsta_postupka`,((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) AS `bod_cijena`,((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`) AS `bod_rok`,(((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) + ((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`)) AS `bod_ukupno` from (((`ponude` join `postupci` on((`ponude`.`sifra_postupka` = `postupci`.`sifra_postupka`))) join `ponudjaci` on((`ponude`.`sifra_ponudjaca` = `ponudjaci`.`id`))) join `specifikacije` on(((`ponude`.`sifra_postupka` = `specifikacije`.`sifra_postupka`) and (`ponude`.`broj_partije` = `specifikacije`.`broj_partije`))))",
+        value = "\tSELECT distinct \n" +
+        "\t  ponude.id,\n" +
+        "\t  ponude.sifra_postupka,\n" +
+        "\t  ponude.sifra_ponude,\n" +
+        "\t  ponude.broj_partije,\n" +
+        "\t  ponude.naziv_proizvodjaca,\n" +
+        "\t  ponudjaci.naziv_ponudjaca,\n" +
+        "\t  ponude.zasticeni_naziv,\n" +
+        "\t  ponude.ponudjena_vrijednost,\n" +
+        "\t  ponude.rok_isporuke,\n" +
+        "\t  ponude.jedinicna_cijena,\n" +
+        "\t  ponude.selected,\n" +
+        "\t  ponude.sifra_ponudjaca,\n" +
+        "\t  ponude.created_by,\n" +
+        "\t  ponude.created_date,\n" +
+        "\t  ponude.last_modified_by,\n" +
+        "\t  ponude.last_modified_date,\n" +
+        "\t  specifikacije.trazena_kolicina,\n" +
+        "\t  postupci.vrsta_postupka\n" +
+        "\tFROM ponude\n" +
+        "\t  INNER JOIN ponudjaci\n" +
+        "\t    ON ponude.sifra_ponudjaca = ponudjaci.id\n" +
+        "\t  INNER JOIN specifikacije\n" +
+        "\t    ON ponude.sifra_postupka = specifikacije.sifra_postupka\n" +
+        "\t  INNER JOIN postupci\n" +
+        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka;",
         nativeQuery = true
     )
     List<PonudePonudjaci> findNativeAll();
 
     @Query(
-        value = "SELECT distinct `ponude`.*,`ponudjaci`.`naziv_ponudjaca` AS `naziv_ponudjaca`,`specifikacije`.*,`postupci`.`vrsta_postupka` AS `vrsta_postupka`,((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) AS `bod_cijena`,((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`) AS `bod_rok`,(((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) + ((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`)) AS `bod_ukupno` from (((`ponude` join `postupci` on((`ponude`.`sifra_postupka` = `postupci`.`sifra_postupka`))) join `ponudjaci` on((`ponude`.`sifra_ponudjaca` = `ponudjaci`.`id`))) join `specifikacije` on(((`ponude`.`sifra_postupka` = `specifikacije`.`sifra_postupka`) and (`ponude`.`broj_partije` = `specifikacije`.`broj_partije`))))where ponude.sifra_postupka=:sifraPostupka",
+        value = "\tSELECT\n" +
+        "\t  ponude.id,\n" +
+        "\t  ponude.sifra_postupka,\n" +
+        "\t  ponude.sifra_ponude,\n" +
+        "\t  ponude.broj_partije,\n" +
+        "\t  ponude.naziv_proizvodjaca,\n" +
+        "\t  ponudjaci.naziv_ponudjaca,\n" +
+        "\t  ponude.zasticeni_naziv,\n" +
+        "\t  ponude.ponudjena_vrijednost,\n" +
+        "\t  ponude.rok_isporuke,\n" +
+        "\t  ponude.jedinicna_cijena,\n" +
+        "\t  ponude.selected,\n" +
+        "\t  ponude.sifra_ponudjaca,\n" +
+        "\t  ponude.created_by,\n" +
+        "\t  ponude.created_date,\n" +
+        "\t  ponude.last_modified_by,\n" +
+        "\t  ponude.last_modified_date,\n" +
+        "\t  specifikacije.trazena_kolicina,\n" +
+        "\t  postupci.vrsta_postupka\n" +
+        "\tFROM ponude\n" +
+        "\t  INNER JOIN ponudjaci\n" +
+        "\t    ON ponude.sifra_ponudjaca = ponudjaci.id\n" +
+        "\t  INNER JOIN specifikacije\n" +
+        "\t    ON ponude.sifra_postupka = specifikacije.sifra_postupka\n" +
+        "\t  INNER JOIN postupci\n" +
+        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka where ponude.sifra_postupka=:sifraPostupka",
         nativeQuery = true
     )
     List<PonudePonudjaci> findBySifraPostupkaList(@Param("sifraPostupka") Integer sifraPostupka);
 
     @Query(
-        value = "SELECT distinct `ponude`.*,`ponudjaci`.`naziv_ponudjaca` AS `naziv_ponudjaca`,`specifikacije`.*,`postupci`.`vrsta_postupka` AS `vrsta_postupka`,((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) AS `bod_cijena`,((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`) AS `bod_rok`,(((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) + ((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`)) AS `bod_ukupno` from (((`ponude` join `postupci` on((`ponude`.`sifra_postupka` = `postupci`.`sifra_postupka`))) join `ponudjaci` on((`ponude`.`sifra_ponudjaca` = `ponudjaci`.`id`))) join `specifikacije` on(((`ponude`.`sifra_postupka` = `specifikacije`.`sifra_postupka`) and (`ponude`.`broj_partije` = `specifikacije`.`broj_partije`))))where ponude.sifra_ponude=:sifraPonude",
+        value = "SELECT\n" +
+        "\t  ponude.id,\n" +
+        "\t  ponude.sifra_postupka,\n" +
+        "\t  ponude.sifra_ponude,\n" +
+        "\t  ponude.broj_partije,\n" +
+        "\t  ponude.naziv_proizvodjaca,\n" +
+        "\t  ponudjaci.naziv_ponudjaca,\n" +
+        "\t  ponude.zasticeni_naziv,\n" +
+        "\t  ponude.ponudjena_vrijednost,\n" +
+        "\t  ponude.rok_isporuke,\n" +
+        "\t  ponude.jedinicna_cijena,\n" +
+        "\t  ponude.selected,\n" +
+        "\t  ponude.sifra_ponudjaca,\n" +
+        "\t  ponude.created_by,\n" +
+        "\t  ponude.created_date,\n" +
+        "\t  ponude.last_modified_by,\n" +
+        "\t  ponude.last_modified_date,\n" +
+        "\t  specifikacije.trazena_kolicina,\n" +
+        "\t  postupci.vrsta_postupka\n" +
+        "\tFROM ponude\n" +
+        "\t  INNER JOIN ponudjaci\n" +
+        "\t    ON ponude.sifra_ponudjaca = ponudjaci.id\n" +
+        "\t  INNER JOIN specifikacije\n" +
+        "\t    ON ponude.sifra_postupka = specifikacije.sifra_postupka\n" +
+        "\t  INNER JOIN postupci\n" +
+        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka where ponude.sifra_ponude like CONCAT('%', :sifraPonude, '%')",
         nativeQuery = true
     )
     List<PonudePonudjaci> findBySifraPonudeList(@Param("sifraPonude") Integer sifraPonude);
