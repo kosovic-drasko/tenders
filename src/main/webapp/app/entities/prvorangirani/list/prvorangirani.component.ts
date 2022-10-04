@@ -59,8 +59,25 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
       });
   }
 
+  loadPage(): void {
+    this.isLoading = true;
+    this.prvorangiraniService.queryNative().subscribe({
+      next: (res: HttpResponse<IPrvorangirani[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.prvorangiranis = res;
+        this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
+  }
+
   ngOnInit(): void {
-    this.loadPageSifra();
+    this.loadPage();
   }
 
   protected onError(): void {

@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IVrednovanje, getVrednovanjeIdentifier } from '../vrednovanje.model';
+import { IPrvorangirani } from '../../prvorangirani/prvorangirani.model';
 
 export type EntityResponseType = HttpResponse<IVrednovanje>;
 export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
@@ -13,6 +14,7 @@ export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
 @Injectable({ providedIn: 'root' })
 export class VrednovanjeService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/vrednovanjes');
+  protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/vrednovanje');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -24,7 +26,9 @@ export class VrednovanjeService {
     const options = createRequestOption(req);
     return this.http.get<IVrednovanje[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
-
+  queryNative(): Observable<EntityArrayResponseType> {
+    return this.http.get<IVrednovanje[]>(this.resourceUrlNative, { observe: 'response' });
+  }
   addVrednovanjeToCollectionIfMissing(
     vrednovanjeCollection: IVrednovanje[],
     ...vrednovanjesToCheck: (IVrednovanje | null | undefined)[]

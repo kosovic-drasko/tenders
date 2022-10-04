@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import tender.domain.Prvorangirani;
+import tender.domain.Vrednovanje;
 import tender.repository.PrvorangiraniRepository;
 import tender.service.PrvorangiraniQueryService;
 import tender.service.PrvorangiraniService;
@@ -80,5 +81,12 @@ public class PrvorangiraniResource {
         log.debug("REST request to get Prvorangirani : {}", id);
         Optional<Prvorangirani> prvorangirani = prvorangiraniService.findOne(id);
         return ResponseUtil.wrapOrNotFound(prvorangirani);
+    }
+
+    @GetMapping("/prvorangirani")
+    public List<Prvorangirani> getVrednovanjeNativePrvorangirani() {
+        log.debug("REST request to get PonudePonudjaci : {}");
+        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findNativeAllPrvorangirani();
+        return prvorangirani;
     }
 }

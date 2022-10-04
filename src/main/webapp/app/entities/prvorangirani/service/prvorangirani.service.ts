@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPrvorangirani, getPrvorangiraniIdentifier } from '../prvorangirani.model';
+import { IPonudePonudjaci } from '../../ponude-ponudjaci/ponude-ponudjaci.model';
 
 export type EntityResponseType = HttpResponse<IPrvorangirani>;
 export type EntityArrayResponseType = HttpResponse<IPrvorangirani[]>;
@@ -13,6 +14,7 @@ export type EntityArrayResponseType = HttpResponse<IPrvorangirani[]>;
 @Injectable({ providedIn: 'root' })
 export class PrvorangiraniService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/prvorangiranis');
+  protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/prvorangirani');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -23,6 +25,9 @@ export class PrvorangiraniService {
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IPrvorangirani[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+  queryNative(): Observable<EntityArrayResponseType> {
+    return this.http.get<IPrvorangirani[]>(this.resourceUrlNative, { observe: 'response' });
   }
 
   addPrvorangiraniToCollectionIfMissing(
