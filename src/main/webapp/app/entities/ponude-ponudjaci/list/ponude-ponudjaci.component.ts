@@ -85,10 +85,10 @@ export class PonudePonudjaciComponent implements OnInit {
       },
     });
   }
-  loadPageSifra(): void {
-    this.ponudeService.ponudePonudjaci(this.postupak).subscribe({
-      next: res => {
-        // this.dataSource=res;
+  loadPageSifraPostupka(): void {
+    this.ponudePonudjaciService.ponudePonudjaciPostupak(1).subscribe({
+      next: (res: any) => {
+        this.dataSource = res;
         this.ponudjaciPostupak = res;
       },
     });
@@ -96,7 +96,7 @@ export class PonudePonudjaciComponent implements OnInit {
   ponisti(): void {
     if (this.postupak !== undefined) {
       this.brPonude = null;
-      this.loadPageSifra();
+      this.loadPageSifraPostupka();
       console.log(this.postupak);
     } else {
       this.brPonude = null;
@@ -161,14 +161,14 @@ export class PonudePonudjaciComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.identity().subscribe(account => (this.currentAccount = account));
-    if (this.postupak !== undefined) {
-      this.loadPonudePonudjaci(this.postupak);
-      this.loadPageSifra();
-    } else {
-      this.loadPage();
-    }
-    console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
+    // this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    // if (this.postupak !== undefined) {
+    //   this.loadPonudePonudjaci(this.postupak);
+    this.loadPageSifraPostupka();
+    // } else {
+    //   this.loadPage();
+    // }
+    // console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
   }
 
   delete(ponude: IPonude): void {
@@ -209,7 +209,7 @@ export class PonudePonudjaciComponent implements OnInit {
 
     modalRef.closed.subscribe(() => {
       if (this.postupak !== undefined) {
-        this.loadPageSifra();
+        this.loadPageSifraPostupka();
       } else {
         this.loadPage();
       }
@@ -242,7 +242,7 @@ export class PonudePonudjaciComponent implements OnInit {
     this.ponudeService.deleteSifraPonude(this.brPonude).subscribe();
     if (this.postupak !== undefined) {
       setTimeout(() => {
-        this.loadPageSifra();
+        this.loadPageSifraPostupka();
       }, 500);
     } else {
       setTimeout(() => {
@@ -259,7 +259,7 @@ export class PonudePonudjaciComponent implements OnInit {
     this.ponudeService.deleteSelected();
     if (this.postupak !== undefined) {
       setTimeout(() => {
-        this.loadPageSifra();
+        this.loadPageSifraPostupka();
       }, 500);
     } else {
       setTimeout(() => {
