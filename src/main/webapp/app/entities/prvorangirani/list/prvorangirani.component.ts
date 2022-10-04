@@ -46,7 +46,8 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
         this.prvorangiranis = res;
-        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
       },
       error: () => {
         this.isLoading = false;

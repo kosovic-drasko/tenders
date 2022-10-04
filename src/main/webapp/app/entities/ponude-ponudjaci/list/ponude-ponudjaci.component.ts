@@ -19,6 +19,7 @@ import { PonudeUpdateComponent } from '../../ponude/update/ponude-update.compone
 @Component({
   selector: 'jhi-ponude-ponudjaci',
   templateUrl: './ponude-ponudjaci.component.html',
+  styleUrls: ['./ponude-ponudjaci.component.scss'],
 })
 export class PonudePonudjaciComponent implements OnInit {
   ponudePonudjacis?: HttpResponse<IPonudePonudjaci[]>;
