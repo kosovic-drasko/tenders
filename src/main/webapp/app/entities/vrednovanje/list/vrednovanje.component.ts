@@ -6,6 +6,7 @@ import { VrednovanjeService } from '../service/vrednovanje.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { TableUtil } from '../tableUtil';
 
 @Component({
   selector: 'jhi-vrednovanje',
@@ -108,5 +109,9 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  exportTable() {
+    TableUtil.exportTableToExcel('ExampleTable');
   }
 }
