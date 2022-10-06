@@ -105,4 +105,18 @@ public interface PonudePonudjaciRepository extends JpaRepository<PonudePonudjaci
         nativeQuery = true
     )
     List<PonudePonudjaci> findBySifraPonudeList(@Param("sifraPonude") Integer sifraPonude);
+
+    @Query(
+        value = "SELECT  * FROM (SELECT \n" +
+        "                      ponude.*,  \n" +
+        "                      ponudjaci.naziv_ponudjaca,  \n" +
+        "                      ROW_NUMBER() over(partition BY ponude.sifra_ponude ORDER BY   \n" +
+        "                    ponude.id DESC)rn  \n" +
+        "                    FROM  \n" +
+        "                      ponude  \n" +
+        "                      INNER JOIN ponudjaci ON (ponude.sifra_ponudjaca = ponudjaci.id  \n" +
+        "                     )WHERE ponude.sifra_postupka=:sifra)r WHERE rn=1",
+        nativeQuery = true
+    )
+    List<PonudePonudjaci> findBySifraPostupkaPonudjaci(@Param("sifra") Integer sifra);
 }

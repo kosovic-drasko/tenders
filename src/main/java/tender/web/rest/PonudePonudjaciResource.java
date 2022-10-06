@@ -217,4 +217,10 @@ public class PonudePonudjaciResource {
         List<PonudePonudjaci> ponude_ponudjaci = ponudePonudjaciRepository.findBySifraPonudeList(sifraPonude);
         return ponude_ponudjaci;
     }
+
+    @GetMapping("/ponude-ponudjaci-postupci/{sifra}")
+    public ResponseEntity<?> getPonudePonudjaciPostuci(@PathVariable Integer sifra) {
+        Optional<? extends List<?>> ponude = Optional.ofNullable(ponudePonudjaciRepository.findBySifraPostupkaPonudjaci(sifra));
+        return ResponseUtil.wrapOrNotFound(ponude);
+    }
 }

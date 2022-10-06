@@ -120,7 +120,7 @@ export class PonudePonudjaciComponent implements OnInit {
   }
 
   loadPonudePonudjaci(sifraPostupka: number): void {
-    this.ponudeService.ponudePonudjaci(sifraPostupka).subscribe({
+    this.ponudePonudjaciService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
       next: res => {
         this.ponudjaciPostupak = res;
       },
@@ -146,7 +146,7 @@ export class PonudePonudjaciComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     if (this.postupak !== undefined) {
-      // this.loadPonudePonudjaci(this.postupak);
+      this.loadPonudePonudjaci(this.postupak);
       this.loadPageSifraPostupka();
     } else {
       this.loadPage();
