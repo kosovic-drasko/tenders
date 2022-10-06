@@ -89,4 +89,11 @@ public class PrvorangiraniResource {
         List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPostupkaListPrvorangirani(sifraPostupka);
         return prvorangirani;
     }
+
+    @GetMapping("/prvorangirani-ponude/{sifraPonude}")
+    public List<Prvorangirani> getPPrvorangiraniPonude(@PathVariable Integer sifraPonude) {
+        log.debug("REST request to get Ponude : {}", sifraPonude);
+        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPonudeListPrvorangirani(sifraPonude);
+        return prvorangirani;
+    }
 }
