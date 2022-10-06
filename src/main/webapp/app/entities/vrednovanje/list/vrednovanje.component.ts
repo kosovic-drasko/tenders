@@ -18,6 +18,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ukupno?: number;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
+  sifraPonude?: number;
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -65,6 +66,21 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   }
   loadPageSifraPostupka(): void {
     this.vrednovanjeService.queryVrednovanjePostupak(this.postupak).subscribe({
+      next: (res: HttpResponse<IVrednovanje[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.vrednovanjes = res;
+        this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
+  }
+  loadPageSifraPonude(): void {
+    this.vrednovanjeService.queryVrednovanjePonude(this.sifraPonude).subscribe({
       next: (res: HttpResponse<IVrednovanje[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];

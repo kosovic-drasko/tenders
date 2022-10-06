@@ -1,12 +1,12 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
     <div>
-      <!--      <mat-form-field>-->
-      <!--        <input matInput [(ngModel)]="sifraPonude" matInput placeholder="Sifra Ponude" (keyup)="nadjiPoSifriPonude()" />-->
-      <!--        <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="sifraPonudeNull()">-->
-      <!--          <mat-icon>close</mat-icon>-->
-      <!--        </button>-->
-      <!--      </mat-form-field>-->
+      <mat-form-field>
+        <input matInput [(ngModel)]="sifraPonude" matInput placeholder="Sifra Ponude" (keyup)="loadPageSifraPonude()" />
+        <!--              <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="sifraPonudeNull()">-->
+        <!--                <mat-icon>close</mat-icon>-->
+        <!--              </button>-->
+      </mat-form-field>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

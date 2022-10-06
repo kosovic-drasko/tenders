@@ -96,4 +96,11 @@ public class VrednovanjeResource {
         List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPostupkaList(sifraPostupka);
         return vrednovanje;
     }
+
+    @GetMapping("/vrednovanje-ponude/{sifraPonude}")
+    public List<Vrednovanje> getPVrednovanjePonude(@PathVariable Integer sifraPonude) {
+        log.debug("REST request to get Ponude : {}", sifraPonude);
+        List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPonudeList(sifraPonude);
+        return vrednovanje;
+    }
 }
