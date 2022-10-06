@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IVrednovanje } from '../../vrednovanje/vrednovanje.model';
+import { TableUtil } from '../../vrednovanje/tableUtil';
 
 @Component({
   selector: 'jhi-prvorangirani',
@@ -103,5 +104,9 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  exportTable() {
+    TableUtil.exportTableToExcel('ExampleTable');
   }
 }
