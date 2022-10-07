@@ -30,4 +30,13 @@ public interface VrednovanjeRepository extends JpaRepository<Vrednovanje, Long>,
         nativeQuery = true
     )
     List<Vrednovanje> findBySifraPonudeList(@Param("sifraPonude") Integer sifraPonude);
+
+    @Query(
+        value = "SELECT  * FROM (SELECT distinct ponude.*,`naziv_ponudjaca` AS `naziv_ponudjaca`,`specifikacije`.`atc` AS `atc`,`specifikacije`.`trazena_kolicina` AS `trazena_kolicina`,`specifikacije`.`procijenjena_vrijednost` AS `procijenjena_vrijednost`,`postupci`.`vrsta_postupka` AS `vrsta_postupka`,((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) AS `bod_cijena`,((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`) AS `bod_rok`,(((`postupci`.`kriterijum_cijena` * min(`ponude`.`ponudjena_vrijednost`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`ponudjena_vrijednost`) + ((`postupci`.`drugi_kriterijum` * min(`ponude`.`rok_isporuke`) OVER (PARTITION BY `ponude`.`broj_partije`,`ponude`.`sifra_postupka` ) ) / `ponude`.`rok_isporuke`)) AS `bod_ukupno`,ROW_NUMBER() over(partition BY ponude.sifra_ponude\n" +
+        " ORDER BY  ponude.id DESC)rn from (((`ponude` join `postupci` on((`ponude`.`sifra_postupka` = `postupci`.`sifra_postupka`))) join `ponudjaci` on((`ponude`.`sifra_ponudjaca` = `ponudjaci`.`id`))) join `specifikacije` on(((`ponude`.`sifra_postupka` = `specifikacije`.`sifra_postupka`)\n" +
+        " and (`ponude`.`broj_partije` = `specifikacije`.`broj_partije`\n" +
+        "      )))) WHERE ponude.sifra_postupka=:sifra)r WHERE rn=1",
+        nativeQuery = true
+    )
+    List<Vrednovanje> findBySifraPostupkaPonudjaci(@Param("sifra") Integer sifra);
 }

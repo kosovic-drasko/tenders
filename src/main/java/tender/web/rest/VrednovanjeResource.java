@@ -103,4 +103,10 @@ public class VrednovanjeResource {
         List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPonudeList(sifraPonude);
         return vrednovanje;
     }
+
+    @GetMapping("/vrednovanje-ponudjaci-postupci/{sifra}")
+    public ResponseEntity<?> getPonudePonudjaciPostuci(@PathVariable Integer sifra) {
+        Optional<? extends List<?>> vrednovanje = Optional.ofNullable(vrednovanjeRepository.findBySifraPostupkaPonudjaci(sifra));
+        return ResponseUtil.wrapOrNotFound(vrednovanje);
+    }
 }
