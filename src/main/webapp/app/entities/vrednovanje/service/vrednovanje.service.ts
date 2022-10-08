@@ -17,7 +17,7 @@ export class VrednovanjeService {
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/vrednovanje');
   protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/vrednovanje-postupak');
   protected resourceUrlPonude = this.applicationConfigService.getEndpointFor('api/vrednovanje-ponude');
-
+  protected resourceUrlPonudjaciPostupci = this.applicationConfigService.getEndpointFor('api/vrednovanje-ponudjaci-postupci');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   find(id: number): Observable<EntityResponseType> {
@@ -37,5 +37,9 @@ export class VrednovanjeService {
 
   queryVrednovanjePonude(sifraPonude: number | undefined): Observable<EntityArrayResponseType> {
     return this.http.get<IVrednovanje[]>(`${this.resourceUrlPonude}/${sifraPonude}`, { observe: 'response' });
+  }
+
+  ponudePonudjaciPostupci(sifraPostupka: number): Observable<IPonudePonudjaci> {
+    return this.http.get<IPonudePonudjaci>(`${this.resourceUrlPonudjaciPostupci}/${sifraPostupka}`);
   }
 }

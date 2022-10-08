@@ -17,6 +17,8 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   vrednovanjes?: HttpResponse<IVrednovanje[]>;
   isLoading = false;
   ukupno?: number;
+  brPonude?: any;
+  ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
   sifraPonude?: number;
@@ -56,6 +58,13 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
       error: () => {
         this.isLoading = false;
         this.onError();
+      },
+    });
+  }
+  loadPonudePonudjaci(sifraPostupka: number): void {
+    this.vrednovanjeService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
+      next: res => {
+        this.ponudjaciPostupak = res;
       },
     });
   }

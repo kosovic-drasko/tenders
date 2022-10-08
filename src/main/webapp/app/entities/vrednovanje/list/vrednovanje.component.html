@@ -17,6 +17,25 @@
           ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt=""
         /></mat-button-toggle>
       </div>
+      <div class="form-floating">
+        <div *ngIf="postupak" class="form-floating">
+          <select
+            class="form-control"
+            id="field_sifraPonudjaca"
+            data-cy="sifraPonudjaca"
+            name="sifraPonudjaca"
+            [(ngModel)]="brPonude"
+            (change)="loadPageSifraPonude()"
+            cl="loadPageSifraPonude()"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+              {{ ponudjaciOption.nazivPonudjaca }}
+            </option>
+          </select>
+          <label class="form-label" jhiTranslate="tenderiApp.ponude.sifraPonudjaca" for="field_sifraPonudjaca">Sifra Ponudjaca</label>
+        </div>
+      </div>
       <jhi-alert-error></jhi-alert-error>
       <jhi-alert></jhi-alert>
       <div class="alert alert-warning" id="no-result" *ngIf="vrednovanjes?.body?.length === 0">
