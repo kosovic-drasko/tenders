@@ -100,6 +100,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   }
   ngOnInit(): void {
     if (this.postupak !== undefined) {
+      this.loadPonudePonudjaci(this.postupak);
       this.loadPageSifraPostupka();
     } else {
       this.loadPage();

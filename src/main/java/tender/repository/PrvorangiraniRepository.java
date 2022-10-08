@@ -220,7 +220,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                (view_vrednovanje.sifra_postupka = view_maximalni_bod.sifra_postupka) AND\n" +
         "                                (view_vrednovanje.bod_ukupno = view_maximalni_bod.maximalni_bod)\n " +
         "                            )\n" +
-        "                        ) where view_vrednovanje.sifra_ponude=:sifraPonude",
+        "                        ) where view_vrednovanje.sifra_ponude like CONCAT('%', :sifraPonude, '%')",
         nativeQuery = true
     )
     List<Prvorangirani> findBySifraPonudeListPrvorangirani(@Param("sifraPonude") Integer sifraPonude);

@@ -39,7 +39,7 @@ export class VrednovanjeService {
     return this.http.get<IVrednovanje[]>(`${this.resourceUrlPonude}/${sifraPonude}`, { observe: 'response' });
   }
 
-  ponudePonudjaciPostupci(sifraPostupka: number): Observable<IPonudePonudjaci> {
-    return this.http.get<IPonudePonudjaci>(`${this.resourceUrlPonudjaciPostupci}/${sifraPostupka}`);
+  ponudePonudjaciPostupci(sifraPostupka: number): Observable<IVrednovanje> {
+    return this.http.get<IVrednovanje>(`${this.resourceUrlPonudjaciPostupci}/${sifraPostupka}`);
   }
 }
