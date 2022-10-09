@@ -9,6 +9,7 @@ import { SpecifikacijeUpdateComponent } from '../update/specifikacije-update.com
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { TableUtil } from '../../tableUtil';
 
 @Component({
   selector: 'jhi-specifikacije',
@@ -159,5 +160,9 @@ export class SpecifikacijeComponent implements OnInit {
 
   obrazacExcel(): void {
     window.location.href = `${this.resourceUrlExcelDownload}/${this.brojObrazac}`;
+  }
+
+  exportTable() {
+    TableUtil.exportTableToExcel('ExampleTable');
   }
 }

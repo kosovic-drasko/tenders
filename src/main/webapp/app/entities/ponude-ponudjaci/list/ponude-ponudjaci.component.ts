@@ -15,6 +15,7 @@ import { PonudeDeleteDialogComponent } from '../../ponude/delete/ponude-delete-d
 import { PonudeService } from '../../ponude/service/ponude.service';
 import { IPonude } from '../../ponude/ponude.model';
 import { PonudeUpdateComponent } from '../../ponude/update/ponude-update.component';
+import { TableUtil } from '../../tableUtil';
 
 @Component({
   selector: 'jhi-ponude-ponudjaci',
@@ -267,5 +268,9 @@ export class PonudePonudjaciComponent implements OnInit {
   }
   protected onError(): void {
     console.log('Greska');
+  }
+
+  exportTable() {
+    TableUtil.exportTableToExcel('ExampleTable');
   }
 }

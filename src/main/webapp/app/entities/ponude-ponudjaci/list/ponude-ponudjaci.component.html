@@ -38,11 +38,8 @@
         >
           Ukloni Ponudu
         </mat-button-toggle>
-        <mat-button-toggle
-          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER', 'ROLE_MANAGER']"
-          matTooltip=" Excel fajl"
-          (click)="obrazacExcelPostupak()"
-        >
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER', 'ROLE_MANAGER']" matTooltip=" Excel fajl"></mat-button-toggle>
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
       </mat-button-toggle-group>

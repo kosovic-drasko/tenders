@@ -7,7 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IVrednovanje } from '../../vrednovanje/vrednovanje.model';
-import { TableUtil } from '../../vrednovanje/tableUtil';
+import { TableUtil } from '../../tableUtil';
 
 @Component({
   selector: 'jhi-prvorangirani',
