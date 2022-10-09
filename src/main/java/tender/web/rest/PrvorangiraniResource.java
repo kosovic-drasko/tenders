@@ -96,4 +96,10 @@ public class PrvorangiraniResource {
         List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPonudeListPrvorangirani(sifraPonude);
         return prvorangirani;
     }
+
+    @GetMapping("/prvorngirani-ponudjaci-postupci/{sifra}")
+    public ResponseEntity<?> getPonudePonudjaciPostuci(@PathVariable Integer sifra) {
+        Optional<? extends List<?>> prvorngirani = Optional.ofNullable(prvorangiraniRepository.findBySifraPostupkaPonudjaci(sifra));
+        return ResponseUtil.wrapOrNotFound(prvorngirani);
+    }
 }
