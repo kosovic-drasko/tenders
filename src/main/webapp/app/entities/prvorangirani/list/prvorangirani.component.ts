@@ -18,6 +18,7 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   prvorangiranis?: HttpResponse<IPrvorangirani[]>;
   isLoading = false;
   ukupno?: number;
+  ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
   sifraPonude?: number;
@@ -89,9 +90,16 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
       },
     });
   }
-
+  loadPonudePonudjaci(sifraPostupka: number): void {
+    this.prvorangiraniService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
+      next: res => {
+        this.ponudjaciPostupak = res;
+      },
+    });
+  }
   ngOnInit(): void {
     if (this.postupak !== undefined) {
+      this.loadPonudePonudjaci(this.postupak);
       this.loadPageSifraPostupka();
     } else {
       this.loadPage();

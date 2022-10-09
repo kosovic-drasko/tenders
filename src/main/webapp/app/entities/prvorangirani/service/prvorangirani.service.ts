@@ -17,7 +17,7 @@ export class PrvorangiraniService {
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/prvorangirani');
   protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/prvorangirani-postupci');
   protected resourceUrlPonude = this.applicationConfigService.getEndpointFor('api/prvorangirani-ponude');
-
+  protected resourceUrlPonudjaciPostupci = this.applicationConfigService.getEndpointFor('api/prvorngirani-ponudjaci-postupci');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   find(id: number): Observable<EntityResponseType> {
@@ -37,5 +37,9 @@ export class PrvorangiraniService {
 
   queryPrvorangiraniPonude(sifraPonude: number | undefined): Observable<EntityArrayResponseType> {
     return this.http.get<IPrvorangirani[]>(`${this.resourceUrlPonude}/${sifraPonude}`, { observe: 'response' });
+  }
+
+  ponudePonudjaciPostupci(sifraPostupka: number): Observable<IPrvorangirani> {
+    return this.http.get<IPrvorangirani>(`${this.resourceUrlPonudjaciPostupci}/${sifraPostupka}`);
   }
 }

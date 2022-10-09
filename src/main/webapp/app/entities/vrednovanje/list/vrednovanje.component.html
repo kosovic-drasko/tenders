@@ -12,7 +12,7 @@
   <mat-sidenav-content>
     <div>
       <div *ngIf="vrednovanjes?.body?.length != 0">
-        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
+        <!--        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>-->
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()"
           ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt=""
         /></mat-button-toggle>

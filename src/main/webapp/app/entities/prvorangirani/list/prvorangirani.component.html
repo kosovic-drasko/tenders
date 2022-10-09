@@ -12,10 +12,29 @@
   <mat-sidenav-content>
     <div>
       <div *ngIf="prvorangiranis?.body?.length != 0">
-        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
+        <!--        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>-->
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()"
           ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt=""
         /></mat-button-toggle>
+      </div>
+      <div class="form-floating">
+        <div *ngIf="postupak" class="form-floating">
+          <select
+            class="form-control"
+            id="field_sifraPonudjaca"
+            data-cy="sifraPonudjaca"
+            name="sifraPonudjaca"
+            [(ngModel)]="sifraPonude"
+            (change)="loadPageSifraPonude()"
+            cl="loadPageSifraPonude()"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+              {{ ponudjaciOption.nazivPonudjaca }}
+            </option>
+          </select>
+          <label class="form-label" jhiTranslate="tenderiApp.ponude.sifraPonudjaca" for="field_sifraPonudjaca">Ponudjaca</label>
+        </div>
       </div>
       <jhi-alert-error></jhi-alert-error>
       <jhi-alert></jhi-alert>

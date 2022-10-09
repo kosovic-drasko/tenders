@@ -5,8 +5,7 @@ import { Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IVrednovanje, getVrednovanjeIdentifier } from '../vrednovanje.model';
-import { IPonudePonudjaci } from '../../ponude-ponudjaci/ponude-ponudjaci.model';
+import { IVrednovanje } from '../vrednovanje.model';
 
 export type EntityResponseType = HttpResponse<IVrednovanje>;
 export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
@@ -14,6 +13,7 @@ export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
 @Injectable({ providedIn: 'root' })
 export class VrednovanjeService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/vrednovanjes');
+
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/vrednovanje');
   protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/vrednovanje-postupak');
   protected resourceUrlPonude = this.applicationConfigService.getEndpointFor('api/vrednovanje-ponude');
