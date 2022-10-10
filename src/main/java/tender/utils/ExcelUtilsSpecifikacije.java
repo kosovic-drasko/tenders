@@ -60,17 +60,17 @@ public class ExcelUtilsSpecifikacije {
             for (Specifikacije specifikacijes : specifikacije) {
                 Row row = sheet.createRow(rowIdx++);
 
-                row.createCell(0).setCellValue(specifikacijes.getId());
-                row.createCell(1).setCellValue(specifikacijes.getSifraPostupka());
-                row.createCell(2).setCellValue(specifikacijes.getBrojPartije());
-                row.createCell(3).setCellValue(specifikacijes.getTrazenaKolicina());
-                row.createCell(4).setCellValue(specifikacijes.getProcijenjenaVrijednost());
-                row.createCell(5).setCellValue(specifikacijes.getAtc());
-                row.createCell(6).setCellValue(specifikacijes.getInn());
-                row.createCell(7).setCellValue(specifikacijes.getFarmaceutskiOblikLijeka());
-                row.createCell(8).setCellValue(specifikacijes.getJacinaLijeka());
-                row.createCell(9).setCellValue(specifikacijes.getPakovanje());
-                row.createCell(10).setCellValue(specifikacijes.getJedinicaMjere());
+                //                row.createCell(0).setCellValue(specifikacijes.getId());
+                row.createCell(0).setCellValue(specifikacijes.getSifraPostupka());
+                row.createCell(1).setCellValue(specifikacijes.getBrojPartije());
+                row.createCell(2).setCellValue(specifikacijes.getTrazenaKolicina());
+                row.createCell(3).setCellValue(specifikacijes.getProcijenjenaVrijednost());
+                row.createCell(4).setCellValue(specifikacijes.getAtc());
+                row.createCell(5).setCellValue(specifikacijes.getInn());
+                row.createCell(6).setCellValue(specifikacijes.getFarmaceutskiOblikLijeka());
+                row.createCell(7).setCellValue(specifikacijes.getJacinaLijeka());
+                row.createCell(8).setCellValue(specifikacijes.getPakovanje());
+                row.createCell(9).setCellValue(specifikacijes.getJedinicaMjere());
             }
 
             workbook.write(out);
@@ -106,37 +106,37 @@ public class ExcelUtilsSpecifikacije {
                     Cell currentCell = cellsInRow.next();
 
                     switch (cellIdx) {
+                        //                        case 0:
+                        //                            specifikacije.setId((long) currentCell.getNumericCellValue());
+                        //                            break;
                         case 0:
-                            specifikacije.setId((long) currentCell.getNumericCellValue());
-                            break;
-                        case 1:
                             specifikacije.setSifraPostupka((int) currentCell.getNumericCellValue());
                             break;
-                        case 2:
+                        case 1:
                             specifikacije.setBrojPartije((int) currentCell.getNumericCellValue());
                             break;
-                        case 3:
+                        case 2:
                             specifikacije.setTrazenaKolicina((int) currentCell.getNumericCellValue());
                             break;
-                        case 4:
+                        case 3:
                             specifikacije.setProcijenjenaVrijednost((double) currentCell.getNumericCellValue());
                             break;
-                        case 5:
+                        case 4:
                             specifikacije.setAtc(currentCell.getStringCellValue());
                             break;
-                        case 6:
+                        case 5:
                             specifikacije.setInn(currentCell.getStringCellValue());
                             break;
-                        case 7:
+                        case 6:
                             specifikacije.setFarmaceutskiOblikLijeka(currentCell.getStringCellValue());
                             break;
-                        case 8:
+                        case 7:
                             specifikacije.setJacinaLijeka(currentCell.getStringCellValue());
                             break;
-                        case 9:
+                        case 8:
                             specifikacije.setPakovanje(currentCell.getStringCellValue());
                             break;
-                        case 10:
+                        case 9:
                             specifikacije.setJedinicaMjere(currentCell.getStringCellValue());
                             break;
                         default:

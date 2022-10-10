@@ -59,16 +59,15 @@ public class ExcelUtilsPonude {
             for (Ponude ponudes : ponude) {
                 Row row = sheet.createRow(rowIdx++);
 
-                row.createCell(0).setCellValue(ponudes.getId());
-                row.createCell(1).setCellValue(ponudes.getSifraPostupka());
-                row.createCell(2).setCellValue(ponudes.getSifraPonude());
-                row.createCell(3).setCellValue(ponudes.getRokIsporuke());
-                row.createCell(4).setCellValue(ponudes.getBrojPartije());
-                row.createCell(5).setCellValue(ponudes.getSifraPonudjaca());
-                row.createCell(6).setCellValue(ponudes.getJedinicnaCijena());
-                row.createCell(7).setCellValue(ponudes.getPonudjenaVrijednost());
-                row.createCell(8).setCellValue(ponudes.getNazivProizvodjaca());
-                row.createCell(9).setCellValue(ponudes.getZasticeniNaziv());
+                row.createCell(0).setCellValue(ponudes.getSifraPostupka());
+                row.createCell(1).setCellValue(ponudes.getSifraPonude());
+                row.createCell(2).setCellValue(ponudes.getRokIsporuke());
+                row.createCell(3).setCellValue(ponudes.getBrojPartije());
+                row.createCell(4).setCellValue(ponudes.getSifraPonudjaca());
+                row.createCell(5).setCellValue(ponudes.getJedinicnaCijena());
+                row.createCell(6).setCellValue(ponudes.getPonudjenaVrijednost());
+                row.createCell(7).setCellValue(ponudes.getNazivProizvodjaca());
+                row.createCell(8).setCellValue(ponudes.getZasticeniNaziv());
             }
 
             workbook.write(out);
@@ -105,33 +104,30 @@ public class ExcelUtilsPonude {
 
                     switch (cellIdx) {
                         case 0:
-                            ponude.setId((long) currentCell.getNumericCellValue());
-                            break;
-                        case 1:
                             ponude.setSifraPostupka((int) currentCell.getNumericCellValue());
                             break;
-                        case 2:
+                        case 1:
                             ponude.setSifraPonude((int) currentCell.getNumericCellValue());
                             break;
-                        case 3:
+                        case 2:
                             ponude.setRokIsporuke((int) currentCell.getNumericCellValue());
                             break;
-                        case 4:
+                        case 3:
                             ponude.setBrojPartije((int) currentCell.getNumericCellValue());
                             break;
-                        case 5:
+                        case 4:
                             ponude.setSifraPonudjaca((int) currentCell.getNumericCellValue());
                             break;
-                        case 6:
+                        case 5:
                             ponude.setJedinicnaCijena(currentCell.getNumericCellValue());
                             break;
-                        case 7:
+                        case 6:
                             ponude.setPonudjenaVrijednost(currentCell.getNumericCellValue());
                             break;
-                        case 8:
+                        case 7:
                             ponude.setNazivProizvodjaca(currentCell.getStringCellValue());
                             break;
-                        case 9:
+                        case 8:
                             ponude.setZasticeniNaziv(currentCell.getStringCellValue());
                             break;
                         default:
