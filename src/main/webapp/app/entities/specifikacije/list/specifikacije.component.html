@@ -1,8 +1,8 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
     <mat-form-field *ngIf="!postupak">
-      <input matInput placeholder="Sifra Ponude" />
-      <button>
+      <input matInput [(ngModel)]="brPostupka" placeholder="Sifra Ponude" (keyup)="loadPageSifraPostupakPromjene()" />
+      <button *ngIf="brPostupka" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="table-responsive" id="entities" *ngIf="specifikacijes">
-        <table mat-table id="ExampleTable" [dataSource]="dataSource" matSort matSortStart="desc" matSort matSortStart="desc">
+        <table mat-table id="ExampleTable" [dataSource]="dataSource" matSort matSortStart="desc">
           <ng-container matColumnDef="sifra postupka">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Sifra Postupka</th>
             <td mat-cell *matCellDef="let element">{{ element.sifraPostupka }}</td>

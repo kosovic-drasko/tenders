@@ -21,6 +21,7 @@ export class SpecifikacijeComponent implements OnInit {
   isLoading = false;
   brojObrazac?: number = 0;
   ukupno?: number;
+  brPostupka?: null;
 
   public displayedColumns = [
     'sifra postupka',
@@ -84,6 +85,35 @@ export class SpecifikacijeComponent implements OnInit {
           this.onError();
         },
       });
+  }
+  loadPageSifraPostupakPromjene(): void {
+    this.isLoading = true;
+    this.specifikacijeService
+      .query({
+        'sifraPostupka.in': this.brPostupka,
+      })
+      .subscribe({
+        next: (res: HttpResponse<ISpecifikacije[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.specifikacijes = res;
+          this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
+  }
+  ponisti(): void {
+    if (this.postupak !== undefined) {
+      this.brPostupka = null;
+      this.loadPageSifra();
+      console.log(this.postupak);
+    } else {
+      this.brPostupka = null;
+      this.loadPage();
+    }
   }
 
   ngOnInit(): void {
