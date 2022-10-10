@@ -6,6 +6,7 @@ import { HvalePonudeService } from '../service/hvale-ponude.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ISpecifikacije } from '../../specifikacije/specifikacije.model';
 
 @Component({
   selector: 'jhi-hvale-ponude',
@@ -16,6 +17,7 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   hvalePonudes?: any;
   ukupnaProcijenjena?: number | null | undefined;
   isLoading = false;
+  ukupno?: number;
   public displayedColumns = [
     'sifra postupka',
     'broj partije',
@@ -27,7 +29,7 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   ];
 
   public dataSource = new MatTableDataSource<IHvalePonude>();
-  sifraPostupka?: any;
+  sifraPostupka?: number;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() postupak: any;
@@ -41,15 +43,33 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
       this.getTotalProcijenjena();
     });
   }
-
+  loadPageSifra(): void {
+    this.isLoading = true;
+    this.hvaleService
+      .hvali({
+        'sifraPostupka.in': this.postupak,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IHvalePonude[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.hvalePonudes = res;
+          this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+          console.log('<<<<<<<<<<<<<<<<<<<', this.hvalePonudes);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
+  }
+  protected onError(): void {
+    console.log('Greska');
+  }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-
-  public doFilter = (value: string): any => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
-  };
 
   getTotalProcijenjena(): any {
     return (this.ukupnaProcijenjena = this.dataSource.filteredData
@@ -58,6 +78,7 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    // this.loadPageSifra();
     this.getSifraHvali();
   }
 }

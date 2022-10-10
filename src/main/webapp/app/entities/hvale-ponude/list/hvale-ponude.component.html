@@ -13,15 +13,15 @@
     <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
     <div>
       <div *ngIf="hvalePonudes?.body?.length != 0">
-        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
+        <!--        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>-->
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl"
           ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt=""
         /></mat-button-toggle>
       </div>
       <jhi-alert-error></jhi-alert-error>
       <jhi-alert></jhi-alert>
-      <div class="alert alert-warning" id="no-result" *ngIf="hvalePonudes?.body?.length === 0">
-        <span>Nema zapisa Nedostajucih ponuda</span>
+      <div class="alert alert-warning" id="no-result1" *ngIf="hvalePonudes?.body?.length === 0">
+        <span jhiTranslate="tenderApp.hvalePonude.home.notFound">No specifikacijes found</span>
       </div>
       <table mat-table id="ExampleTable" [dataSource]="dataSource" matSort matSortStart="desc">
         <ng-container matColumnDef="sifra postupka">

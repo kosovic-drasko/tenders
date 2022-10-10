@@ -14,15 +14,20 @@ export class HvalePonudeService {
   public resourceUrlHvali = this.applicationConfigService.getEndpointFor('api/hvale');
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  hvali(sifra: number): any {
+  hvali(sifra: any): any {
     return this.http.get(`${this.resourceUrlHvali}/${sifra}`);
   }
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IHvalePonude>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http.get<IHvalePonude[]>(this.resourceUrl, { params: options, observe: 'response' });
+  // query1(req?: any): Observable<EntityArrayResponseType> {
+  //   const options = createRequestOption(req);
+  //   return this.http.get<IHvalePonude[]>(this.resourceUrl, { params: options, observe: 'response' });
+  // }
+
+  query(sifra: number): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(sifra);
+    return this.http.get<IHvalePonude[]>(`${this.resourceUrlHvali}/${sifra}`, { params: options, observe: 'response' });
   }
 }

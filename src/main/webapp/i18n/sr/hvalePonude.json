@@ -4,7 +4,7 @@
       "home": {
         "title": "Hvale Ponudes",
         "refreshListLabel": "Refresh list",
-        "notFound": "No Hvale Ponudes found"
+        "notFound": "Nema partija koje su prazne"
       },
       "detail": {
         "title": "Hvale Ponude"
