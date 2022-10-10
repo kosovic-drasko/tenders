@@ -2,17 +2,17 @@
   "tenderiApp": {
     "postupci": {
       "home": {
-        "title": "Postupcis",
+        "title": "Postupci",
         "refreshListLabel": "Refresh list",
         "createLabel": "Kreiraj novi Postupci",
-        "createOrEditLabel": "Kreirajte ili izmenite Postupci",
-        "notFound": "No Postupcis found"
+        "createOrEditLabel": "Kreirajte ili izmenite Postupak",
+        "notFound": "Nema zapisa Postupaka"
       },
-      "created": "Kreiran je novi Postupci pod nazivom {{ param }}",
-      "updated": "Postupci pod nazivom {{ param }} je ažuriran",
-      "deleted": "Postupci pod nazivom {{ param }} je obrisan",
+      "created": "Kreiran je novi Postupak sa id {{ param }}",
+      "updated": "Postupak sa id {{ param }} je ažuriran",
+      "deleted": "Postupak sa id {{ param }} je obrisan",
       "delete": {
-        "question": "Da li ste sigurni da želite da obrišete Postupci pod nazivom {{ id }}?"
+        "question": "Da li ste sigurni da želite da obrišete Postupak sa Id {{ id }}?"
       },
       "detail": {
         "title": "Postupci"
