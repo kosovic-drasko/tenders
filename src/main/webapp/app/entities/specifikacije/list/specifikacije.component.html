@@ -12,10 +12,10 @@
       <div class="btn-group" role="group" aria-label="Basic example">
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
           <input hidden #fileInput type="file" id="file" />
-          <mat-button-toggle class="nadji" (click)="sidenav.toggle()">
+          <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()">
             <mat-icon>search</mat-icon>
           </mat-button-toggle>
-          <div></div>
+
           <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="add()" matTooltip="Dodaj novu ponudu">Dodaj </mat-button-toggle>
           <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Napravi formu za unos Excel" (click)="obrazacExcel()"
             >Napravi Obrazac

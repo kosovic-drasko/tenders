@@ -14,7 +14,6 @@
         <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()">
           <mat-icon>search</mat-icon>
         </mat-button-toggle>
-        <div></div>
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" (click)="add()" matTooltip="Dodaj novu ponudu"
           >Dodaj
         </mat-button-toggle>
