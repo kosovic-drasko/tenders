@@ -18,7 +18,6 @@ public class ExcelUtilsPonude {
 
     public static ByteArrayInputStream customersToExcel(List<Ponude> ponude) throws IOException {
         String[] COLUMNs = {
-            "Id",
             "Sifra Postupka",
             "Sifra Ponude",
             "Rok Isporuke",
