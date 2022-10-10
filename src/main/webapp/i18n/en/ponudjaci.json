@@ -1,8 +1,8 @@
 {
-  "tenderiApp": {
+  "tenderApp": {
     "ponudjaci": {
       "home": {
-        "title": "Ponudjaci",
+        "title": "Ponudjacis",
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Ponudjaci",
         "createOrEditLabel": "Create or edit a Ponudjaci",
@@ -21,8 +21,7 @@
       "nazivPonudjaca": "Naziv Ponudjaca",
       "odgovornoLice": "Odgovorno Lice",
       "adresaPonudjaca": "Adresa Ponudjaca",
-      "bankaRacun": "Banka Racun",
-      "ponude": "Ponude"
+      "bankaRacun": "Banka Racun"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "tenderiApp": {
+  "tenderApp": {
     "ponude": {
       "home": {
         "title": "Ponudes",
@@ -27,8 +27,7 @@
       "rokIsporuke": "Rok Isporuke",
       "jedinicnaCijena": "Jedinicna Cijena",
       "selected": "Selected",
-      "sifraPonudjaca": "Sifra Ponudjaca",
-      "ponudjaci": "Ponudjaci"
+      "sifraPonudjaca": "Sifra Ponudjaca"
     }
   }
 }

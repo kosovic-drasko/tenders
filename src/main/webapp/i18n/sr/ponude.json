@@ -1,8 +1,8 @@
 {
-  "tenderiApp": {
+  "tenderApp": {
     "ponude": {
       "home": {
-        "title": "Ponude",
+        "title": "Ponudes",
         "refreshListLabel": "Refresh list",
         "createLabel": "Kreiraj novi Ponude",
         "createOrEditLabel": "Kreirajte ili izmenite Ponude",
@@ -27,8 +27,7 @@
       "rokIsporuke": "Rok Isporuke",
       "jedinicnaCijena": "Jedinicna Cijena",
       "selected": "Selected",
-      "sifraPonudjaca": "Sifra Ponudjaca",
-      "ponudjaci": "Ponudjaci"
+      "sifraPonudjaca": "Sifra Ponudjaca"
     }
   }
 }
