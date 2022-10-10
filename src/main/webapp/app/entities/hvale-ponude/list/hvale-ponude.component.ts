@@ -41,27 +41,24 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
       this.dataSource.data = res;
       this.hvalePonudes = res;
       this.getTotalProcijenjena();
+      console.log('<<<<<<<<<<<<<<<<<<<', this.hvalePonudes);
     });
   }
   loadPageSifra(): void {
     this.isLoading = true;
-    this.hvaleService
-      .hvali({
-        'sifraPostupka.in': this.postupak,
-      })
-      .subscribe({
-        next: (res: HttpResponse<IHvalePonude[]>) => {
-          this.isLoading = false;
-          this.dataSource.data = res.body ?? [];
-          this.hvalePonudes = res;
-          this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
-          console.log('<<<<<<<<<<<<<<<<<<<', this.hvalePonudes);
-        },
-        error: () => {
-          this.isLoading = false;
-          this.onError();
-        },
-      });
+    this.hvaleService.query(this.postupak).subscribe({
+      next: (res: HttpResponse<IHvalePonude[]>) => {
+        this.isLoading = false;
+        this.dataSource.data = res.body ?? [];
+        this.hvalePonudes = res;
+        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+        console.log('<<<<<<<<<<<<<<<<<<<', this.hvalePonudes);
+      },
+      error: () => {
+        this.isLoading = false;
+        this.onError();
+      },
+    });
   }
   protected onError(): void {
     console.log('Greska');
@@ -78,7 +75,7 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    // this.loadPageSifra();
-    this.getSifraHvali();
+    this.loadPageSifra();
+    // this.getSifraHvali();
   }
 }

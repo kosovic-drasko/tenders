@@ -27,7 +27,6 @@ export class HvalePonudeService {
   // }
 
   query(sifra: number): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(sifra);
-    return this.http.get<IHvalePonude[]>(`${this.resourceUrlHvali}/${sifra}`, { params: options, observe: 'response' });
+    return this.http.get<IHvalePonude[]>(`${this.resourceUrlHvali}/${sifra}`, { observe: 'response' });
   }
 }
