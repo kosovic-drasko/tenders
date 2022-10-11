@@ -45,6 +45,7 @@ export class SpecifikacijeComponent implements OnInit {
   @Input() postupak: any;
   message: string | undefined;
   public resourceUrlExcelDownload = SERVER_API_URL + 'api/specifikacije/file';
+
   constructor(
     protected specifikacijeService: SpecifikacijeService,
     protected activatedRoute: ActivatedRoute,

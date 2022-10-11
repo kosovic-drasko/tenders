@@ -1,7 +1,7 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
     <mat-form-field *ngIf="!postupak">
-      <input matInput [(ngModel)]="brPostupka" placeholder="Sifra Ponude" (keyup)="loadPageSifraPostupakPromjene()" />
+      <input matInput [(ngModel)]="brPostupka" placeholder="Sifra Postupka" (keyup)="loadPageSifraPostupakPromjene()" />
       <button *ngIf="brPostupka" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">
         <mat-icon>close</mat-icon>
       </button>

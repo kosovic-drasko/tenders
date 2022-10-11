@@ -57,7 +57,7 @@ export class PonudePonudjaciComponent implements OnInit {
   @Input() postupak: any;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  resourceUrlExcelDownloadPostupak = SERVER_API_URL + 'api/ponude/file/';
+  public resourceUrlExcelDownloadPostupak = SERVER_API_URL + 'api/ponude/file';
 
   constructor(
     protected ponudePonudjaciService: PonudePonudjaciService,
