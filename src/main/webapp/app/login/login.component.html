@@ -1,52 +1,3 @@
-<!--<mat-dialog-content class="mat-typography">-->
-<!--  <div id="centar">-->
-<!--    <div id="text">-->
-<!--      <h2 mat-dialog-title>Prijava</h2>-->
-<!--      <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication" data-cy="loginError">-->
-<!--        <strong>Failed to sign in!</strong> Please check your credentials and try again.-->
-<!--      </div>-->
-
-<!--      <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">-->
-<!--        <div id="sami-centar">-->
-<!--          <div class="form-group">-->
-<!--            <mat-form-field>-->
-<!--              <mat-label>Korisnik</mat-label>-->
-<!--              <input matInput type="text" name="username" id="username" placeholder="" formControlName="username" #username />-->
-<!--              &lt;!&ndash;              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>&ndash;&gt;-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-<!--          <div class="form-group"></div>-->
-<!--          <div class="form-group">-->
-<!--            <mat-form-field>-->
-<!--              <mat-label>Unesite sifru</mat-label>-->
-<!--              <input  matInput name="password" id="password" placeholder="" formControlName="password" #password />-->
-<!--              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
-<!--                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>-->
-<!--              </button>-->
-<!--            </mat-form-field>-->
-<!--          </div>-->
-
-<!--          <div class="form-check">-->
-<!--            <label class="form-check-label" for="rememberMe">-->
-<!--              <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />-->
-<!--              <span jhiTranslate="login.form.rememberme">Remember me</span>-->
-<!--            </label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" data-cy="submit">Sign in</button>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;        <button type="submit" mat-raised-button color="primary" jhiTranslate="login.form.button" data-cy="submit">Sign in</button>&ndash;&gt;-->
-<!--      </form>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</mat-dialog-content>-->
-
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
-</head>
-
 <div class="modal-content">
   <div class="modal-header">
     <h5 class="modal-title">Prijava</h5>
@@ -85,13 +36,6 @@
             />
             <label for="password" jhiTranslate="login.form.password">Password</label>
           </div>
-
-          <!--         <div class="form-check">-->
-          <!--           <label class="form-check-label" for="rememberMe">-->
-          <!--             <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />-->
-          <!--             <span jhiTranslate="login.form.rememberme">Remember me</span>-->
-          <!--           </label>-->
-          <!--         </div>-->
         </div>
 
         <div class="modal-footer">
