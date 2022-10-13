@@ -1,5 +1,12 @@
-tr.mat-row:hover {
-  background: #2196f3;
+td:hover {
+  color: white;
+}
+.mat-row:hover {
+  background-color: #2196f3;
+  color: white;
+}
+.crveno {
+  background: red;
   color: white;
 }
 tr {

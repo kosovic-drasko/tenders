@@ -26,42 +26,56 @@
       </div>
 
       <div class="table-responsive" id="entities" *ngIf="postupcis">
-        <table
-          mat-table
-          id="ExampleTable"
-          [dataSource]="dataSource"
-          matSort
-          matSortStart="desc"
-          matSort
-          matSortStart="desc"
-          matSort
-          matSortStart="desc"
-        >
+        <table mat-table id="ExampleTable" [dataSource]="dataSource" matSort matSortStart="desc" class="table-hover">
           <ng-container matColumnDef="sifra postupka">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Sifra Postupka</th>
-            <td mat-cell *matCellDef="let element" [routerLink]="['/tenderi-home']" [queryParams]="{ sifra: element.sifraPostupka }">
+            <td
+              class="data"
+              mat-cell
+              *matCellDef="let element"
+              [routerLink]="['/tenderi-home']"
+              [queryParams]="{ sifra: element.sifraPostupka }"
+            >
               {{ element.sifraPostupka }}
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="broj tendera">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Broj Tendera</th>
-            <td mat-cell *matCellDef="let element" [routerLink]="['/tenderi-home']" [queryParams]="{ sifra: element.sifraPostupka }">
+            <td
+              class="data"
+              mat-cell
+              *matCellDef="let element"
+              [routerLink]="['/tenderi-home']"
+              [queryParams]="{ sifra: element.sifraPostupka }"
+            >
               {{ element.brojTendera }}
             </td>
-            <td mat-footer-cell *matFooterCellDef></td>
+            <td class="data" mat-footer-cell *matFooterCellDef></td>
           </ng-container>
 
           <ng-container matColumnDef="opis postupka">
             <th mat-header-cell *matHeaderCellDef>Opis Postupka</th>
-            <td mat-cell *matCellDef="let element" [routerLink]="['/tenderi-home']" [queryParams]="{ sifra: element.sifraPostupka }">
+            <td
+              class="data"
+              mat-cell
+              *matCellDef="let element"
+              [routerLink]="['/tenderi-home']"
+              [queryParams]="{ sifra: element.sifraPostupka }"
+            >
               {{ element.opisPostupka }}
             </td>
-            <td mat-footer-cell *matFooterCellDef></td>
+            <td class="data" mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="vrsta postupka">
             <th mat-header-cell *matHeaderCellDef>Vrsta Postupka</th>
-            <td mat-cell *matCellDef="let element" [routerLink]="['/tenderi-home']" [queryParams]="{ sifra: element.sifraPostupka }">
+            <td
+              class="data"
+              mat-cell
+              *matCellDef="let element"
+              [routerLink]="['/tenderi-home']"
+              [queryParams]="{ sifra: element.sifraPostupka }"
+            >
               {{ element.vrstaPostupka }}
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
@@ -100,7 +114,7 @@
 
           <ng-container matColumnDef="action" stickyEnd>
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
+            <td class="data" mat-cell *matCellDef="let element">
               <div class="btn-group">
                 <button
                   type="submit"
