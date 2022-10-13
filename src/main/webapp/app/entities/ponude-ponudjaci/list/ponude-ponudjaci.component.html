@@ -126,7 +126,7 @@
             <td mat-cell *matCellDef="let element">{{ element.rokIsporuke }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
-          <div *jhiHasAnyAuthority="['ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_USER']">
+          <div>
             <ng-container matColumnDef="kreirao">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Kreirao zapis</th>
               <td mat-cell *matCellDef="let element">{{ element.createdBy }}</td>

@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init" />
+    <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/VrednovanjeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/VrednovanjeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/hvale-ponude/list/hvale-ponude.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/hvale-ponude/list/hvale-ponude.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/postupci/list/postupci.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/postupci/list/postupci.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/tenderi-home/list/tenderi-home.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/tenderi-home/list/tenderi-home.components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/tenderi-home/list/tenderi-home.components.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/content/scss/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/content/scss/global.scss" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,14 +160,8 @@
       <workItem from="1665390753207" duration="9565000" />
       <workItem from="1665476063817" duration="807000" />
       <workItem from="1665480427044" duration="618000" />
-      <workItem from="1665485305116" duration="14524000" />
-    </task>
-    <task id="LOCAL-00016" summary="init">
-      <created>1664651308504</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1664651308504</updated>
+      <workItem from="1665485305116" duration="16355000" />
+      <workItem from="1665645592883" duration="2218000" />
     </task>
     <task id="LOCAL-00017" summary="init">
       <created>1664653371841</created>
@@ -496,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665563203114</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="init">
+      <created>1665579071326</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1665579071326</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
