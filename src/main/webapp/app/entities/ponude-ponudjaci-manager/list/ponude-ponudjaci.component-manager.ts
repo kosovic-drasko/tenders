@@ -18,11 +18,11 @@ import { PonudeUpdateComponent } from '../../ponude/update/ponude-update.compone
 import { TableUtil } from '../../tableUtil';
 
 @Component({
-  selector: 'jhi-ponude-ponudjaci',
+  selector: 'jhi-ponude-ponudjaci-manager',
   templateUrl: './ponude-ponudjaci.component.html',
   styleUrls: ['./ponude-ponudjaci.component.scss'],
 })
-export class PonudePonudjaciComponent implements OnInit {
+export class PonudePonudjaciComponentManager implements OnInit {
   ponudePonudjacis?: HttpResponse<IPonudePonudjaci[]>;
   isLoading = false;
   ponudjaciPostupak?: any;
@@ -34,7 +34,6 @@ export class PonudePonudjaciComponent implements OnInit {
   sifraPonude?: any;
   obrisanoSelektovano?: boolean = false;
   obrisanoSifraPonude?: boolean = false;
-  sakrij?: boolean = true;
   public displayedColumns = [
     'sifra postupka',
     'sifraPonude',

@@ -49,6 +49,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'tenderApp.ponude.home.title' },
         loadChildren: () => import('./ponude-ponudjaci/ponude-ponudjaci.module').then(m => m.PonudePonudjaciModule),
       },
+      // {
+      //   path: 'ponude_ponudjaci-manager',
+      //   data: { pageTitle: 'tenderApp.ponude.home.title' },
+      //   loadChildren: () => import('./ponude-ponudjaci-manager/ponude-ponudjaci.model').then(m => m.),
+      // },
       {
         path: 'pomoc',
         data: { authorities: ['ROLE_MANAGER', 'ROLE_ADMIN'], pageTitle: 'tenderApp.pomoc.home.title' },
