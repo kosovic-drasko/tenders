@@ -16,6 +16,8 @@ import { PonudeService } from '../../ponude/service/ponude.service';
 import { IPonude } from '../../ponude/ponude.model';
 import { PonudeUpdateComponent } from '../../ponude/update/ponude-update.component';
 import { TableUtil } from '../../tableUtil';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'jhi-ponude-ponudjaci',
@@ -25,6 +27,7 @@ import { TableUtil } from '../../tableUtil';
 export class PonudePonudjaciComponent implements OnInit {
   ponudePonudjacis?: HttpResponse<IPonudePonudjaci[]>;
   isLoading = false;
+
   ponudjaciPostupak?: any;
   currentAccount: Account | null = null;
   ponudjaci?: IPonudjaci[] = [];
@@ -35,6 +38,7 @@ export class PonudePonudjaciComponent implements OnInit {
   obrisanoSelektovano?: boolean = false;
   obrisanoSifraPonude?: boolean = false;
   sakrij?: boolean = true;
+  private readonly destroy$ = new Subject<void>();
   public displayedColumns = [
     'sifra postupka',
     'sifraPonude',
@@ -153,9 +157,21 @@ export class PonudePonudjaciComponent implements OnInit {
     } else {
       this.loadPage();
     }
-    console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
+    // if (this.currentAccount?.login == 'manager') {
+    //  this.sakrij=true;
+    // } else {
+    //   this.sakrij=false;
+    // }
+    this.accountService
+      .getAuthenticationState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(account => (this.currentAccount = account));
+    console.log('Nalog je >>>>>>>>', this.currentAccount?.login);
   }
-
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   delete(ponude: IPonude): void {
     const modalRef = this.modalService.open(PonudeDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.ponude = ponude;
