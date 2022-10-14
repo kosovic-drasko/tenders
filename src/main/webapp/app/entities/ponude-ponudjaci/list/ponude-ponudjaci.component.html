@@ -137,7 +137,7 @@
             </ng-container>
             <ng-container matColumnDef="datum kreiranja">
               <th [hidden]="sakrij" mat-header-cell *matHeaderCellDef mat-sort-header>Datum kreiranja zapisa</th>
-              <td [hidden]="sakrij" mat-cell *matCellDef="let element">{{ element.createdDate }}</td>
+              <td [hidden]="sakrij" mat-cell *matCellDef="let element">{{ element.createdDate | date }}</td>
               <td [hidden]="sakrij" mat-footer-cell *matFooterCellDef></td>
             </ng-container>
             <ng-container matColumnDef="zadnji izmjenio">

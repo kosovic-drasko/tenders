@@ -157,16 +157,16 @@ export class PonudePonudjaciComponent implements OnInit {
     } else {
       this.loadPage();
     }
-    // if (this.currentAccount?.login == 'manager') {
-    //  this.sakrij=true;
-    // } else {
-    //   this.sakrij=false;
-    // }
+    if (this.currentAccount?.login == 'drasko') {
+      this.sakrij = false;
+    } else {
+      this.sakrij = true;
+    }
     this.accountService
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => (this.currentAccount = account));
-    console.log('Nalog je >>>>>>>>', this.currentAccount?.login);
+    console.log('Nalog je >>>>>>>>', this.currentAccount?.authorities);
   }
   ngOnDestroy(): void {
     this.destroy$.next();
