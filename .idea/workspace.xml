@@ -68,7 +68,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "database.data.extractors.current.export.id": "Excel (xlsx)",
-    "last_opened_file_path": "C:/Users/pc/IdeaProjects/tenders/src/main/webapp/app/entities",
+    "last_opened_file_path": "C:/Users/pc/IdeaProjects/tenderi-mf",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -154,14 +154,7 @@
       <workItem from="1665476063817" duration="807000" />
       <workItem from="1665480427044" duration="618000" />
       <workItem from="1665485305116" duration="16355000" />
-      <workItem from="1665645592883" duration="15361000" />
-    </task>
-    <task id="LOCAL-00023" summary="init">
-      <created>1664865600952</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1664865600953</updated>
+      <workItem from="1665645592883" duration="26685000" />
     </task>
     <task id="LOCAL-00024" summary="init">
       <created>1664877160588</created>
@@ -499,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665771512724</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="init">
+      <created>1665865785639</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1665865785639</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
