@@ -260,8 +260,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     postupci.vrsta_postupka,\n" +
         "                                     (((postupci.kriterijum_cijena) * min(ponude.ponudjena_vrijednost) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_vrijednost) AS bod_cijena,\n" +
         "          ((postupci.drugi_kriterijum * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke) AS bod_rok,\n" +
-        "          ((((postupci.kriterijum_cijena) * min(ponude.ponudjena_vrijednost) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_vrijednost) + (((postupci.drugi_kriterijum * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke))) AS bod_ukupno,ROW_NUMBER() over(partition BY ponude.sifra_ponude\n" +
-        "       ORDER BY  ponude.id DESC)rn\n" +
+        "          ((((postupci.kriterijum_cijena) * min(ponude.ponudjena_vrijednost) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.ponudjena_vrijednost) + (((postupci.drugi_kriterijum * min(ponude.rok_isporuke) OVER (PARTITION BY ponude.broj_partije, ponude.sifra_postupka)) / ponude.rok_isporuke))) AS bod_ukupno\n" +
         "                  FROM (((ponude\n" +
         "                      JOIN postupci ON ((ponude.sifra_postupka = postupci.sifra_postupka)))\n" +
         "                      JOIN ponudjaci ON ((ponude.sifra_ponudjaca = ponudjaci.id)))\n" +
@@ -302,7 +301,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                      (view_vrednovanje.sifra_postupka = view_maximalni_bod.sifra_postupka) AND\n" +
         "                                      (view_vrednovanje.bod_ukupno = view_maximalni_bod.maximalni_bod)\n" +
         "                              )\n" +
-        "                          ) WHERE rn=1 and view_vrednovanje.sifra_postupka=:sifra\n" +
+        "                          ) WHERE view_vrednovanje.sifra_postupka=:sifra\n" +
         "  \n" +
         "  ",
         nativeQuery = true

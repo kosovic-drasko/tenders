@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISpecifikacije } from '../../specifikacije/specifikacije.model';
+import { TableUtil } from '../../tableUtil';
 
 @Component({
   selector: 'jhi-hvale-ponude',
@@ -60,5 +61,8 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   }
   ngOnChanges(): void {
     this.loadPageSifra();
+  }
+  exportTable() {
+    TableUtil.exportTableToExcel('ExampleTable');
   }
 }
