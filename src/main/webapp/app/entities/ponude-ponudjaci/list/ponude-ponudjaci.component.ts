@@ -157,7 +157,7 @@ export class PonudePonudjaciComponent implements OnInit {
     } else {
       this.loadPage();
     }
-    if (this.currentAccount?.login == 'drasko') {
+    if (this.currentAccount?.login == 'sandra') {
       this.sakrij = false;
     } else {
       this.sakrij = true;
