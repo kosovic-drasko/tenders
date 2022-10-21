@@ -40,28 +40,29 @@
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
+
+        <div class="trazi">
+          <div *ngIf="postupak" class="form-floating">
+            <select
+              class="form-control"
+              id="field_sifraPonudjaca"
+              data-cy="sifraPonudjaca"
+              name="sifraPonudjaca"
+              [(ngModel)]="brPonude"
+              (change)="loadPageSifraPonude()"
+              cl="loadPageSifraPonude()"
+            >
+              <option [ngValue]="null"></option>
+              <option [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+                {{ ponudjaciOption.nazivPonudjaca }}
+              </option>
+            </select>
+            <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Naziv Ponudjaca</label>
+          </div>
+        </div>
       </mat-button-toggle-group>
       <input hidden #fileInput type="file" id="file1" />
 
-      <div class="trazi">
-        <div *ngIf="postupak" class="form-floating">
-          <select
-            class="form-control"
-            id="field_sifraPonudjaca"
-            data-cy="sifraPonudjaca"
-            name="sifraPonudjaca"
-            [(ngModel)]="brPonude"
-            (change)="loadPageSifraPonude()"
-            cl="loadPageSifraPonude()"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
-              {{ ponudjaciOption.nazivPonudjaca }}
-            </option>
-          </select>
-          <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Naziv Ponudjaca</label>
-        </div>
-      </div>
       <jhi-alert-error></jhi-alert-error>
       <jhi-alert></jhi-alert>
       <div class="alert alert-warning" id="no-result" *ngIf="ponudePonudjacis?.body?.length === 0">

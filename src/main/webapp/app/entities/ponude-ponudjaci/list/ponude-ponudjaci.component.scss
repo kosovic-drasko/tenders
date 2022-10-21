@@ -10,6 +10,10 @@ table {
 tr.mat-row:hover {
   background-color: lightgrey;
 }
+#ponudjac:hover {
+  background: #2196f3;
+  color: white;
+}
 tr {
   cursor: pointer;
 }
@@ -82,4 +86,7 @@ mat-form-field {
   bottom: 0px;
   position: sticky;
   z-index: 10;
+}
+.trazi {
+  border-left: 1px lightgrey solid;
 }
