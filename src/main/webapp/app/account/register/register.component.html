@@ -1,6 +1,6 @@
 <div>
   <div class="d-flex justify-content-center">
-    <div class="col-md-8">
+    <div class="form-floating">
       <h1 jhiTranslate="register.title" data-cy="registerTitle">Registracija</h1>
 
       <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
@@ -24,10 +24,9 @@
   </div>
 
   <div class="d-flex justify-content-center">
-    <div class="col-md-8">
+    <div class="form-floating">
       <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
-        <div class="mb-3">
-          <label class="form-label" for="login" jhiTranslate="global.form.username.label">Korisničko ime</label>
+        <div class="form-floating">
           <input
             type="text"
             class="form-control"
@@ -38,7 +37,7 @@
             data-cy="username"
             #login
           />
-
+          <label class="form-label" for="login" jhiTranslate="global.form.username.label">Korisničko ime</label>
           <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
             <small
               class="form-text text-danger"
@@ -74,8 +73,7 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="email" jhiTranslate="global.form.email.label">Email</label>
+        <div class="form-floating">
           <input
             type="email"
             class="form-control"
@@ -85,7 +83,7 @@
             formControlName="email"
             data-cy="email"
           />
-
+          <label class="form-label" for="email" jhiTranslate="global.form.email.label">Email</label>
           <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
             <small
               class="form-text text-danger"
@@ -121,8 +119,7 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="password" jhiTranslate="global.form.newpassword.label">Nova lozinka</label>
+        <div class="form-floating">
           <input
             type="password"
             class="form-control"
@@ -132,7 +129,7 @@
             formControlName="password"
             data-cy="firstPassword"
           />
-
+          <label class="form-label" for="password" jhiTranslate="global.form.newpassword.label">Nova lozinka</label>
           <div
             *ngIf="registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)"
           >
@@ -164,8 +161,7 @@
           <jhi-password-strength-bar [passwordToCheck]="registerForm.get('password')!.value"></jhi-password-strength-bar>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword.label">Potvrdite lozinku</label>
+        <div class="form-floating">
           <input
             type="password"
             class="form-control"
@@ -175,7 +171,7 @@
             formControlName="confirmPassword"
             data-cy="secondPassword"
           />
-
+          <label class="form-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword.label">Potvrdite lozinku</label>
           <div
             *ngIf="
               registerForm.get('confirmPassword')!.invalid &&
