@@ -26,6 +26,7 @@
 
           <div class="form-floating">
             <input
+              [type]="show ? 'text' : 'password'"
               type="password"
               class="form-control"
               name="password"
@@ -34,7 +35,16 @@
               formControlName="password"
               data-cy="password"
             />
+
+            <!--            <i class="bi bi-eye-fill eye-icon" (click)="password()"></i>-->
+
             <label for="password" jhiTranslate="login.form.password">Password</label>
+
+            <!--            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" (click)="password()" checked />
+              <label class="form-check-label">{{ show ? 'Sakrij' : 'Prikazi' }}</label>
+            </div>
           </div>
         </div>
 
@@ -43,5 +53,6 @@
         </div>
       </form>
     </div>
+    <!--    <button class="btn btn-primary" (click)="password()">{{show ? 'Sakrij' : 'Prikazi'}}</button>-->
   </div>
 </div>

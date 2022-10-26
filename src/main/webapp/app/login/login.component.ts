@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   username!: ElementRef;
   hide = true;
   authenticationError = false;
+  show: boolean = false;
 
   loginForm = this.fb.group({
     username: [null, [Validators.required]],
@@ -64,5 +65,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
         },
         error: () => (this.authenticationError = true),
       });
+  }
+
+  password() {
+    this.show = !this.show;
   }
 }
