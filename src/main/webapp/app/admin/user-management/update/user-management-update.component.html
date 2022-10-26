@@ -5,15 +5,14 @@
 
       <jhi-alert-error></jhi-alert-error>
 
-      <div class="mb-3" [hidden]="!editForm.value.id">
+      <div class="form-floating" [hidden]="!editForm.value.id">
         <label jhiTranslate="global.field.id">ID</label>
         <input type="text" class="form-control" name="id" formControlName="id" readonly />
       </div>
 
-      <div class="mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" name="login" formControlName="login" placeholder="Korisnik" />
         <label class="form-label" jhiTranslate="userManagement.login">Korisničko ime</label>
-        <input type="text" class="form-control" name="login" formControlName="login" />
-
         <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
           <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required" jhiTranslate="entity.validation.required">
             Polje je obavezno.
@@ -34,10 +33,15 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          formControlName="firstName"
+          placeholder="jhiTranslate='userManagement.firstName'"
+        />
         <label class="form-label" jhiTranslate="userManagement.firstName">Ime</label>
-        <input type="text" class="form-control" name="firstName" formControlName="firstName" />
-
         <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
           <small
             class="form-text text-danger"
@@ -50,10 +54,15 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          formControlName="lastName"
+          placeholder="jhiTranslate='userManagement.lastName'"
+        />
         <label jhiTranslate="userManagement.lastName">Prezime</label>
-        <input type="text" class="form-control" name="lastName" formControlName="lastName" />
-
         <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
           <small
             class="form-text text-danger"
@@ -66,10 +75,9 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="form-floating">
+        <input type="email" class="form-control" name="email" formControlName="email" placeholder="jhiTranslate='userManagement.email'" />
         <label class="form-label" jhiTranslate="userManagement.email">Email</label>
-        <input type="email" class="form-control" name="email" formControlName="email" />
-
         <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
           <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
             Polje je obavezno.
