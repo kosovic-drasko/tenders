@@ -52,8 +52,8 @@
               (change)="loadPageSifraPonude()"
               cl="loadPageSifraPonude()"
             >
-              <option [ngValue]="null"></option>
-              <option [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+              <option [ngValue]="null">Vrati</option>
+              <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
                 {{ ponudjaciOption.nazivPonudjaca }}
               </option>
             </select>

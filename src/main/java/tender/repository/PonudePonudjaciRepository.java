@@ -100,7 +100,7 @@ public interface PonudePonudjaciRepository extends JpaRepository<PonudePonudjaci
         "\t  INNER JOIN specifikacije\n" +
         "\t    ON ponude.sifra_postupka = specifikacije.sifra_postupka\n" +
         "\t  INNER JOIN postupci\n" +
-        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka where ponude.sifra_ponude like CONCAT('%', :sifraPonude, '%')",
+        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka where ponude.sifra_ponude like CONCAT('%', :sifraPonude, '%') GROUP BY ponude.id",
         nativeQuery = true
     )
     List<PonudePonudjaci> findBySifraPonudeList(@Param("sifraPonude") Integer sifraPonude);
@@ -114,7 +114,7 @@ public interface PonudePonudjaciRepository extends JpaRepository<PonudePonudjaci
         "                    FROM  \n" +
         "                      ponude  \n" +
         "                      INNER JOIN ponudjaci ON (ponude.sifra_ponudjaca = ponudjaci.id  \n" +
-        "                     )WHERE ponude.sifra_postupka=:sifra)r WHERE rn=1",
+        "                     )WHERE ponude.sifra_postupka=:sifra)r WHERE rn=1 ",
         nativeQuery = true
     )
     List<PonudePonudjaci> findBySifraPostupkaPonudjaci(@Param("sifra") Integer sifra);

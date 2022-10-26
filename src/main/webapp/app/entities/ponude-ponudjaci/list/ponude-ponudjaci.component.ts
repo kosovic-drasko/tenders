@@ -290,4 +290,8 @@ export class PonudePonudjaciComponent implements OnInit {
   exportTable() {
     TableUtil.exportTableToExcel('ExampleTable');
   }
+
+  konzola() {
+    console.log('proba koinzola');
+  }
 }
