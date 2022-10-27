@@ -10,32 +10,42 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div>
-      <div *ngIf="vrednovanjes?.body?.length != 0">
-        <!--        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>-->
-        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()"
-          ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt=""
-        /></mat-button-toggle>
-      </div>
-      <div class="trazi">
-        <div *ngIf="postupak" class="form-floating">
-          <select
-            class="form-control"
-            id="field_sifraPonudjaca"
-            data-cy="sifraPonudjaca"
-            name="sifraPonudjaca"
-            [(ngModel)]="sifraPonude"
-            (change)="loadPageSifraPonude()"
-            cl="loadPageSifraPonude()"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
-              {{ ponudjaciOption.nazivPonudjaca }}
-            </option>
-          </select>
-          <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Ponudjaca</label>
+    <div *ngIf="vrednovanjes?.body?.length != 0" iclass="btn-group" role="group" aria-label="Basic example">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <input hidden #fileInput type="file" id="file" />
+        <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()">
+          <mat-icon>search</mat-icon>
+        </mat-button-toggle>
+
+        <!--        <mat-button-toggle *ngIf="postupak" matTooltip="Ponisti" (click)="ponisti()">Ponisti</mat-button-toggle>-->
+
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
+          <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
+        </mat-button-toggle>
+
+        <div class="trazi">
+          <div *ngIf="postupak" class="form-floating">
+            <select
+              class="form-control"
+              id="field_sifraPonudjaca"
+              data-cy="sifraPonudjaca"
+              name="sifraPonudjaca"
+              [(ngModel)]="sifraPonude"
+              (change)="loadPageSifraPonude()"
+              cl="loadPageSifraPonude()"
+            >
+              <option [ngValue]="null"></option>
+              <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+                {{ ponudjaciOption.nazivPonudjaca }}
+              </option>
+            </select>
+            <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Naziv Ponudjaca</label>
+          </div>
         </div>
-      </div>
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">
+          <fa-icon icon="ban"></fa-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
       <jhi-alert-error></jhi-alert-error>
       <jhi-alert></jhi-alert>
       <div class="alert alert-warning" id="no-result" *ngIf="vrednovanjes?.body?.length === 0">
