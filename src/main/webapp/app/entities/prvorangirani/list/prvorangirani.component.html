@@ -25,6 +25,7 @@
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">
           <fa-icon icon="ban"></fa-icon>
         </mat-button-toggle>
+        <mat-button-toggle class="linija"> </mat-button-toggle>
         <div class="trazi">
           <div *ngIf="postupak" class="form-floating">
             <select
