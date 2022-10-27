@@ -52,7 +52,7 @@
               (change)="loadPageSifraPonude()"
               cl="loadPageSifraPonude()"
             >
-              <option [ngValue]="null">Vrati</option>
+              <option [ngValue]="null"></option>
               <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
                 {{ ponudjaciOption.nazivPonudjaca }}
               </option>
@@ -60,6 +60,9 @@
             <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Naziv Ponudjaca</label>
           </div>
         </div>
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">
+          <fa-icon icon="ban"></fa-icon>
+        </mat-button-toggle>
       </mat-button-toggle-group>
       <input hidden #fileInput type="file" id="file1" />
 
