@@ -83,6 +83,7 @@ export class PonudePonudjaciComponent implements OnInit {
         this.dataSource.data = res.body ?? [];
         this.ponudePonudjacis = res;
         this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.sifraPonude = null;
       },
       error: () => {
         this.isLoading = false;
@@ -95,8 +96,8 @@ export class PonudePonudjaciComponent implements OnInit {
       next: (res: HttpResponse<IPonudePonudjaci[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
-
         this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+        this.sifraPonude = null;
       },
       error: () => {
         this.isLoading = false;
@@ -111,6 +112,7 @@ export class PonudePonudjaciComponent implements OnInit {
       console.log(this.postupak);
     } else {
       this.sifraPonude = null;
+
       this.loadPage();
     }
   }
@@ -127,6 +129,7 @@ export class PonudePonudjaciComponent implements OnInit {
     this.ponudePonudjaciService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
       next: res => {
         this.ponudjaciPostupak = res;
+        this.sifraPonude = null;
       },
     });
   }

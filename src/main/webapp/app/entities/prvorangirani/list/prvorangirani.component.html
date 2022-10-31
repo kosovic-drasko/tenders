@@ -16,36 +16,30 @@
         <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()">
           <mat-icon>search</mat-icon>
         </mat-button-toggle>
-
-        <!--        <mat-button-toggle *ngIf="postupak" matTooltip="Ponisti" (click)="ponisti()">Ponisti</mat-button-toggle>-->
-
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
-        <button *ngIf="postupak" type="button" (click)="loadPageSifraPostupka()" class="btn btn-secondary btn-sm">
+        <button *ngIf="postupak" type="button" (click)="ponisti()" class="btn btn-secondary btn-sm">
           <fa-icon icon="ban"></fa-icon>
         </button>
-        <mat-button-toggle class="linija"> </mat-button-toggle>
-        <div class="trazi">
-          <div *ngIf="postupak" class="form-floating">
-            <select
-              class="form-control"
-              id="field_sifraPonudjaca"
-              data-cy="sifraPonudjaca"
-              name="sifraPonudjaca"
-              [(ngModel)]="sifraPonude"
-              (change)="loadPageSifraPonude()"
-              cl="loadPageSifraPonude()"
-            >
-              <option [ngValue]="null"></option>
-              <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
-                {{ ponudjaciOption.nazivPonudjaca }}
-              </option>
-            </select>
-            <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Naziv Ponudjaca</label>
-          </div>
-        </div>
       </mat-button-toggle-group>
+      <div *ngIf="postupak" class="form-floating">
+        <select
+          class="form-control"
+          id="field_sifraPonudjaca"
+          data-cy="sifraPonudjaca"
+          name="sifraPonudjaca"
+          [(ngModel)]="sifraPonude"
+          (change)="loadPageSifraPonude()"
+          cl="loadPageSifraPonude()"
+        >
+          <option [ngValue]="null">Izaberi ponudjaca</option>
+          <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+            {{ ponudjaciOption.nazivPonudjaca }}
+          </option>
+        </select>
+        <!--        <label class="form-label" jhiTranslate="tenderApp.ponude.nazivPonudjaca" for="field_sifraPonudjaca">Naziv Ponudjaca</label>-->
+      </div>
       <jhi-alert-error></jhi-alert-error>
       <jhi-alert></jhi-alert>
       <div class="alert alert-warning" id="no-result" *ngIf="prvorangiranis?.body?.length === 0">

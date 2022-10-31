@@ -35,7 +35,7 @@ export class VrednovanjeService {
     return this.http.get<IVrednovanje[]>(`${this.resourceUrlPostupak}/${sifraPostupka}`, { observe: 'response' });
   }
 
-  queryVrednovanjePonude(sifraPonude: number | undefined): Observable<EntityArrayResponseType> {
+  queryVrednovanjePonude(sifraPonude: null | undefined): Observable<EntityArrayResponseType> {
     return this.http.get<IVrednovanje[]>(`${this.resourceUrlPonude}/${sifraPonude}`, { observe: 'response' });
   }
 

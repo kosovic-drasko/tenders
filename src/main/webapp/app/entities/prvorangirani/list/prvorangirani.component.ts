@@ -21,7 +21,7 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
-  sifraPonude?: number;
+  sifraPonude?: any;
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -51,6 +51,7 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
         this.prvorangiranis = res;
         this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
         this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+        this.sifraPonude = null;
       },
       error: () => {
         this.isLoading = false;
@@ -113,7 +114,17 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
+  ponisti(): void {
+    if (this.postupak !== undefined) {
+      this.sifraPonude = null;
+      this.loadPageSifraPostupka();
+      console.log(this.postupak);
+    } else {
+      this.sifraPonude = null;
 
+      this.loadPage();
+    }
+  }
   exportTable() {
     TableUtil.exportTableToExcel('ExampleTable');
   }

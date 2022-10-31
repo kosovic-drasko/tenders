@@ -20,7 +20,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
-  sifraPonude?: number;
+  sifraPonude?: any;
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -51,6 +51,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
         this.vrednovanjes = res;
+        this.sifraPonude = null;
         this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
         this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
       },
@@ -60,10 +61,22 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
       },
     });
   }
+  ponisti(): void {
+    if (this.postupak !== undefined) {
+      this.sifraPonude = null;
+      this.loadPageSifraPostupka();
+      console.log(this.postupak);
+    } else {
+      this.sifraPonude = null;
+
+      this.loadPage();
+    }
+  }
   loadPonudePonudjaci(sifraPostupka: number): void {
     this.vrednovanjeService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
       next: res => {
         this.ponudjaciPostupak = res;
+        this.sifraPonude = null;
       },
     });
   }
@@ -73,6 +86,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
         this.vrednovanjes = res;
+        this.sifraPonude = null;
         this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
         this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
       },
@@ -100,6 +114,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     if (this.postupak !== undefined) {
       this.loadPonudePonudjaci(this.postupak);
+      this.sifraPonude = null;
       this.loadPageSifraPostupka();
     } else {
       this.loadPage();
