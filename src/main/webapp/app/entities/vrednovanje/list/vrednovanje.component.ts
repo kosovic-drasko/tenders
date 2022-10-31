@@ -17,7 +17,6 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   vrednovanjes?: HttpResponse<IVrednovanje[]>;
   isLoading = false;
   ukupno?: number;
-  brPonude?: any;
   ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;

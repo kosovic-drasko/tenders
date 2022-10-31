@@ -1,8 +1,8 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
     <mat-form-field *ngIf="!postupak">
-      <input matInput [(ngModel)]="brPonude" placeholder="Sifra Ponude" (keyup)="nadji()" />
-      <button *ngIf="brPonude" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">
+      <input matInput [(ngModel)]="sifraPonude" placeholder="Sifra Ponude" (keyup)="nadji()" />
+      <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
@@ -40,9 +40,15 @@
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
-        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">
+        <button *ngIf="postupak" type="button" (click)="loadPageSifraPostupka()" class="btn btn-secondary btn-sm">
           <fa-icon icon="ban"></fa-icon>
-        </mat-button-toggle>
+        </button>
+        <!--     <div *ngIf="postupak" id="dugme">-->
+        <!--       <mat-button-toggle     *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">-->
+        <!--         <fa-icon icon="ban"></fa-icon>-->
+        <!--       </mat-button-toggle>-->
+        <!--     </div>-->
+
         <mat-button-toggle class="linija"> </mat-button-toggle>
         <div class="trazi">
           <div *ngIf="postupak" class="form-floating">
@@ -51,11 +57,11 @@
               id="field_sifraPonudjaca"
               data-cy="sifraPonudjaca"
               name="sifraPonudjaca"
-              [(ngModel)]="brPonude"
+              [(ngModel)]="sifraPonude"
               (change)="loadPageSifraPonude()"
               cl="loadPageSifraPonude()"
             >
-              <option [ngValue]="null"></option>
+              <option [ngValue]="null">Izaberi ponudjaca</option>
               <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
                 {{ ponudjaciOption.nazivPonudjaca }}
               </option>
@@ -64,6 +70,17 @@
           </div>
         </div>
       </mat-button-toggle-group>
+      <!--      <mat-form-field>-->
+      <!--        <mat-label>Ponudjaci</mat-label>-->
+      <!--        <mat-select  [(ngModel)]="sifraPonude"-->
+      <!--                     (change)="loadPageSifraPonude()">-->
+      <!--          <mat-option></mat-option>-->
+      <!--          -->
+      <!--          <mat-option  [value]= "ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponude.body?">-->
+      <!--            {{ ponudjaciOption.nazivPonudjaca}}-->
+      <!--          </mat-option>-->
+      <!--        </mat-select>-->
+      <!--      </mat-form-field>-->
       <input hidden #fileInput type="file" id="file1" />
 
       <jhi-alert-error></jhi-alert-error>
@@ -75,7 +92,7 @@
         <span>Obrisane su izabrane partije</span>
       </div>
       <div class="alert alert-success" *ngIf="obrisanoSifraPonude">
-        <span>Obrisana je ponuda: {{ brPonude }}</span>
+        <span>Obrisana je ponuda: {{ sifraPonude }}</span>
       </div>
       <div class="table-responsive" id="entities">
         <table mat-table id="ExampleTable" [dataSource]="dataSource" matSort matSortStart="desc">

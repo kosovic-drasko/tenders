@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/login/login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/login/login.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +80,7 @@
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "show.run.dashboard.notification": "false",
     "spring.configuration.checksum": "0a538a0ca54a9f51fc1334040fb89d64",
-    "ts.external.directory.path": "C:\\Users\\pc\\IdeaProjects\\tenders\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "C:\\Users\\Win\\IdeaProjects\\tenders\\node_modules\\typescript\\lib"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [

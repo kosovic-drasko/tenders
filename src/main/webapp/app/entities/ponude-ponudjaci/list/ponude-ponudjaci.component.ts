@@ -27,12 +27,11 @@ import { Subject } from 'rxjs';
 export class PonudePonudjaciComponent implements OnInit {
   ponudePonudjacis?: HttpResponse<IPonudePonudjaci[]>;
   isLoading = false;
-
+  ponude?: HttpResponse<IPonude[]>;
   ponudjaciPostupak?: any;
   currentAccount: Account | null = null;
   ponudjaci?: IPonudjaci[] = [];
   ukupno?: number;
-  brPonude?: any;
   brojObrazac?: number = 0;
   sifraPonude?: any;
   obrisanoSelektovano?: boolean = false;
@@ -107,11 +106,11 @@ export class PonudePonudjaciComponent implements OnInit {
   }
   ponisti(): void {
     if (this.postupak !== undefined) {
-      this.brPonude = null;
+      this.sifraPonude = null;
       this.loadPageSifraPostupka();
       console.log(this.postupak);
     } else {
-      this.brPonude = null;
+      this.sifraPonude = null;
       this.loadPage();
     }
   }
@@ -134,7 +133,7 @@ export class PonudePonudjaciComponent implements OnInit {
 
   loadPageSifraPonude(): void {
     this.isLoading = true;
-    this.ponudePonudjaciService.queryPonudePonudjaciPonude(this.brPonude).subscribe({
+    this.ponudePonudjaciService.queryPonudePonudjaciPonude(this.sifraPonude).subscribe({
       next: (res: HttpResponse<IPonudePonudjaci[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
@@ -239,7 +238,7 @@ export class PonudePonudjaciComponent implements OnInit {
   }
 
   deleteSifra(): void {
-    this.ponudeService.deleteSifraPonude(this.brPonude).subscribe();
+    this.ponudeService.deleteSifraPonude(this.sifraPonude).subscribe();
     if (this.postupak !== undefined) {
       setTimeout(() => {
         this.loadPageSifraPostupka();

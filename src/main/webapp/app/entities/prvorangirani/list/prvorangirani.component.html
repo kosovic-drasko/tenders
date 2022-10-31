@@ -22,9 +22,9 @@
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
-        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">
+        <button *ngIf="postupak" type="button" (click)="loadPageSifraPostupka()" class="btn btn-secondary btn-sm">
           <fa-icon icon="ban"></fa-icon>
-        </mat-button-toggle>
+        </button>
         <mat-button-toggle class="linija"> </mat-button-toggle>
         <div class="trazi">
           <div *ngIf="postupak" class="form-floating">
