@@ -40,9 +40,10 @@
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
-        <button *ngIf="postupak" type="button" (click)="ponisti()" class="btn btn-info">
+        <mat-button-toggle matTooltip="Vrati" *ngIf="postupak" type="button" (click)="ponisti()">
           <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        </button>
+        </mat-button-toggle>
+
         <!--     <div *ngIf="postupak" id="dugme">-->
         <!--       <mat-button-toggle     *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" matTooltip="Vrati" (click)="loadPageSifraPostupka()">-->
         <!--         <fa-icon icon="ban"></fa-icon>-->
