@@ -29,6 +29,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
     'zasticeni naziv',
     'procijenjena vrijednost',
     'kolicina',
+    'jedinicna cijena',
     'ponudjena vrijednost',
     'rok isporuke',
     'naziv ponudjaca',

@@ -91,6 +91,11 @@
           <td mat-cell *matCellDef="let element">{{ element.trazenaKolicina }}</td>
           <td mat-footer-cell *matFooterCellDef>Ponudjena:</td>
         </ng-container>
+        <ng-container matColumnDef="jedinicna cijena">
+          <th mat-header-cell *matHeaderCellDef>Jedinicna Cijena</th>
+          <td mat-cell *matCellDef="let element">{{ element.jedinicnaCijena | number }}</td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
         <ng-container matColumnDef="ponudjena vrijednost">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Ponudjena Cijena</th>
           <td mat-cell *matCellDef="let element">{{ element.ponudjenaVrijednost | number }}</td>
@@ -107,7 +112,7 @@
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
         <ng-container matColumnDef="naziv proizvodjaca">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Proizvodjac</th>
+          <th mat-header-cell *matHeaderCellDef>Proizvodjac</th>
           <td mat-cell *matCellDef="let element">{{ element.nazivProizvodjaca }}</td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
