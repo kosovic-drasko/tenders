@@ -34,7 +34,7 @@
           (change)="loadPageSifraPonude()"
           cl="loadPageSifraPonude()"
         >
-          <option [ngValue]="null">Izaberi ponudjaca</option>
+          <option id="izaberi" [ngValue]="null"><SPAN STYLE="font-family:'Times New Roman'">Izaberi ponudjaca</SPAN></option>
           <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
             {{ ponudjaciOption.nazivPonudjaca }}
           </option>
