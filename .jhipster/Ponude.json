@@ -48,6 +48,10 @@
     {
       "fieldName": "sifraPonudjaca",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "karakteristika",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

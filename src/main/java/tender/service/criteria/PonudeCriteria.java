@@ -43,6 +43,8 @@ public class PonudeCriteria implements Serializable, Criteria {
 
     private IntegerFilter sifraPonudjaca;
 
+    private StringFilter karakteristika;
+
     private Boolean distinct;
 
     public PonudeCriteria() {}
@@ -59,6 +61,7 @@ public class PonudeCriteria implements Serializable, Criteria {
         this.jedinicnaCijena = other.jedinicnaCijena == null ? null : other.jedinicnaCijena.copy();
         this.selected = other.selected == null ? null : other.selected.copy();
         this.sifraPonudjaca = other.sifraPonudjaca == null ? null : other.sifraPonudjaca.copy();
+        this.karakteristika = other.karakteristika == null ? null : other.karakteristika.copy();
         this.distinct = other.distinct;
     }
 
@@ -232,6 +235,21 @@ public class PonudeCriteria implements Serializable, Criteria {
         this.sifraPonudjaca = sifraPonudjaca;
     }
 
+    public StringFilter getKarakteristika() {
+        return karakteristika;
+    }
+
+    public StringFilter karakteristika() {
+        if (karakteristika == null) {
+            karakteristika = new StringFilter();
+        }
+        return karakteristika;
+    }
+
+    public void setKarakteristika(StringFilter karakteristika) {
+        this.karakteristika = karakteristika;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -261,6 +279,7 @@ public class PonudeCriteria implements Serializable, Criteria {
             Objects.equals(jedinicnaCijena, that.jedinicnaCijena) &&
             Objects.equals(selected, that.selected) &&
             Objects.equals(sifraPonudjaca, that.sifraPonudjaca) &&
+            Objects.equals(karakteristika, that.karakteristika) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -279,6 +298,7 @@ public class PonudeCriteria implements Serializable, Criteria {
             jedinicnaCijena,
             selected,
             sifraPonudjaca,
+            karakteristika,
             distinct
         );
     }
@@ -298,6 +318,7 @@ public class PonudeCriteria implements Serializable, Criteria {
             (jedinicnaCijena != null ? "jedinicnaCijena=" + jedinicnaCijena + ", " : "") +
             (selected != null ? "selected=" + selected + ", " : "") +
             (sifraPonudjaca != null ? "sifraPonudjaca=" + sifraPonudjaca + ", " : "") +
+            (karakteristika != null ? "karakteristika=" + karakteristika + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

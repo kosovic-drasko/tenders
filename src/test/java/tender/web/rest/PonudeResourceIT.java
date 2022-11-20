@@ -67,6 +67,9 @@ class PonudeResourceIT {
     private static final Integer UPDATED_SIFRA_PONUDJACA = 2;
     private static final Integer SMALLER_SIFRA_PONUDJACA = 1 - 1;
 
+    private static final String DEFAULT_KARAKTERISTIKA = "AAAAAAAAAA";
+    private static final String UPDATED_KARAKTERISTIKA = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/ponudes";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -101,7 +104,8 @@ class PonudeResourceIT {
             .rokIsporuke(DEFAULT_ROK_ISPORUKE)
             .jedinicnaCijena(DEFAULT_JEDINICNA_CIJENA)
             .selected(DEFAULT_SELECTED)
-            .sifraPonudjaca(DEFAULT_SIFRA_PONUDJACA);
+            .sifraPonudjaca(DEFAULT_SIFRA_PONUDJACA)
+            .karakteristika(DEFAULT_KARAKTERISTIKA);
         return ponude;
     }
 
@@ -122,7 +126,8 @@ class PonudeResourceIT {
             .rokIsporuke(UPDATED_ROK_ISPORUKE)
             .jedinicnaCijena(UPDATED_JEDINICNA_CIJENA)
             .selected(UPDATED_SELECTED)
-            .sifraPonudjaca(UPDATED_SIFRA_PONUDJACA);
+            .sifraPonudjaca(UPDATED_SIFRA_PONUDJACA)
+            .karakteristika(UPDATED_KARAKTERISTIKA);
         return ponude;
     }
 
@@ -154,6 +159,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getJedinicnaCijena()).isEqualTo(DEFAULT_JEDINICNA_CIJENA);
         assertThat(testPonude.getSelected()).isEqualTo(DEFAULT_SELECTED);
         assertThat(testPonude.getSifraPonudjaca()).isEqualTo(DEFAULT_SIFRA_PONUDJACA);
+        assertThat(testPonude.getKarakteristika()).isEqualTo(DEFAULT_KARAKTERISTIKA);
     }
 
     @Test
@@ -263,7 +269,8 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)))
             .andExpect(jsonPath("$.[*].jedinicnaCijena").value(hasItem(DEFAULT_JEDINICNA_CIJENA.doubleValue())))
             .andExpect(jsonPath("$.[*].selected").value(hasItem(DEFAULT_SELECTED.booleanValue())))
-            .andExpect(jsonPath("$.[*].sifraPonudjaca").value(hasItem(DEFAULT_SIFRA_PONUDJACA)));
+            .andExpect(jsonPath("$.[*].sifraPonudjaca").value(hasItem(DEFAULT_SIFRA_PONUDJACA)))
+            .andExpect(jsonPath("$.[*].karakteristika").value(hasItem(DEFAULT_KARAKTERISTIKA)));
     }
 
     @Test
@@ -287,7 +294,8 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.rokIsporuke").value(DEFAULT_ROK_ISPORUKE))
             .andExpect(jsonPath("$.jedinicnaCijena").value(DEFAULT_JEDINICNA_CIJENA.doubleValue()))
             .andExpect(jsonPath("$.selected").value(DEFAULT_SELECTED.booleanValue()))
-            .andExpect(jsonPath("$.sifraPonudjaca").value(DEFAULT_SIFRA_PONUDJACA));
+            .andExpect(jsonPath("$.sifraPonudjaca").value(DEFAULT_SIFRA_PONUDJACA))
+            .andExpect(jsonPath("$.karakteristika").value(DEFAULT_KARAKTERISTIKA));
     }
 
     @Test
@@ -1114,6 +1122,71 @@ class PonudeResourceIT {
         defaultPonudeShouldBeFound("sifraPonudjaca.greaterThan=" + SMALLER_SIFRA_PONUDJACA);
     }
 
+    @Test
+    @Transactional
+    void getAllPonudesByKarakteristikaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where karakteristika equals to DEFAULT_KARAKTERISTIKA
+        defaultPonudeShouldBeFound("karakteristika.equals=" + DEFAULT_KARAKTERISTIKA);
+
+        // Get all the ponudeList where karakteristika equals to UPDATED_KARAKTERISTIKA
+        defaultPonudeShouldNotBeFound("karakteristika.equals=" + UPDATED_KARAKTERISTIKA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByKarakteristikaIsInShouldWork() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where karakteristika in DEFAULT_KARAKTERISTIKA or UPDATED_KARAKTERISTIKA
+        defaultPonudeShouldBeFound("karakteristika.in=" + DEFAULT_KARAKTERISTIKA + "," + UPDATED_KARAKTERISTIKA);
+
+        // Get all the ponudeList where karakteristika equals to UPDATED_KARAKTERISTIKA
+        defaultPonudeShouldNotBeFound("karakteristika.in=" + UPDATED_KARAKTERISTIKA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByKarakteristikaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where karakteristika is not null
+        defaultPonudeShouldBeFound("karakteristika.specified=true");
+
+        // Get all the ponudeList where karakteristika is null
+        defaultPonudeShouldNotBeFound("karakteristika.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByKarakteristikaContainsSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where karakteristika contains DEFAULT_KARAKTERISTIKA
+        defaultPonudeShouldBeFound("karakteristika.contains=" + DEFAULT_KARAKTERISTIKA);
+
+        // Get all the ponudeList where karakteristika contains UPDATED_KARAKTERISTIKA
+        defaultPonudeShouldNotBeFound("karakteristika.contains=" + UPDATED_KARAKTERISTIKA);
+    }
+
+    @Test
+    @Transactional
+    void getAllPonudesByKarakteristikaNotContainsSomething() throws Exception {
+        // Initialize the database
+        ponudeRepository.saveAndFlush(ponude);
+
+        // Get all the ponudeList where karakteristika does not contain DEFAULT_KARAKTERISTIKA
+        defaultPonudeShouldNotBeFound("karakteristika.doesNotContain=" + DEFAULT_KARAKTERISTIKA);
+
+        // Get all the ponudeList where karakteristika does not contain UPDATED_KARAKTERISTIKA
+        defaultPonudeShouldBeFound("karakteristika.doesNotContain=" + UPDATED_KARAKTERISTIKA);
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -1132,7 +1205,8 @@ class PonudeResourceIT {
             .andExpect(jsonPath("$.[*].rokIsporuke").value(hasItem(DEFAULT_ROK_ISPORUKE)))
             .andExpect(jsonPath("$.[*].jedinicnaCijena").value(hasItem(DEFAULT_JEDINICNA_CIJENA.doubleValue())))
             .andExpect(jsonPath("$.[*].selected").value(hasItem(DEFAULT_SELECTED.booleanValue())))
-            .andExpect(jsonPath("$.[*].sifraPonudjaca").value(hasItem(DEFAULT_SIFRA_PONUDJACA)));
+            .andExpect(jsonPath("$.[*].sifraPonudjaca").value(hasItem(DEFAULT_SIFRA_PONUDJACA)))
+            .andExpect(jsonPath("$.[*].karakteristika").value(hasItem(DEFAULT_KARAKTERISTIKA)));
 
         // Check, that the count call also returns 1
         restPonudeMockMvc
@@ -1190,7 +1264,8 @@ class PonudeResourceIT {
             .rokIsporuke(UPDATED_ROK_ISPORUKE)
             .jedinicnaCijena(UPDATED_JEDINICNA_CIJENA)
             .selected(UPDATED_SELECTED)
-            .sifraPonudjaca(UPDATED_SIFRA_PONUDJACA);
+            .sifraPonudjaca(UPDATED_SIFRA_PONUDJACA)
+            .karakteristika(UPDATED_KARAKTERISTIKA);
 
         restPonudeMockMvc
             .perform(
@@ -1214,6 +1289,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getJedinicnaCijena()).isEqualTo(UPDATED_JEDINICNA_CIJENA);
         assertThat(testPonude.getSelected()).isEqualTo(UPDATED_SELECTED);
         assertThat(testPonude.getSifraPonudjaca()).isEqualTo(UPDATED_SIFRA_PONUDJACA);
+        assertThat(testPonude.getKarakteristika()).isEqualTo(UPDATED_KARAKTERISTIKA);
     }
 
     @Test
@@ -1313,6 +1389,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getJedinicnaCijena()).isEqualTo(UPDATED_JEDINICNA_CIJENA);
         assertThat(testPonude.getSelected()).isEqualTo(DEFAULT_SELECTED);
         assertThat(testPonude.getSifraPonudjaca()).isEqualTo(DEFAULT_SIFRA_PONUDJACA);
+        assertThat(testPonude.getKarakteristika()).isEqualTo(DEFAULT_KARAKTERISTIKA);
     }
 
     @Test
@@ -1337,7 +1414,8 @@ class PonudeResourceIT {
             .rokIsporuke(UPDATED_ROK_ISPORUKE)
             .jedinicnaCijena(UPDATED_JEDINICNA_CIJENA)
             .selected(UPDATED_SELECTED)
-            .sifraPonudjaca(UPDATED_SIFRA_PONUDJACA);
+            .sifraPonudjaca(UPDATED_SIFRA_PONUDJACA)
+            .karakteristika(UPDATED_KARAKTERISTIKA);
 
         restPonudeMockMvc
             .perform(
@@ -1361,6 +1439,7 @@ class PonudeResourceIT {
         assertThat(testPonude.getJedinicnaCijena()).isEqualTo(UPDATED_JEDINICNA_CIJENA);
         assertThat(testPonude.getSelected()).isEqualTo(UPDATED_SELECTED);
         assertThat(testPonude.getSifraPonudjaca()).isEqualTo(UPDATED_SIFRA_PONUDJACA);
+        assertThat(testPonude.getKarakteristika()).isEqualTo(UPDATED_KARAKTERISTIKA);
     }
 
     @Test

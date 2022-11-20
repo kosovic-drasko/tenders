@@ -13,7 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "ponude")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Ponude extends AbstractAuditingEntity implements Serializable {
+public class Ponude implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,6 +55,9 @@ public class Ponude extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "sifra_ponudjaca")
     private Integer sifraPonudjaca;
+
+    @Column(name = "karakteristika")
+    private String karakteristika;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -201,6 +204,19 @@ public class Ponude extends AbstractAuditingEntity implements Serializable {
         this.sifraPonudjaca = sifraPonudjaca;
     }
 
+    public String getKarakteristika() {
+        return this.karakteristika;
+    }
+
+    public Ponude karakteristika(String karakteristika) {
+        this.setKarakteristika(karakteristika);
+        return this;
+    }
+
+    public void setKarakteristika(String karakteristika) {
+        this.karakteristika = karakteristika;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -235,6 +251,7 @@ public class Ponude extends AbstractAuditingEntity implements Serializable {
             ", jedinicnaCijena=" + getJedinicnaCijena() +
             ", selected='" + getSelected() + "'" +
             ", sifraPonudjaca=" + getSifraPonudjaca() +
+            ", karakteristika='" + getKarakteristika() + "'" +
             "}";
     }
 }

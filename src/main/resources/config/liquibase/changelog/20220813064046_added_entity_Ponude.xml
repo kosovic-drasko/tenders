@@ -44,10 +44,9 @@
             <column name="sifra_ponudjaca" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="created_by" type="varchar(50)"/>
-            <column name="created_date" type="timestamp" />
-            <column name="last_modified_by" type="varchar(50)" />
-            <column name="last_modified_date" type="timestamp" />
+            <column name="karakteristika" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -79,6 +78,7 @@
             <column name="jedinicna_cijena" type="numeric"/>
             <column name="selected" type="boolean"/>
             <column name="sifra_ponudjaca" type="numeric"/>
+            <column name="karakteristika" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
