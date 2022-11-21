@@ -6,15 +6,29 @@
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/Ponude.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/Ponude.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/PonudePonudjaci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/PonudePonudjaci.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/PonudePonudjaciRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/PonudePonudjaciRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064046_added_entity_Ponude.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064046_added_entity_Ponude.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude/ponude.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude/ponude.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude/update/ponude-update.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude/update/ponude-update.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude/update/ponude-update.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude/update/ponude-update.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/Prvorangirani.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/Prvorangirani.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/Specifikacije.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/Specifikacije.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/domain/Vrednovanje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/domain/Vrednovanje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/PrvorangiraniRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/PrvorangiraniRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/repository/VrednovanjeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/repository/VrednovanjeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/service/SpecifikacijeQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/service/SpecifikacijeQueryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/service/SpecifikacijeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/service/SpecifikacijeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/service/criteria/SpecifikacijeCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/service/criteria/SpecifikacijeCriteria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/utils/ExcelUtilsPonude.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/utils/ExcelUtilsPonude.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/utils/ExcelUtilsSpecifikacije.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/utils/ExcelUtilsSpecifikacije.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064049_added_entity_Specifikacije.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064049_added_entity_Specifikacije.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/prvorangirani.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/prvorangirani.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/specifikacije.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/specifikacije.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/update/specifikacije-update.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/update/specifikacije-update.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/update/specifikacije-update.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/update/specifikacije-update.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/update/specifikacije-update.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/vrednovanje.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/vrednovanje.model.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +127,7 @@
       <recent name="tender.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Angular CLI Server">
+  <component name="RunManager" selected="Spring Boot.TenderApp">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -169,13 +183,6 @@
       <workItem from="1666765995266" duration="12190000" />
       <workItem from="1666937703755" duration="4166000" />
       <workItem from="1668782750698" duration="3614000" />
-    </task>
-    <task id="LOCAL-00045" summary="init">
-      <created>1665331810377</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1665331810377</updated>
     </task>
     <task id="LOCAL-00046" summary="init">
       <created>1665384394812</created>
@@ -513,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668789516292</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="init">
+      <created>1669018348200</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1669018348201</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -25,6 +25,7 @@ public class ExcelUtilsSpecifikacije {
             "atc",
             "inn",
             "Farmaceutski Oblik",
+            "Karakteristike",
             "Jacina Lijeka",
             "Pakovanje",
             "Jedinica Mjere",
@@ -70,6 +71,7 @@ public class ExcelUtilsSpecifikacije {
                 row.createCell(7).setCellValue(specifikacijes.getJacinaLijeka());
                 row.createCell(8).setCellValue(specifikacijes.getPakovanje());
                 row.createCell(9).setCellValue(specifikacijes.getJedinicaMjere());
+                row.createCell(10).setCellValue(specifikacijes.getKarakteristika());
             }
 
             workbook.write(out);
@@ -137,6 +139,9 @@ public class ExcelUtilsSpecifikacije {
                             break;
                         case 9:
                             specifikacije.setJedinicaMjere(currentCell.getStringCellValue());
+                            break;
+                        case 10:
+                            specifikacije.setKarakteristika(currentCell.getStringCellValue());
                             break;
                         default:
                             break;

@@ -29,6 +29,9 @@
             <column name="farmaceutski_oblik_lijeka" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="karakteristika" type="varchar(6000)">
+                <constraints nullable="true" />
+            </column>
             <column name="jacina_lijeka" type="varchar(255)">
                 <constraints nullable="true" />
             </column>

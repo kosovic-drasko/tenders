@@ -27,6 +27,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
     'broj partije',
     'atc',
     'zasticeni naziv',
+    'karakteristika',
     'procijenjena vrijednost',
     'kolicina',
     'jedinicna cijena',

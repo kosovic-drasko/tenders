@@ -5,6 +5,7 @@ export interface ISpecifikacije {
   atc?: string | null;
   inn?: string | null;
   farmaceutskiOblikLijeka?: string | null;
+  karakteristika?: string | null;
   jacinaLijeka?: string | null;
   trazenaKolicina?: number | null;
   pakovanje?: string | null;
@@ -20,6 +21,7 @@ export class Specifikacije implements ISpecifikacije {
     public atc?: string | null,
     public inn?: string | null,
     public farmaceutskiOblikLijeka?: string | null,
+    public karakteristika?: string | null,
     public jacinaLijeka?: string | null,
     public trazenaKolicina?: number | null,
     public pakovanje?: string | null,

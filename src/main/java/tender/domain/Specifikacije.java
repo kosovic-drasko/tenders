@@ -39,6 +39,9 @@ public class Specifikacije implements Serializable {
     @Column(name = "farmaceutski_oblik_lijeka")
     private String farmaceutskiOblikLijeka;
 
+    @Column(name = "karakteristika")
+    private String karakteristika;
+
     @Column(name = "jacina_lijeka")
     private String jacinaLijeka;
 
@@ -56,6 +59,14 @@ public class Specifikacije implements Serializable {
     private Double procijenjenaVrijednost;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public String getKarakteristika() {
+        return karakteristika;
+    }
+
+    public void setKarakteristika(String karakteristika) {
+        this.karakteristika = karakteristika;
+    }
 
     public Long getId() {
         return this.id;

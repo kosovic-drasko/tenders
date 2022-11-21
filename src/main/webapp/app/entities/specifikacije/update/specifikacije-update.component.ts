@@ -21,6 +21,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
   @Input() public atc: any;
   @Input() public inn: any;
   @Input() public farmaceutskiOblikLijeka: any;
+  @Input() public karakteristika: any;
   @Input() public jacinaLijeka: any;
   @Input() public trazenaKolicina: any;
   @Input() public pakovanje: any;
@@ -33,6 +34,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
     atc: [],
     inn: [],
     farmaceutskiOblikLijeka: [],
+    karakteristika: [],
     jacinaLijeka: [],
     trazenaKolicina: [],
     pakovanje: [],
@@ -92,6 +94,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
       atc: this.atc,
       inn: this.inn,
       farmaceutskiOblikLijeka: this.farmaceutskiOblikLijeka,
+      karakteristika: this.karakteristika,
       jacinaLijeka: this.jacinaLijeka,
       trazenaKolicina: this.trazenaKolicina,
       pakovanje: this.pakovanje,
@@ -109,6 +112,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
       atc: this.editForm.get(['atc'])!.value,
       inn: this.editForm.get(['inn'])!.value,
       farmaceutskiOblikLijeka: this.editForm.get(['farmaceutskiOblikLijeka'])!.value,
+      karakteristika: this.editForm.get(['karakteristika'])!.value,
       jacinaLijeka: this.editForm.get(['jacinaLijeka'])!.value,
       trazenaKolicina: this.editForm.get(['trazenaKolicina'])!.value,
       pakovanje: this.editForm.get(['pakovanje'])!.value,

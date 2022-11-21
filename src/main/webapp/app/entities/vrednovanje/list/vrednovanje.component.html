@@ -75,8 +75,14 @@
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
+        <ng-container matColumnDef="karakteristika">
+          <th mat-header-cell *matHeaderCellDef>Karakteristike</th>
+          <td mat-cell *matCellDef="let element">{{ element.karakteristika }}</td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
         <ng-container matColumnDef="zasticeni naziv">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Zasticeni Naziv</th>
+          <th mat-header-cell *matHeaderCellDef>Zasticeni Naziv</th>
           <td mat-cell *matCellDef="let element">{{ element.zasticeniNaziv }}</td>
           <td mat-footer-cell *matFooterCellDef>Procijenjena:</td>
         </ng-container>

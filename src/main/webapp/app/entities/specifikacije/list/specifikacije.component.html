@@ -51,37 +51,42 @@
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="atc">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Atc</th>
+            <th mat-header-cell *matHeaderCellDef>Atc</th>
             <td mat-cell *matCellDef="let element">{{ element.atc }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="inn">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Inn</th>
+            <th mat-header-cell *matHeaderCellDef>Inn</th>
             <td mat-cell *matCellDef="let element">{{ element.inn }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="farmaceutski oblik">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Farmaceutski Oblik</th>
+            <th mat-header-cell *matHeaderCellDef>Farmaceutski Oblik</th>
             <td mat-cell *matCellDef="let element">{{ element.farmaceutskiOblikLijeka }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
+          <ng-container matColumnDef="karakteristika">
+            <th mat-header-cell *matHeaderCellDef>Karakteristike</th>
+            <td mat-cell *matCellDef="let element">{{ element.karakteristika }}</td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
           <ng-container matColumnDef="jacina lijeka">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Jacina Lijeka</th>
+            <th mat-header-cell *matHeaderCellDef>Jacina Lijeka</th>
             <td mat-cell *matCellDef="let element">{{ element.jacinaLijeka }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="trazena kolicina">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Kolicina</th>
+            <th mat-header-cell *matHeaderCellDef>Kolicina</th>
             <td mat-cell *matCellDef="let element">{{ element.trazenaKolicina }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="pakovanje">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pakovanje</th>
+            <th mat-header-cell *matHeaderCellDef>Pakovanje</th>
             <td mat-cell *matCellDef="let element">{{ element.pakovanje }}</td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
           <ng-container matColumnDef="jedinica mjere">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Jedinica Mjere</th>
+            <th mat-header-cell *matHeaderCellDef>Jedinica Mjere</th>
             <td mat-cell *matCellDef="let element">{{ element.jedinicaMjere }}</td>
             <td mat-footer-cell *matFooterCellDef>Procijenjena:</td>
           </ng-container>
@@ -106,6 +111,7 @@
                         element.atc,
                         element.inn,
                         element.farmaceutskiOblikLijeka,
+                        element.karakteristika,
                         element.jacinaLijeka,
                         element.trazenaKolicina,
                         element.pakovanje,

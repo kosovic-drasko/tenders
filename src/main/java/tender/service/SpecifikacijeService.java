@@ -73,6 +73,10 @@ public class SpecifikacijeService {
                 if (specifikacije.getFarmaceutskiOblikLijeka() != null) {
                     existingSpecifikacije.setFarmaceutskiOblikLijeka(specifikacije.getFarmaceutskiOblikLijeka());
                 }
+
+                if (specifikacije.getKarakteristika() != null) {
+                    existingSpecifikacije.setKarakteristika(specifikacije.getKarakteristika());
+                }
                 if (specifikacije.getJacinaLijeka() != null) {
                     existingSpecifikacije.setJacinaLijeka(specifikacije.getJacinaLijeka());
                 }

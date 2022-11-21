@@ -36,6 +36,9 @@ public class Vrednovanje implements Serializable {
     @Column(name = "zasticeni_naziv")
     private String zasticeniNaziv;
 
+    @Column(name = "karakteristika")
+    private String karakteristika;
+
     @Column(name = "ponudjena_vrijednost")
     private Double ponudjenaVrijednost;
 
@@ -70,6 +73,14 @@ public class Vrednovanje implements Serializable {
     private Double bodUkupno;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public String getKarakteristika() {
+        return karakteristika;
+    }
+
+    public void setKarakteristika(String karakteristika) {
+        this.karakteristika = karakteristika;
+    }
 
     public Long getId() {
         return this.id;

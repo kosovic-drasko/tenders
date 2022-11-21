@@ -29,6 +29,7 @@ export class SpecifikacijeComponent implements OnInit {
     'atc',
     'inn',
     'farmaceutski oblik',
+    'karakteristika',
     'jacina lijeka',
     'trazena kolicina',
     'pakovanje',
@@ -145,6 +146,7 @@ export class SpecifikacijeComponent implements OnInit {
     atc?: string | null,
     inn?: string | null,
     farmaceutskiOblikLijeka?: string | null,
+    karakteristika?: string | null,
     jacinaLijeka?: string | null,
     trazenaKolicina?: number | null,
     pakovanje?: string | null,
@@ -158,6 +160,7 @@ export class SpecifikacijeComponent implements OnInit {
     modalRef.componentInstance.atc = atc;
     modalRef.componentInstance.inn = inn;
     modalRef.componentInstance.farmaceutskiOblikLijeka = farmaceutskiOblikLijeka;
+    modalRef.componentInstance.karakteristika = karakteristika;
     modalRef.componentInstance.jacinaLijeka = jacinaLijeka;
     modalRef.componentInstance.trazenaKolicina = trazenaKolicina;
     modalRef.componentInstance.pakovanje = pakovanje;

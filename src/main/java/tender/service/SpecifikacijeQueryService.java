@@ -103,6 +103,7 @@ public class SpecifikacijeQueryService extends QueryService<Specifikacije> {
                         buildStringSpecification(criteria.getFarmaceutskiOblikLijeka(), Specifikacije_.farmaceutskiOblikLijeka)
                     );
             }
+
             if (criteria.getJacinaLijeka() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getJacinaLijeka(), Specifikacije_.jacinaLijeka));
             }

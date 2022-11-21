@@ -23,6 +23,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
+        "                                     ponude.karakteristika,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
@@ -48,6 +49,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
+        "                                     ponude.karakteristika,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
@@ -88,6 +90,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
+        "                                     ponude.karakteristika,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
@@ -113,6 +116,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
+        "                                     ponude.karakteristika,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
@@ -156,6 +160,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                view_vrednovanje.procijenjena_vrijednost,\n" +
         "                view_vrednovanje.naziv_proizvodjaca,\n" +
         "                view_vrednovanje.zasticeni_naziv,\n" +
+        "                view_vrednovanje.karakteristika,\n" +
         "                view_vrednovanje.jedinicna_cijena,\n" +
         "                view_vrednovanje.ponudjena_vrijednost,\n" +
         "                view_vrednovanje.rok_isporuke,\n" +
@@ -169,6 +174,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                               ponude.broj_partije,\n" +
         "                               ponude.naziv_proizvodjaca,\n" +
         "                               ponude.zasticeni_naziv,\n" +
+        "                               ponude.karakteristika,\n" +
         "                               ponude.ponudjena_vrijednost,\n" +
         "                               ponude.rok_isporuke,\n" +
         "                               ponude.jedinicna_cijena,\n" +
@@ -194,6 +200,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                               ponude.broj_partije,\n" +
         "                               ponude.naziv_proizvodjaca,\n" +
         "                               ponude.zasticeni_naziv,\n" +
+        "                               ponude.karakteristika,\n" +
         "                               ponude.ponudjena_vrijednost,\n" +
         "                               ponude.rok_isporuke,\n" +
         "                               ponude.jedinicna_cijena,\n" +
@@ -237,6 +244,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                      view_vrednovanje.procijenjena_vrijednost,\n" +
         "                      view_vrednovanje.naziv_proizvodjaca,\n" +
         "                      view_vrednovanje.zasticeni_naziv,\n" +
+        "                      view_vrednovanje.karakteristika,\n" +
         "                      view_vrednovanje.jedinicna_cijena,\n" +
         "                      view_vrednovanje.ponudjena_vrijednost,\n" +
         "                      view_vrednovanje.rok_isporuke,\n" +
@@ -250,6 +258,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
+        "                                     ponude.karakteristika,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
@@ -275,6 +284,7 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
+        "                                     ponude.karakteristika,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +

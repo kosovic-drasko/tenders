@@ -28,6 +28,7 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
     'broj partije',
     'atc',
     'zasticeni naziv',
+    'karakteristika',
     'procijenjena vrijednost',
     'kolicina',
     'ponudjena vrijednost',

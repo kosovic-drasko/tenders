@@ -27,6 +27,7 @@ public class ExcelUtilsPonude {
             "Ponudjena Vrijednost",
             "Naziv Proizvodjaca",
             "Zasticeni Naziv",
+            "Karakteristike",
         };
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             CreationHelper createHelper = workbook.getCreationHelper();
@@ -67,6 +68,7 @@ public class ExcelUtilsPonude {
                 row.createCell(6).setCellValue(ponudes.getPonudjenaVrijednost());
                 row.createCell(7).setCellValue(ponudes.getNazivProizvodjaca());
                 row.createCell(8).setCellValue(ponudes.getZasticeniNaziv());
+                row.createCell(9).setCellValue(ponudes.getKarakteristika());
             }
 
             workbook.write(out);
@@ -128,6 +130,9 @@ public class ExcelUtilsPonude {
                             break;
                         case 8:
                             ponude.setZasticeniNaziv(currentCell.getStringCellValue());
+                            break;
+                        case 9:
+                            ponude.setKarakteristika(currentCell.getStringCellValue());
                             break;
                         default:
                             break;

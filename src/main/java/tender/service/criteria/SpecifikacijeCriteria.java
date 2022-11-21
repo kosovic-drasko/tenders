@@ -33,6 +33,8 @@ public class SpecifikacijeCriteria implements Serializable, Criteria {
 
     private StringFilter farmaceutskiOblikLijeka;
 
+    private StringFilter karakteristika;
+
     private StringFilter jacinaLijeka;
 
     private IntegerFilter trazenaKolicina;
@@ -54,6 +56,7 @@ public class SpecifikacijeCriteria implements Serializable, Criteria {
         this.atc = other.atc == null ? null : other.atc.copy();
         this.inn = other.inn == null ? null : other.inn.copy();
         this.farmaceutskiOblikLijeka = other.farmaceutskiOblikLijeka == null ? null : other.farmaceutskiOblikLijeka.copy();
+        this.karakteristika = other.karakteristika == null ? null : other.karakteristika.copy();
         this.jacinaLijeka = other.jacinaLijeka == null ? null : other.jacinaLijeka.copy();
         this.trazenaKolicina = other.trazenaKolicina == null ? null : other.trazenaKolicina.copy();
         this.pakovanje = other.pakovanje == null ? null : other.pakovanje.copy();
@@ -65,6 +68,14 @@ public class SpecifikacijeCriteria implements Serializable, Criteria {
     @Override
     public SpecifikacijeCriteria copy() {
         return new SpecifikacijeCriteria(this);
+    }
+
+    public StringFilter getKarakteristika() {
+        return karakteristika;
+    }
+
+    public void setKarakteristika(StringFilter karakteristika) {
+        this.karakteristika = karakteristika;
     }
 
     public LongFilter getId() {
