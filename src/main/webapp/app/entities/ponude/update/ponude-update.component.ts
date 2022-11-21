@@ -28,6 +28,7 @@ export class PonudeUpdateComponent implements OnInit {
   @Input() public sifraPonudjaca: any;
   @Input() public nazivProizvodjaca: any;
   @Input() public zasticeniNaziv: any;
+  @Input() public karakteristika: any;
   @Input() public ponudjenaVrijednost: any;
   @Input() public jedinicnaCijena: any;
   @Input() public selected: any;
@@ -39,6 +40,7 @@ export class PonudeUpdateComponent implements OnInit {
     brojPartije: [null, [Validators.required]],
     nazivProizvodjaca: [],
     zasticeniNaziv: [],
+    karakteristika: [],
     ponudjenaVrijednost: [null, [Validators.required]],
     rokIsporuke: [],
     jedinicnaCijena: [],
@@ -109,6 +111,7 @@ export class PonudeUpdateComponent implements OnInit {
       brojPartije: this.brojPartije,
       nazivProizvodjaca: this.nazivProizvodjaca,
       zasticeniNaziv: this.zasticeniNaziv,
+      karakteristika: this.karakteristika,
       ponudjenaVrijednost: this.ponudjenaVrijednost,
       rokIsporuke: this.rokIsporuke,
       jedinicnaCijena: this.jedinicnaCijena,
@@ -125,6 +128,7 @@ export class PonudeUpdateComponent implements OnInit {
       brojPartije: this.editForm.get(['brojPartije'])!.value,
       nazivProizvodjaca: this.editForm.get(['nazivProizvodjaca'])!.value,
       zasticeniNaziv: this.editForm.get(['zasticeniNaziv'])!.value,
+      karakteristika: this.editForm.get(['karakteristika'])!.value,
       ponudjenaVrijednost: this.editForm.get(['ponudjenaVrijednost'])!.value,
       rokIsporuke: this.editForm.get(['rokIsporuke'])!.value,
       jedinicnaCijena: this.editForm.get(['jedinicnaCijena'])!.value,

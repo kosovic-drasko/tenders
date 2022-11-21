@@ -139,6 +139,19 @@
 
           <div class="form-floating">
             <input
+              type="text"
+              class="form-control"
+              name="katrakteristike"
+              placeholder="Katrakteristikev"
+              id="field_katrakteristike"
+              data-cy="katrakteristike"
+              formControlName="karakteristika"
+            />
+            <label class="form-label" jhiTranslate="tenderApp.ponude.katrakteristika" for="field_katrakteristike">Katrakteristike</label>
+          </div>
+
+          <div class="form-floating">
+            <input
               type="number"
               class="form-control"
               name="ponudjenaVrijednost"
@@ -198,18 +211,18 @@
             />
             <label class="form-label" jhiTranslate="tenderApp.ponude.jedinicnaCijena" for="field_jedinicnaCijena">Jedinicna Cijena</label>
           </div>
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              name="sifraPonudjaca"
-              placeholder="sifraPonudjaca"
-              id="field_sifraPonudjaca"
-              data-cy="sifraPonudjaca"
-              formControlName="sifraPonudjaca"
-            />
-            <label class="form-label" jhiTranslate="tenderApp.ponude.sifraPonudjaca" for="field_sifraPonudjaca">Sifra Ponudjaca</label>
-          </div>
+          <!--          <div class="form-floating">-->
+          <!--            <input-->
+          <!--              type="number"-->
+          <!--              class="form-control"-->
+          <!--              name="sifraPonudjaca"-->
+          <!--              placeholder="sifraPonudjaca"-->
+          <!--              id="field_sifraPonudjaca"-->
+          <!--              data-cy="sifraPonudjaca"-->
+          <!--              formControlName="sifraPonudjaca"-->
+          <!--            />-->
+          <!--            <label class="form-label" jhiTranslate="tenderApp.ponude.sifraPonudjaca" for="field_sifraPonudjaca">Sifra Ponudjaca</label>-->
+          <!--          </div>-->
 
           <div class="form-floating">
             <select
@@ -224,7 +237,7 @@
                 {{ ponudjaciOption.nazivPonudjaca }}
               </option>
             </select>
-            <label class="form-label" jhiTranslate="tenderApp.ponude.sifraPonudjaca" for="field_sifraPonudjaca">Sifra Ponudjaca</label>
+            <label class="form-label">Sifra Ponudjaca</label>
           </div>
         </div>
         <div class="modal-footer">

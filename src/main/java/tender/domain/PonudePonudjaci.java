@@ -48,6 +48,9 @@ public class PonudePonudjaci extends AbstractAuditingEntity implements Serializa
     @Column(name = "zasticeni_naziv")
     private String zasticeniNaziv;
 
+    @Column(name = "karakteristika")
+    private String karakteristika;
+
     @NotNull
     @Column(name = "ponudjena_vrijednost", nullable = false)
     private Double ponudjenaVrijednost;
@@ -60,6 +63,14 @@ public class PonudePonudjaci extends AbstractAuditingEntity implements Serializa
 
     @Column(name = "selected")
     private Boolean selected;
+
+    public String getkarakteristika() {
+        return karakteristika;
+    }
+
+    public void setkarakteristika(String karakteristika) {
+        this.karakteristika = karakteristika;
+    }
 
     public Integer getSifraPonudjaca() {
         return sifraPonudjaca;

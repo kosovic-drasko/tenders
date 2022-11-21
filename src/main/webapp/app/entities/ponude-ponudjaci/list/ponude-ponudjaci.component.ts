@@ -45,6 +45,7 @@ export class PonudePonudjaciComponent implements OnInit {
     'naziv proizvodjaca',
     'ponudjac',
     'zasticeni naziv',
+    'karakteristika',
     'ponudjena vrijednost',
     'jedinicna cijena',
     'rok isporuke',
@@ -191,6 +192,7 @@ export class PonudePonudjaciComponent implements OnInit {
     sifraPonudjaca?: number | null,
     nazivProizvodjaca?: string | null,
     zasticeniNaziv?: string | null,
+    karakteristike?: string | null,
     ponudjenaVrijednost?: number,
     jedinicnaCijena?: number | null,
     selected?: boolean | null,
@@ -204,6 +206,7 @@ export class PonudePonudjaciComponent implements OnInit {
     modalRef.componentInstance.sifraPonudjaca = sifraPonudjaca;
     modalRef.componentInstance.nazivProizvodjaca = nazivProizvodjaca;
     modalRef.componentInstance.zasticeniNaziv = zasticeniNaziv;
+    modalRef.componentInstance.karakteristike = karakteristike;
     modalRef.componentInstance.ponudjenaVrijednost = ponudjenaVrijednost;
     modalRef.componentInstance.jedinicnaCijena = jedinicnaCijena;
     modalRef.componentInstance.selected = selected;
