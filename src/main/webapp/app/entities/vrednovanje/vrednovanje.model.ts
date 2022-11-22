@@ -5,7 +5,8 @@ export interface IVrednovanje {
   brojPartije?: number | null;
   nazivProizvodjaca?: string | null;
   zasticeniNaziv?: string | null;
-  karakteristika?: string | null;
+  karakteristikaPonude?: string | null;
+  karakteristikaSpecifikacije?: string | null;
   ponudjenaVrijednost?: number | null;
   rokIsporuke?: number | null;
   jedinicnaCijena?: number | null;
@@ -27,7 +28,8 @@ export class Vrednovanje implements IVrednovanje {
     public brojPartije?: number | null,
     public nazivProizvodjaca?: string | null,
     public zasticeniNaziv?: string | null,
-    public karakteristika?: string | null,
+    public karakteristikaPonude?: string | null,
+    public karakteristikaSpecifikacije?: string | null,
     public ponudjenaVrijednost?: number | null,
     public rokIsporuke?: number | null,
     public jedinicnaCijena?: number | null,
