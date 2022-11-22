@@ -45,7 +45,17 @@ public class SpecifikacijeCriteria implements Serializable, Criteria {
 
     private DoubleFilter procijenjenaVrijednost;
 
+    private DoubleFilter jedinicnaCijena;
+
     private Boolean distinct;
+
+    public DoubleFilter getJedinicnaCijena() {
+        return jedinicnaCijena;
+    }
+
+    public void setJedinicnaCijena(DoubleFilter jedinicnaCijena) {
+        this.jedinicnaCijena = jedinicnaCijena;
+    }
 
     public SpecifikacijeCriteria() {}
 
@@ -62,6 +72,7 @@ public class SpecifikacijeCriteria implements Serializable, Criteria {
         this.pakovanje = other.pakovanje == null ? null : other.pakovanje.copy();
         this.jedinicaMjere = other.jedinicaMjere == null ? null : other.jedinicaMjere.copy();
         this.procijenjenaVrijednost = other.procijenjenaVrijednost == null ? null : other.procijenjenaVrijednost.copy();
+        this.jedinicnaCijena = other.jedinicnaCijena == null ? null : other.jedinicnaCijena.copy();
         this.distinct = other.distinct;
     }
 

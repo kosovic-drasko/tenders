@@ -11,6 +11,7 @@ export interface ISpecifikacije {
   pakovanje?: string | null;
   jedinicaMjere?: string | null;
   procijenjenaVrijednost?: number;
+  jedinicnaCijena?: number;
 }
 
 export class Specifikacije implements ISpecifikacije {
@@ -26,7 +27,8 @@ export class Specifikacije implements ISpecifikacije {
     public trazenaKolicina?: number | null,
     public pakovanje?: string | null,
     public jedinicaMjere?: string | null,
-    public procijenjenaVrijednost?: number
+    public procijenjenaVrijednost?: number,
+    public jedinicnaCijena?: number
   ) {}
 }
 

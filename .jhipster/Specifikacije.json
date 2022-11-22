@@ -47,6 +47,11 @@
       "fieldName": "procijenjenaVrijednost",
       "fieldType": "Double",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "jedinicnaCijena",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,

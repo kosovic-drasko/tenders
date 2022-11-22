@@ -92,6 +92,9 @@ public class SpecifikacijeService {
                 if (specifikacije.getProcijenjenaVrijednost() != null) {
                     existingSpecifikacije.setProcijenjenaVrijednost(specifikacije.getProcijenjenaVrijednost());
                 }
+                if (specifikacije.getJedinicnaCijena() != null) {
+                    existingSpecifikacije.setJedinicnaCijena(specifikacije.getJedinicnaCijena());
+                }
 
                 return existingSpecifikacije;
             })

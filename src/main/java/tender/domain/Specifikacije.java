@@ -58,7 +58,19 @@ public class Specifikacije implements Serializable {
     @Column(name = "procijenjena_vrijednost", nullable = false)
     private Double procijenjenaVrijednost;
 
+    @NotNull
+    @Column(name = "jedinicna_cijena", nullable = false)
+    private Double jedinicnaCijena;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Double getJedinicnaCijena() {
+        return jedinicnaCijena;
+    }
+
+    public void setJedinicnaCijena(Double jedinicnaCijena) {
+        this.jedinicnaCijena = jedinicnaCijena;
+    }
 
     public String getKarakteristika() {
         return karakteristika;

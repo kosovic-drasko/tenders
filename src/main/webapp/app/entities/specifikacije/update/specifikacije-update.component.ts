@@ -27,6 +27,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
   @Input() public pakovanje: any;
   @Input() public jedinicaMjere: any;
   @Input() public procijenjenaVrijednost: any;
+  @Input() public jedinicnaCijena: any;
   editForm = this.fb.group({
     id: [],
     sifraPostupka: [null, [Validators.required]],
@@ -40,6 +41,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
     pakovanje: [],
     jedinicaMjere: [],
     procijenjenaVrijednost: [null, [Validators.required]],
+    jedinicnaCijena: [null, [Validators.required]],
   });
 
   constructor(
@@ -100,6 +102,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
       pakovanje: this.pakovanje,
       jedinicaMjere: this.jedinicaMjere,
       procijenjenaVrijednost: this.procijenjenaVrijednost,
+      jedinicnaCijena: this.jedinicnaCijena,
     });
   }
 
@@ -118,6 +121,7 @@ export class SpecifikacijeUpdateComponent implements OnInit {
       pakovanje: this.editForm.get(['pakovanje'])!.value,
       jedinicaMjere: this.editForm.get(['jedinicaMjere'])!.value,
       procijenjenaVrijednost: this.editForm.get(['procijenjenaVrijednost'])!.value,
+      jedinicnaCijena: this.editForm.get(['jedinicnaCijena'])!.value,
     };
   }
 }

@@ -35,6 +35,7 @@ export class SpecifikacijeComponent implements OnInit {
     'pakovanje',
     'jedinica mjere',
     'procijenjena vrijednost',
+    'jedinicna cijena',
     'action',
   ];
 
@@ -151,7 +152,8 @@ export class SpecifikacijeComponent implements OnInit {
     trazenaKolicina?: number | null,
     pakovanje?: string | null,
     jedinicaMjere?: string | null,
-    procijenjenaVrijednost?: number
+    procijenjenaVrijednost?: number,
+    jedinicnaCijena?: number
   ): void {
     const modalRef = this.modalService.open(SpecifikacijeUpdateComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.id = id;
@@ -166,6 +168,7 @@ export class SpecifikacijeComponent implements OnInit {
     modalRef.componentInstance.pakovanje = pakovanje;
     modalRef.componentInstance.jedinicaMjere = jedinicaMjere;
     modalRef.componentInstance.procijenjenaVrijednost = procijenjenaVrijednost;
+    modalRef.componentInstance.jedinicnaCijena = jedinicnaCijena;
 
     modalRef.closed.subscribe(() => {
       this.loadPage();

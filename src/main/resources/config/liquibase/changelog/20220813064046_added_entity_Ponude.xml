@@ -44,7 +44,7 @@
             <column name="sifra_ponudjaca" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="karakteristika" type="varchar(255)">
+            <column name="karakteristika" type="varchar(6000)">
                 <constraints nullable="true" />
             </column>
             <column name="created_by" type="varchar(50)"/>

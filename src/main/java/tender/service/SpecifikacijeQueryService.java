@@ -120,6 +120,9 @@ public class SpecifikacijeQueryService extends QueryService<Specifikacije> {
                 specification =
                     specification.and(buildRangeSpecification(criteria.getProcijenjenaVrijednost(), Specifikacije_.procijenjenaVrijednost));
             }
+            if (criteria.getJedinicnaCijena() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getJedinicnaCijena(), Specifikacije_.jedinicnaCijena));
+            }
         }
         return specification;
     }

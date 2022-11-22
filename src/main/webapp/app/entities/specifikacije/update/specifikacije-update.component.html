@@ -103,7 +103,7 @@
             >
           </div>
           <div class="form-floating">
-            <input
+            <textarea
               type="text"
               class="form-control"
               name="karakteristika"
@@ -111,7 +111,7 @@
               data-cy="karakteristika"
               formControlName="karakteristika"
               placeholder="Karakteristike"
-            />
+            ></textarea>
             <label class="form-label" jhiTranslate="tenderApp.specifikacije.karakteristika" for="field_karakteristika"
               >Karakteristike</label
             >
@@ -200,6 +200,42 @@
               <small
                 class="form-text text-danger"
                 [hidden]="!editForm.get('procijenjenaVrijednost')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+              >
+                This field should be a number.
+              </small>
+            </div>
+          </div>
+
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              name="jedinicnaCijena"
+              id="field_jedinicnaCijena"
+              data-cy="jedinicnaCijena"
+              formControlName="jedinicnaCijena"
+              placeholder="Jedinicna Cijena"
+            />
+            <label class="form-label" jhiTranslate="tenderApp.specifikacije.jedinicnaCijena" for="field_jedinicnaCijena"
+              >Jedinicna Cijena</label
+            >
+            <div
+              *ngIf="
+                editForm.get('jedinicnaCijena')!.invalid &&
+                (editForm.get('jedinicnaCijena')!.dirty || editForm.get('jedinicnaCijena')!.touched)
+              "
+            >
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get('jedinicnaCijena')?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('jedinicnaCijena')?.errors?.number"
                 jhiTranslate="entity.validation.number"
               >
                 This field should be a number.

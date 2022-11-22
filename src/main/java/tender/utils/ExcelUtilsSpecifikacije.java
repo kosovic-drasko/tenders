@@ -29,6 +29,7 @@ public class ExcelUtilsSpecifikacije {
             "Jacina Lijeka",
             "Pakovanje",
             "Jedinica Mjere",
+            "Jedinicna Cijena",
         };
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
             CreationHelper createHelper = workbook.getCreationHelper();
@@ -72,6 +73,7 @@ public class ExcelUtilsSpecifikacije {
                 row.createCell(8).setCellValue(specifikacijes.getPakovanje());
                 row.createCell(9).setCellValue(specifikacijes.getJedinicaMjere());
                 row.createCell(10).setCellValue(specifikacijes.getKarakteristika());
+                row.createCell(11).setCellValue(specifikacijes.getJedinicnaCijena());
             }
 
             workbook.write(out);
@@ -142,6 +144,9 @@ public class ExcelUtilsSpecifikacije {
                             break;
                         case 10:
                             specifikacije.setKarakteristika(currentCell.getStringCellValue());
+                            break;
+                        case 11:
+                            specifikacije.setJedinicnaCijena((double) currentCell.getNumericCellValue());
                             break;
                         default:
                             break;
