@@ -48,8 +48,11 @@ public class Prvorangirani implements Serializable {
     @Column(name = "zasticeni_naziv")
     private String zasticeniNaziv;
 
-    @Column(name = "karakteristika")
-    private String karakteristika;
+    @Column(name = "karakteristika_specifikacije")
+    private String karakteristikaSpecifikacije;
+
+    @Column(name = "karakteristika_ponude")
+    private String karakteristikaPonude;
 
     @Column(name = "jedinicna_cijena")
     private Double jedinicnaCijena;
@@ -74,12 +77,20 @@ public class Prvorangirani implements Serializable {
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public String getKarakteristika() {
-        return karakteristika;
+    public String getKarakteristikaSpecifikacije() {
+        return karakteristikaSpecifikacije;
     }
 
-    public void setKarakteristika(String karakteristika) {
-        this.karakteristika = karakteristika;
+    public void setKarakteristikaSpecifikacije(String karakteristikaSpecifikacije) {
+        this.karakteristikaSpecifikacije = karakteristikaSpecifikacije;
+    }
+
+    public String getKarakteristikaPonude() {
+        return karakteristikaPonude;
+    }
+
+    public void setKarakteristikaPonude(String karakteristikaPonude) {
+        this.karakteristikaPonude = karakteristikaPonude;
     }
 
     public Long getId() {
