@@ -23,12 +23,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
-        "                                     ponude.karakteristika,\n" +
+        "                                     ponude.karakteristika as karakteristika_ponude,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
         "                                     ponudjaci.naziv_ponudjaca,\n" +
         "                                     specifikacije.atc,\n" +
+        "                                     specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                                     specifikacije.trazena_kolicina,\n" +
         "                                     specifikacije.procijenjena_vrijednost,\n" +
         "                                     postupci.vrsta_postupka,\n" +
@@ -49,12 +50,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
-        "                                     ponude.karakteristika,\n" +
+        "                                     ponude.karakteristika as karakteristika_ponude,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
         "                                     ponudjaci.naziv_ponudjaca,\n" +
         "                                     specifikacije.atc,\n" +
+        "                                     specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                                     specifikacije.trazena_kolicina,\n" +
         "                                     specifikacije.procijenjena_vrijednost,\n" +
         "                                     postupci.vrsta_postupka,\n" +
@@ -90,12 +92,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
-        "                                     ponude.karakteristika,\n" +
+        "                                     ponude.karakteristika as karakteristika_ponude,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
         "                                     ponudjaci.naziv_ponudjaca,\n" +
         "                                     specifikacije.atc,\n" +
+        "                                     specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                                     specifikacije.trazena_kolicina,\n" +
         "                                     specifikacije.procijenjena_vrijednost,\n" +
         "                                     postupci.vrsta_postupka,\n" +
@@ -116,12 +119,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
-        "                                     ponude.karakteristika,\n" +
+        "                                     ponude.karakteristika as karakteristika_ponude,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
         "                                     ponudjaci.naziv_ponudjaca,\n" +
         "                                     specifikacije.atc,\n" +
+        "                                     specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                                     specifikacije.trazena_kolicina,\n" +
         "                                     specifikacije.procijenjena_vrijednost,\n" +
         "                                     postupci.vrsta_postupka,\n" +
@@ -174,12 +178,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                               ponude.broj_partije,\n" +
         "                               ponude.naziv_proizvodjaca,\n" +
         "                               ponude.zasticeni_naziv,\n" +
-        "                               ponude.karakteristika,\n" +
+        "                               ponude.karakteristika as karakteristika_ponude,\n" +
         "                               ponude.ponudjena_vrijednost,\n" +
         "                               ponude.rok_isporuke,\n" +
         "                               ponude.jedinicna_cijena,\n" +
         "                               ponudjaci.naziv_ponudjaca,\n" +
         "                               specifikacije.atc,\n" +
+        "                                     specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                               specifikacije.trazena_kolicina,\n" +
         "                               specifikacije.procijenjena_vrijednost,\n" +
         "                               postupci.vrsta_postupka,\n" +
@@ -200,12 +205,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                               ponude.broj_partije,\n" +
         "                               ponude.naziv_proizvodjaca,\n" +
         "                               ponude.zasticeni_naziv,\n" +
-        "                               ponude.karakteristika,\n" +
+        "                               ponude.karakteristika as karakteristika_ponude,\n" +
         "                               ponude.ponudjena_vrijednost,\n" +
         "                               ponude.rok_isporuke,\n" +
         "                               ponude.jedinicna_cijena,\n" +
         "                               ponudjaci.naziv_ponudjaca,\n" +
         "                               specifikacije.atc,\n" +
+        "specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                               specifikacije.trazena_kolicina,\n" +
         "                               specifikacije.procijenjena_vrijednost,\n" +
         "                               postupci.vrsta_postupka,\n" +
@@ -244,7 +250,8 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                      view_vrednovanje.procijenjena_vrijednost,\n" +
         "                      view_vrednovanje.naziv_proizvodjaca,\n" +
         "                      view_vrednovanje.zasticeni_naziv,\n" +
-        "                      view_vrednovanje.karakteristika,\n" +
+        "                      view_vrednovanje.karakteristika_ponude,\n" +
+        "                      view_vrednovanje.karakteristika_specifikacije,\n" +
         "                      view_vrednovanje.jedinicna_cijena,\n" +
         "                      view_vrednovanje.ponudjena_vrijednost,\n" +
         "                      view_vrednovanje.rok_isporuke,\n" +
@@ -258,11 +265,12 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
-        "                                     ponude.karakteristika,\n" +
+        "                                     ponude.karakteristika as karakteristika_ponude,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
         "                                     ponudjaci.naziv_ponudjaca,\n" +
+        "specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                                     specifikacije.atc,\n" +
         "                                     specifikacije.trazena_kolicina,\n" +
         "                                     specifikacije.procijenjena_vrijednost,\n" +
@@ -284,12 +292,13 @@ public interface PrvorangiraniRepository extends JpaRepository<Prvorangirani, Lo
         "                                     ponude.broj_partije,\n" +
         "                                     ponude.naziv_proizvodjaca,\n" +
         "                                     ponude.zasticeni_naziv,\n" +
-        "                                     ponude.karakteristika,\n" +
+        "                                     ponude.karakteristika as karakteristika_ponude,\n" +
         "                                     ponude.ponudjena_vrijednost,\n" +
         "                                     ponude.rok_isporuke,\n" +
         "                                     ponude.jedinicna_cijena,\n" +
         "                                     ponudjaci.naziv_ponudjaca,\n" +
         "                                     specifikacije.atc,\n" +
+        "specifikacije.karakteristika as karakteristika_specifikacije,\n" +
         "                                     specifikacije.trazena_kolicina,\n" +
         "                                     specifikacije.procijenjena_vrijednost,\n" +
         "                                     postupci.vrsta_postupka,\n" +

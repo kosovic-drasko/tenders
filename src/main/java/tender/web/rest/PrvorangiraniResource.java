@@ -76,12 +76,12 @@ public class PrvorangiraniResource {
         return ResponseUtil.wrapOrNotFound(prvorangirani);
     }
 
-    @GetMapping("/prvorangirani")
-    public List<Prvorangirani> getVrednovanjeNativePrvorangirani() {
-        log.debug("REST request to get PonudePonudjaci : {}");
-        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findNativeAllPrvorangirani();
-        return prvorangirani;
-    }
+    //    @GetMapping("/prvorangirani")
+    //    public List<Prvorangirani> getVrednovanjeNativePrvorangirani() {
+    //        log.debug("REST request to get PonudePonudjaci : {}");
+    //        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findNativeAllPrvorangirani();
+    //        return prvorangirani;
+    //    }
 
     @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
     public List<Prvorangirani> getPPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
@@ -89,17 +89,16 @@ public class PrvorangiraniResource {
         List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPostupkaListPrvorangirani(sifraPostupka);
         return prvorangirani;
     }
-
-    @GetMapping("/prvorangirani-ponude/{sifraPonude}")
-    public List<Prvorangirani> getPPrvorangiraniPonude(@PathVariable Integer sifraPonude) {
-        log.debug("REST request to get Ponude : {}", sifraPonude);
-        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPonudeListPrvorangirani(sifraPonude);
-        return prvorangirani;
-    }
-
-    @GetMapping("/prvorngirani-ponudjaci-postupci/{sifra}")
-    public ResponseEntity<?> getPonudePonudjaciPostuci(@PathVariable Integer sifra) {
-        Optional<? extends List<?>> prvorngirani = Optional.ofNullable(prvorangiraniRepository.findBySifraPostupkaPonudjaci(sifra));
-        return ResponseUtil.wrapOrNotFound(prvorngirani);
-    }
+    //    @GetMapping("/prvorangirani-ponude/{sifraPonude}")
+    //    public List<Prvorangirani> getPPrvorangiraniPonude(@PathVariable Integer sifraPonude) {
+    //        log.debug("REST request to get Ponude : {}", sifraPonude);
+    //        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPonudeListPrvorangirani(sifraPonude);
+    //        return prvorangirani;
+    //    }
+    //
+    //    @GetMapping("/prvorngirani-ponudjaci-postupci/{sifra}")
+    //    public ResponseEntity<?> getPonudePonudjaciPostuci(@PathVariable Integer sifra) {
+    //        Optional<? extends List<?>> prvorngirani = Optional.ofNullable(prvorangiraniRepository.findBySifraPostupkaPonudjaci(sifra));
+    //        return ResponseUtil.wrapOrNotFound(prvorngirani);
+    //    }
 }
