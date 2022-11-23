@@ -10,7 +10,7 @@
       },
       "created": "Kreirana je nova Specifikacija sa id {{ param }}",
       "updated": "Specifikacija sa id {{ param }} je ažuriran",
-      "deleted": "SSpecifikacija sa id {{ param }} je obrisan",
+      "deleted": "Specifikacija sa id {{ param }} je obrisan",
       "delete": {
         "question": "Da li ste sigurni da želite da obrišete Specifikaciju sa id {{ id }}?"
       },
