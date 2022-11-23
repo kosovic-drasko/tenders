@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableUtil } from '../../tableUtil';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'jhi-specifikacije',
@@ -203,4 +204,13 @@ export class SpecifikacijeComponent implements OnInit {
   exportTable() {
     TableUtil.exportTableToExcel('ExampleTable');
   }
+
+  // exportArray() {
+  //   let onlyNameAndSymbolArr: Partial<ISpecifikacije>[];
+  //   onlyNameAndSymbolArr = this.dataSource(map((x: { atc: any; inn: any; }) => ({
+  //     atc: x.atc,
+  //     inn: x.inn
+  //   })));
+  //   TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, "ExampleArray");
+  // }
 }
