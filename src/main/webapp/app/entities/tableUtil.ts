@@ -2,8 +2,8 @@ import * as XLSX from 'xlsx';
 
 const getFileName = (name: string | undefined) => {
   let timeSpan = new Date().toISOString();
-  let sheetName = name || 'ExportResult';
-  let fileName = `${sheetName}-${timeSpan}`;
+  let sheetName = name || 'Excel';
+  let fileName = `${sheetName}`;
   return {
     sheetName,
     fileName,

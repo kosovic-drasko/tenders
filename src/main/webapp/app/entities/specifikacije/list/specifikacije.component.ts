@@ -22,6 +22,7 @@ export class SpecifikacijeComponent implements OnInit {
   brojObrazac?: number = 0;
   ukupno?: number;
   brPostupka?: null;
+  sakrij = true;
 
   public displayedColumns = [
     'sifra postupka',
