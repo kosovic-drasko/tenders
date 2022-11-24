@@ -294,6 +294,50 @@ export class PonudePonudjaciComponent implements OnInit {
   exportTable() {
     TableUtil.exportTableToExcel('ExampleTable');
   }
+  exportArray() {
+    const onlyNameAndSymbolArr: {
+      'naziv proizvodjaca': string | null | undefined;
+      'jedinicna cijena': number | null | undefined;
+      'ponudjana vrijednost': number | null | undefined;
+      'rok isporuke': number | null | undefined;
+      'naziv ponudjaca': string | null | undefined;
+      'sifra ponude': number | null | undefined;
+      'sifra postupka': number | null | undefined;
+      'zasticeni naziv': string | null | undefined;
+      'broj partije': number | null | undefined;
+    }[] = this.dataSource.data.map(x => ({
+      'sifra postupka': x.sifraPostupka,
+      'broj partije': x.brojPartije,
+      'sifra ponude': x.sifraPonude,
+      'zasticeni naziv': x.zasticeniNaziv,
+      'naziv proizvodjaca': x.nazivProizvodjaca,
+      'naziv ponudjaca': x.nazivPonudjaca,
+      'ponudjana vrijednost': x.ponudjenaVrijednost,
+      'jedinicna cijena': x.jedinicnaCijena,
+      'rok isporuke': x.rokIsporuke,
+      'karakteristike ponude': x.karakteristika,
+    }));
+    TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'Ponude');
+  }
+
+  // exportArray() {
+  //   const onlyNameAndSymbolArr: Partial<ISpecifikacije>[] = this.dataSource.data.map(x => ({
+  //     'sifra postupka':x.sifraPostupka,
+  //     'broj_partije':x.brojPartije,
+  //     'atc': x.atc,
+  //     'inn': x.inn,
+  //     'farmaceutski oblik':x.farmaceutskiOblikLijeka,
+  //     'karakteristika':x.karakteristika,
+  //     'jacina lijeka':x.jacinaLijeka,
+  //     'trazena kolicina':x.trazenaKolicina,
+  //     'pakovanje':x.pakovanje,
+  //     'jedinica mjere':x.jedinicaMjere,
+  //     'procijenjena vrijednost':x.jedinicaMjere,
+  //     'jedinicna cijena':x.jedinicnaCijena
+  //
+  //   }));
+  //   TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'Specifikacija');
+  // }
 
   konzola() {
     console.log('proba koinzola');

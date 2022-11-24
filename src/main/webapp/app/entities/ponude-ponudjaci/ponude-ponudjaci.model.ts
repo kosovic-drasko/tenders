@@ -10,6 +10,7 @@ export interface IPonudePonudjaci {
   ponudjenaVrijednost?: number | null;
   rokIsporuke?: number | null;
   jedinicnaCijena?: number | null;
+  karakteristika?: string | null;
   selected?: boolean | null;
   createdBy?: string | null;
   createdDate?: Date | null;

@@ -37,7 +37,7 @@
         >
           Ukloni Ponudu
         </mat-button-toggle>
-        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportTable()">
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="exportArray()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
         <mat-button-toggle matTooltip="Vrati" *ngIf="postupak" type="button" (click)="ponisti()">

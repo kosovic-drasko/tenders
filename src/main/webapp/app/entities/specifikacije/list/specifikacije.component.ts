@@ -201,16 +201,26 @@ export class SpecifikacijeComponent implements OnInit {
     window.location.href = `${this.resourceUrlExcelDownload}/${this.brojObrazac}`;
   }
 
-  exportTable() {
-    TableUtil.exportTableToExcel('ExampleTable');
-  }
+  // exportTable() {
+  //   TableUtil.exportTableToExcel('ExampleTable');
+  // }
 
   exportArray() {
     const onlyNameAndSymbolArr: Partial<ISpecifikacije>[] = this.dataSource.data.map(x => ({
+      'sifra postupka': x.sifraPostupka,
+      broj_partije: x.brojPartije,
       atc: x.atc,
       inn: x.inn,
+      'farmaceutski oblik': x.farmaceutskiOblikLijeka,
+      karakteristika: x.karakteristika,
+      'jacina lijeka': x.jacinaLijeka,
+      'trazena kolicina': x.trazenaKolicina,
+      pakovanje: x.pakovanje,
+      'jedinica mjere': x.jedinicaMjere,
+      'procijenjena vrijednost': x.jedinicaMjere,
+      'jedinicna cijena': x.jedinicnaCijena,
     }));
-    TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'ExampleArray');
+    TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'Specifikacija');
   }
 }
 
