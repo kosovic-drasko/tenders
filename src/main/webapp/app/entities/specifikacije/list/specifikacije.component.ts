@@ -205,14 +205,13 @@ export class SpecifikacijeComponent implements OnInit {
     TableUtil.exportTableToExcel('ExampleTable');
   }
 
-  // exportArray() {
-  //   let onlyNameAndSymbolArr: Partial<ISpecifikacije>[];
-  //   onlyNameAndSymbolArr = this.dataSource.data.map((x: { atc: any; inn: any; }) => ({
-  //     atc: x.atc,
-  //     inn: x.inn
-  //   }));
-  //   TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, "ExampleArray");
-  // }
+  exportArray() {
+    const onlyNameAndSymbolArr: Partial<ISpecifikacije>[] = this.dataSource.data.map(x => ({
+      atc: x.atc,
+      inn: x.inn,
+    }));
+    TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'ExampleArray');
+  }
 }
 
 // https://stackblitz.com/edit/angular-material-table-export-excel-xlsx?embed=1&file=app/tableUtil.ts
