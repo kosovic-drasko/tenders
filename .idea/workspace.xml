@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.yo-rc-global.json" beforeDir="false" afterPath="$PROJECT_DIR$/.yo-rc-global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.yo-rc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.yo-rc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/application-prod.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +83,8 @@
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
-      "mysql"
+      "mysql",
+      "mariadb"
     ],
     "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
       "MySQL"
@@ -164,7 +168,9 @@
       <workItem from="1669099690988" duration="6422000" />
       <workItem from="1669185546755" duration="14744000" />
       <workItem from="1669355059075" duration="2667000" />
-      <workItem from="1669625627151" duration="713000" />
+      <workItem from="1669625627151" duration="2778000" />
+      <workItem from="1669790755814" duration="459000" />
+      <workItem from="1669800292165" duration="711000" />
     </task>
     <task id="LOCAL-00064" summary="init">
       <created>1665563203113</created>
