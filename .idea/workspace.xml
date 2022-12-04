@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.yo-rc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.yo-rc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application-heroku.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/bootstrap-heroku.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +62,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "DELOMBOK_PRE_COMMIT": "false",
+    "Notification.DoNotAsk-null": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -72,12 +73,18 @@
     "database.data.extractors.current.export.id": "Excel (xlsx)",
     "last_opened_file_path": "C:/Users/Win/IdeaProjects/jhipster",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\drask\\IdeaProjects\\tenders\\node_modules\\prettier",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "application.passwordSafe",
-    "show.run.dashboard.notification": "false",
     "spring.configuration.checksum": "0a538a0ca54a9f51fc1334040fb89d64",
-    "ts.external.directory.path": "C:\\Users\\Win\\IdeaProjects\\tenders\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "C:\\Users\\Win\\IdeaProjects\\tenders\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -169,6 +176,7 @@
       <workItem from="1669625627151" duration="2778000" />
       <workItem from="1669790755814" duration="459000" />
       <workItem from="1669800292165" duration="1082000" />
+      <workItem from="1670173465928" duration="346000" />
     </task>
     <task id="LOCAL-00065" summary="init">
       <created>1665579071326</created>

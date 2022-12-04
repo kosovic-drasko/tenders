@@ -21,7 +21,9 @@
     "enableTranslation": true,
     "entities": ["HvalePonude", "Ponude", "Ponudjaci", "Postupci", "Specifikacije", "TenderiHome", "Vrednovanje", "Prvorangirani"],
     "entitySuffix": "",
-
+    "herokuAppName": "tenders",
+    "herokuDeployType": "git",
+    "herokuJavaVersion": "17",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "ZmY0YWNiNWYwOWQ3YjQ1YjUzMjY5ODIwOGRkMjBjYmJhNjgxNGQ5M2Q2NWJiM2U0ZjBiMzRhYzZkNDAyMWUxNmQxMDAwYzM3OWFmYjFmMWJlNTE0ODY5NGY1NzIyZTc0NTAzNTRiNzk1NjYwODgyODRjYWE5MGY2ZjAxYjJhNWE=",
