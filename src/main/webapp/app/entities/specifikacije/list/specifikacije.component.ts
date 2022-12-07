@@ -217,7 +217,7 @@ export class SpecifikacijeComponent implements OnInit {
       'trazena kolicina': x.trazenaKolicina,
       pakovanje: x.pakovanje,
       'jedinica mjere': x.jedinicaMjere,
-      'procijenjena vrijednost': x.jedinicaMjere,
+      'procijenjena vrijednost': x.procijenjenaVrijednost,
       'jedinicna cijena': x.jedinicnaCijena,
     }));
     TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'Specifikacija');
