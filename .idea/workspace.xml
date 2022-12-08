@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/list/vrednovanje.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,12 +113,12 @@
       <recent name="tender.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Angular CLI Server">
+  <component name="RunManager" selected="Spring Boot.TenderApp">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
     <configuration name="TenderApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" value="dev" />
+      <option name="ACTIVE_PROFILES" value="prod" />
       <module name="tender" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tender.TenderApp" />
       <method v="2">
@@ -179,14 +176,7 @@
       <workItem from="1669790755814" duration="459000" />
       <workItem from="1669800292165" duration="1082000" />
       <workItem from="1670173465928" duration="1469000" />
-      <workItem from="1670435896059" duration="2624000" />
-    </task>
-    <task id="LOCAL-00068" summary="init">
-      <created>1665736101107</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1665736101107</updated>
+      <workItem from="1670435896059" duration="4295000" />
     </task>
     <task id="LOCAL-00069" summary="init">
       <created>1665737493325</created>
@@ -524,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670437579000</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="init">
+      <created>1670439319846</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1670439319846</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
