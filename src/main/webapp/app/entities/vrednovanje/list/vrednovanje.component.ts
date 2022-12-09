@@ -69,11 +69,10 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ponisti(): void {
     if (this.postupak !== undefined) {
       this.sifraPonude = null;
-      this.loadPage();
+      this.loadPageSifraPostupka();
       console.log(this.postupak);
     } else {
       this.sifraPonude = null;
-
       this.loadPage();
     }
   }

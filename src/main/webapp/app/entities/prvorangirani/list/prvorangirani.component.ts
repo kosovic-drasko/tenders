@@ -127,7 +127,6 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
       console.log(this.postupak);
     } else {
       this.sifraPonude = null;
-
       this.loadPage();
     }
   }
