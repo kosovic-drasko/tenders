@@ -82,11 +82,17 @@ public class ViewVrednovanjeResource {
         Optional<ViewVrednovanje> viewVrednovanje = viewVrednovanjeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(viewVrednovanje);
     }
-
-    @GetMapping("/vrednovanje-postupak/{sifraPostupka}")
-    public List<ViewVrednovanje> getVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
-        log.debug("REST request to get Ponude : {}", sifraPostupka);
-        List<ViewVrednovanje> vrednovanje = viewVrednovanjeRepository.findViewVrednovanjeBySifraPostupka(sifraPostupka);
-        return vrednovanje;
-    }
+    //    @GetMapping("/vrednovanje-postupak/{sifraPostupka}")
+    //    public List<ViewVrednovanje> getVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
+    //        log.debug("REST request to get Ponude : {}", sifraPostupka);
+    //        List<ViewVrednovanje> vrednovanje = viewVrednovanjeRepository.findViewVrednovanjeBySifraPostupka(sifraPostupka);
+    //        return vrednovanje;
+    //    }
+    //
+    //    @GetMapping("/vrednovanje-ponude/{sifraPonude}")
+    //    public List<ViewVrednovanje> getVrednovanjePonude(@PathVariable Integer sifraPonude) {
+    //        log.debug("REST request to get Ponude : {}", sifraPonude);
+    //        List<ViewVrednovanje> vrednovanje = viewVrednovanjeRepository.findViewVrednovanjeBySifraPonude(sifraPonude);
+    //        return vrednovanje;
+    //    }
 }

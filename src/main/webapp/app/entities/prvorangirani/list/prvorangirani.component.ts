@@ -46,23 +46,27 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   constructor(protected prvorangiraniService: PrvorangiraniService, protected activatedRoute: ActivatedRoute, protected router: Router) {}
 
   loadPageSifraPostupka(): void {
-    this.prvorangiraniService.queryPrvorangiraniPostupak(this.postupak).subscribe({
-      next: (res: HttpResponse<IVrednovanje[]>) => {
-        this.isLoading = false;
-        this.dataSource.data = res.body ?? [];
-        this.prvorangiranis = res;
-        this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
-        this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
-        this.sifraPonude = null;
-      },
-      error: () => {
-        this.isLoading = false;
-        this.onError();
-      },
-    });
+    this.prvorangiraniService
+      .query({
+        'sifraPostupka.in': this.postupak,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IVrednovanje[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.prvorangiranis = res;
+          this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+          this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+          this.sifraPonude = null;
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
   }
   loadPageSifraPonude(): void {
-    this.prvorangiraniService.queryPrvorangiraniPonude(this.sifraPonude).subscribe({
+    this.prvorangiraniService.query({ 'sifraPonude.in': this.sifraPonude }).subscribe({
       next: (res: HttpResponse<IVrednovanje[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];

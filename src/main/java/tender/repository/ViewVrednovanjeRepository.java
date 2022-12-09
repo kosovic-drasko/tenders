@@ -12,6 +12,12 @@ import tender.domain.ViewVrednovanje;
 @SuppressWarnings("unused")
 @Repository
 public interface ViewVrednovanjeRepository extends JpaRepository<ViewVrednovanje, Long>, JpaSpecificationExecutor<ViewVrednovanje> {
-    @Query("SELECT u FROM ViewVrednovanje u WHERE u.sifraPostupka = :sifra")
-    List<ViewVrednovanje> findViewVrednovanjeBySifraPostupka(@Param("sifra") Integer sifraPostupka);
+    //    @Query("SELECT u FROM ViewVrednovanje u WHERE u.sifraPostupka = :sifra")
+    //    List<ViewVrednovanje> findViewVrednovanjeBySifraPostupka(@Param("sifra") Integer sifraPostupka);
+    //
+    //    @Query("SELECT u FROM ViewVrednovanje u WHERE u.sifraPonude = :sifra")
+    //    List<ViewVrednovanje> findViewVrednovanjeBySifraPonude(@Param("sifra") Integer sifraPonude);
+
+    //    @Query("SELECT u FROM ViewVrednovanje u WHERE u.sifraPonude = :sifra")
+    //    List<ViewVrednovanje> findViewVrednovanjeBySifraPonude(@Param("sifra") Integer sifraPonde);
 }
