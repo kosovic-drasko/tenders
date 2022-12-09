@@ -17,6 +17,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   vrednovanjes?: HttpResponse<IVrednovanje[]>;
   isLoading = false;
   ukupno?: number;
+  brPostupka?: null;
   ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
@@ -54,6 +55,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
         this.vrednovanjes = res;
+
         this.sifraPonude = null;
         this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
         this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
@@ -67,7 +69,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ponisti(): void {
     if (this.postupak !== undefined) {
       this.sifraPonude = null;
-      this.loadPageSifraPostupka();
+      this.loadPage();
       console.log(this.postupak);
     } else {
       this.sifraPonude = null;
@@ -93,6 +95,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
           this.isLoading = false;
           this.dataSource.data = res.body ?? [];
           this.vrednovanjes = res;
+          console.log('____________', this.vrednovanjes);
           this.sifraPonude = null;
           this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
           this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);

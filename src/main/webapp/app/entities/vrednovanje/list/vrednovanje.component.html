@@ -3,14 +3,14 @@
     <div>
       <mat-form-field>
         <input matInput [(ngModel)]="sifraPonude" matInput placeholder="Sifra Ponude" (keyup)="loadPageSifraPonude()" />
-        <!--              <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="sifraPonudeNull()">-->
-        <!--                <mat-icon>close</mat-icon>-->
-        <!--              </button>-->
+        <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div *ngIf="vrednovanjes?.body?.length != 0" iclass="btn-group" role="group" aria-label="Basic example">
+    <div iclass="btn-group" role="group" aria-label="Basic example">
       <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
         <input hidden #fileInput type="file" id="file" />
         <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()">
