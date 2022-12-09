@@ -5,37 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/.jhipster/ViewVrednovanje.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/domain/ViewVrednovanje.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/repository/ViewVrednovanjeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewVrednovanjeQueryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewVrednovanjeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/criteria/ViewVrednovanjeCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/ViewVrednovanjeResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20221209081752_added_entity_ViewVrednovanje.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/list/prvorangirani.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/update/specifikacije-update.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/detail/view-vrednovanje-detail.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/detail/view-vrednovanje-detail.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/detail/view-vrednovanje-detail.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/list/view-vrednovanje.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/list/view-vrednovanje.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/list/view-vrednovanje.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/route/view-vrednovanje-routing-resolve.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/route/view-vrednovanje-routing-resolve.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/route/view-vrednovanje-routing.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/service/view-vrednovanje.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/service/view-vrednovanje.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/view-vrednovanje.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/view-vrednovanje.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/view-vrednovanje/view-vrednovanje.test-samples.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/en/viewVrednovanje.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/sr/viewVrednovanje.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tender/domain/ViewVrednovanjeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tender/web/rest/ViewVrednovanjeResourceIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/entity-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/entity-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tender/service/ViewVrednovanjeQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewVrednovanjeQueryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/service/vrednovanje.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/vrednovanje/service/vrednovanje.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/IntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/TechnicalStructureTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/AsyncSyncConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/EmbeddedSQL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/MysqlTestContainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/SpringBootTestClassOrderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/SqlTestContainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/StaticResourcesWebConfigurerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/TestContainersSpringContextCustomizerFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/WebConfigurerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/WebConfigurerTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/config/timezone/HibernateTimeZoneIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/PonudePonudjaciTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/PonudeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/PonudjaciTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/PostupciTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/PrvorangiraniTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/SpecifikacijeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/TenderiHomeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/ViewVrednovanjeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/VrednovanjeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/management/SecurityMetersServiceTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/repository/timezone/DateTimeWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/repository/timezone/DateTimeWrapperRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/security/DomainUserDetailsServiceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/security/SecurityUtilsUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/security/jwt/JWTFilterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/security/jwt/TokenProviderSecurityMetersTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/security/jwt/TokenProviderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/service/MailServiceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/service/UserServiceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/service/mapper/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/AccountResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/ClientForwardControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/PonudePonudjaciResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/PonudeResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/PonudjaciResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/PostupciResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/PrvorangiraniResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/PublicUserResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/SpecifikacijeResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/TenderiHomeResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/TestUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/UserJWTControllerIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/UserResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/ViewVrednovanjeResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/VrednovanjeResourceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/WithUnauthenticatedMockUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/errors/ExceptionTranslatorIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/errors/ExceptionTranslatorTestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/META-INF/spring.factories" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config/application-testdev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config/application-testprod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/i18n/messages_en.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/i18n/messages_sr.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/junit-platform.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/templates/mail/activationEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/templates/mail/creationEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/templates/mail/passwordResetEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/templates/mail/testEmail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/testcontainers.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/testcontainers/mysql/my.cnf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +179,7 @@
       <recent name="tender.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TenderApp">
+  <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -206,13 +243,6 @@
       <workItem from="1669800292165" duration="1082000" />
       <workItem from="1670173465928" duration="1469000" />
       <workItem from="1670435896059" duration="10174000" />
-    </task>
-    <task id="LOCAL-00071" summary="init">
-      <created>1665771512724</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1665771512724</updated>
     </task>
     <task id="LOCAL-00072" summary="init">
       <created>1665865785639</created>
@@ -550,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670487916924</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="init">
+      <created>1670575934476</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1670575934476</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

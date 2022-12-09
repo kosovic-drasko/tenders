@@ -131,7 +131,7 @@ public class ViewVrednovanjeQueryService extends QueryService<ViewVrednovanje> {
             }
             if (criteria.getKatekteristikaPonude() != null) {
                 specification =
-                    specification.and(buildStringSpecification(criteria.getKatekteristikaPonude(), ViewVrednovanje_.katekteristikaPonude));
+                    specification.and(buildStringSpecification(criteria.getKatekteristikaPonude(), ViewVrednovanje_.karskteristikaPonude));
             }
             if (criteria.getKarakteristikaSpecifikacije() != null) {
                 specification =
