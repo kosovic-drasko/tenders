@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
+import tender.domain.Prvorangirani;
+import tender.domain.ViewPrvorangirani;
 import tender.repository.ViewPrvorangiraniRepository;
 import tender.service.ViewPrvorangiraniQueryService;
 import tender.service.ViewPrvorangiraniService;
@@ -80,5 +82,12 @@ public class ViewPrvorangiraniResource {
         log.debug("REST request to get ViewPrvorangirani : {}", id);
         Optional<ViewPrvorangiraniDTO> viewPrvorangiraniDTO = viewPrvorangiraniService.findOne(id);
         return ResponseUtil.wrapOrNotFound(viewPrvorangiraniDTO);
+    }
+
+    @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
+    public List<ViewPrvorangirani> getPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
+        log.debug("REST request to get Ponude : {}", sifraPostupka);
+        List<ViewPrvorangirani> prvorangirani = viewPrvorangiraniRepository.findViewPrvorangiraniBySifraPostupka(sifraPostupka);
+        return prvorangirani;
     }
 }

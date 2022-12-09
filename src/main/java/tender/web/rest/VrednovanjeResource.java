@@ -90,12 +90,12 @@ public class VrednovanjeResource {
         return vrednovanje;
     }
 
-    @GetMapping("/vrednovanje-postupak/{sifraPostupka}")
-    public List<Vrednovanje> getPVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
-        log.debug("REST request to get Ponude : {}", sifraPostupka);
-        List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPostupkaList(sifraPostupka);
-        return vrednovanje;
-    }
+    //    @GetMapping("/vrednovanje-postupak/{sifraPostupka}")
+    //    public List<Vrednovanje> getPVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
+    //        log.debug("REST request to get Ponude : {}", sifraPostupka);
+    //        List<Vrednovanje> vrednovanje = vrednovanjeRepository.findBySifraPostupkaList(sifraPostupka);
+    //        return vrednovanje;
+    //    }
 
     @GetMapping("/vrednovanje-ponude/{sifraPonude}")
     public List<Vrednovanje> getPVrednovanjePonude(@PathVariable Integer sifraPonude) {

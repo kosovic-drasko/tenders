@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import tender.domain.ViewVrednovanje;
+import tender.domain.Vrednovanje;
 import tender.repository.ViewVrednovanjeRepository;
 import tender.service.ViewVrednovanjeQueryService;
 import tender.service.ViewVrednovanjeService;
@@ -80,5 +81,12 @@ public class ViewVrednovanjeResource {
         log.debug("REST request to get ViewVrednovanje : {}", id);
         Optional<ViewVrednovanje> viewVrednovanje = viewVrednovanjeService.findOne(id);
         return ResponseUtil.wrapOrNotFound(viewVrednovanje);
+    }
+
+    @GetMapping("/vrednovanje-postupak/{sifraPostupka}")
+    public List<ViewVrednovanje> getVrednovanjePostupak(@PathVariable Integer sifraPostupka) {
+        log.debug("REST request to get Ponude : {}", sifraPostupka);
+        List<ViewVrednovanje> vrednovanje = viewVrednovanjeRepository.findViewVrednovanjeBySifraPostupka(sifraPostupka);
+        return vrednovanje;
     }
 }
