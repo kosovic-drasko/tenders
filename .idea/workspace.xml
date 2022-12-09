@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/domain/ViewPrvorangirani.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/repository/ViewPrvorangiraniRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewPrvorangiraniQueryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewPrvorangiraniService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/criteria/ViewPrvorangiraniCriteria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/dto/ViewPrvorangiraniDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/ViewPrvorangiraniResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20221209092024_added_entity_ViewPrvorangirani.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/en/viewPrvorangirani.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/sr/viewPrvorangirani.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/prvorangirani.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/prvorangirani.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/service/prvorangirani.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/service/prvorangirani.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +114,7 @@
       <recent name="tender.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TenderApp">
+  <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -186,20 +178,6 @@
       <workItem from="1669800292165" duration="1082000" />
       <workItem from="1670173465928" duration="1469000" />
       <workItem from="1670435896059" duration="10174000" />
-    </task>
-    <task id="LOCAL-00073" summary="init">
-      <created>1666159783494</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1666159783495</updated>
-    </task>
-    <task id="LOCAL-00074" summary="init">
-      <created>1666161645989</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1666161645989</updated>
     </task>
     <task id="LOCAL-00075" summary="init">
       <created>1666162753020</created>
@@ -530,7 +508,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670577176738</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="init">
+      <created>1670602587768</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1670602587768</updated>
+    </task>
+    <task id="LOCAL-00123" summary="init">
+      <created>1670602809630</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1670602809630</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

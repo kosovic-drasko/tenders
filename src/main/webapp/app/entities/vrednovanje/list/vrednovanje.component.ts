@@ -49,7 +49,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
 
   loadPage(): void {
     this.isLoading = true;
-    this.vrednovanjeService.queryNative().subscribe({
+    this.vrednovanjeService.query().subscribe({
       next: (res: HttpResponse<IVrednovanje[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];

@@ -79,7 +79,7 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
 
   loadPage(): void {
     this.isLoading = true;
-    this.prvorangiraniService.queryNative().subscribe({
+    this.prvorangiraniService.query().subscribe({
       next: (res: HttpResponse<IPrvorangirani[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
