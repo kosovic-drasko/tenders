@@ -40,6 +40,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./vrednovanje/vrednovanje.module').then(m => m.VrednovanjeModule),
       },
       {
+        path: 'view-vrednovanje',
+        data: { pageTitle: 'tenderApp.viewVrednovanje.home.title' },
+        loadChildren: () => import('./view-vrednovanje/view-vrednovanje.module').then(m => m.ViewVrednovanjeModule),
+      },
+      {
         path: 'prvorangirani',
         data: { pageTitle: 'tenderApp.prvorangirani.home.title' },
         loadChildren: () => import('./prvorangirani/prvorangirani.module').then(m => m.PrvorangiraniModule),
