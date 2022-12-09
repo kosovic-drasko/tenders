@@ -13,6 +13,6 @@ import tender.domain.ViewVrednovanje;
 @SuppressWarnings("unused")
 @Repository
 public interface ViewPrvorangiraniRepository extends JpaRepository<ViewPrvorangirani, Long>, JpaSpecificationExecutor<ViewPrvorangirani> {
-    @Query("SELECT u FROM ViewPrvorangirani u WHERE u.sifraPostupka = :sifra")
-    List<ViewPrvorangirani> findViewPrvorangiraniBySifraPostupka(@Param("sifra") Integer sifraPostupka);
+    //    @Query("SELECT u FROM ViewPrvorangirani u WHERE u.sifraPostupka = :sifra")
+    //    List<ViewPrvorangirani> findViewPrvorangiraniBySifraPostupka(@Param("sifra") Integer sifraPostupka);
 }

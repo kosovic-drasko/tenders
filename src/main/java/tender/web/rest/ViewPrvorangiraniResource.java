@@ -83,11 +83,10 @@ public class ViewPrvorangiraniResource {
         Optional<ViewPrvorangiraniDTO> viewPrvorangiraniDTO = viewPrvorangiraniService.findOne(id);
         return ResponseUtil.wrapOrNotFound(viewPrvorangiraniDTO);
     }
-
-    @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
-    public List<ViewPrvorangirani> getPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
-        log.debug("REST request to get Ponude : {}", sifraPostupka);
-        List<ViewPrvorangirani> prvorangirani = viewPrvorangiraniRepository.findViewPrvorangiraniBySifraPostupka(sifraPostupka);
-        return prvorangirani;
-    }
+    //    @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
+    //    public List<ViewPrvorangirani> getPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
+    //        log.debug("REST request to get Ponude : {}", sifraPostupka);
+    //        List<ViewPrvorangirani> prvorangirani = viewPrvorangiraniRepository.findViewPrvorangiraniBySifraPostupka(sifraPostupka);
+    //        return prvorangirani;
+    //    }
 }
