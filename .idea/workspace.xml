@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/repository/ViewPonudeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewPonudeQueryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewPonudeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/ViewPonudeResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064048_added_entity_ViewPonude.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/en/viewPonude.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/sr/viewPonude.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tender/domain/ViewPonudeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tender/web/rest/ViewPonudeResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/criteria/ViewPonudeCriteria.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/service/ponude-ponudjaci.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/service/ponude-ponudjaci.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/domain/ViewPonudeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tender/web/rest/ViewPonudeResourceIT.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +117,7 @@
       <recent name="tender.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Angular CLI Server">
+  <component name="RunManager" selected="Spring Boot.TenderApp">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -186,13 +181,6 @@
       <workItem from="1669800292165" duration="1082000" />
       <workItem from="1670173465928" duration="1469000" />
       <workItem from="1670435896059" duration="10174000" />
-    </task>
-    <task id="LOCAL-00088" summary="init">
-      <created>1667117149197</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1667117149197</updated>
     </task>
     <task id="LOCAL-00089" summary="init">
       <created>1667286808863</created>
@@ -530,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670702815161</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="init">
+      <created>1670703447675</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1670703447675</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
