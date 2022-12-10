@@ -17,6 +17,7 @@ import { TableUtil } from '../../tableUtil';
 export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   prvorangiranis?: HttpResponse<IPrvorangirani[]>;
   isLoading = false;
+  ponudjaci?: IVrednovanje[];
   ukupno?: number;
   ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
@@ -55,6 +56,10 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.dataSource.data = res.body ?? [];
           this.prvorangiranis = res;
+          // const unique1 = [...new Set(res.body?.map(items => items.nazivPonudjaca))];
+          // const unique2 = [...new Set(res.body?.map(item => item.sifraPonude))];
+          this.ponudjaci = res.body ?? [];
+          console.log('====================>', this.ponudjaci);
           this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
           this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
           this.sifraPonude = null;

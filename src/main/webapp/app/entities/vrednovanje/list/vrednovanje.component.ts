@@ -22,6 +22,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
   sifraPonude?: any;
+  ponudjaci?: IVrednovanje[];
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -94,7 +95,8 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
           this.isLoading = false;
           this.dataSource.data = res.body ?? [];
           this.vrednovanjes = res;
-          console.log('____________', this.vrednovanjes);
+          this.ponudjaci = res.body ?? [];
+          console.log('====================>', this.ponudjaci);
           this.sifraPonude = null;
           this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
           this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
