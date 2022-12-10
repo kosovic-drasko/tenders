@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfa8c92f-efb7-4e75-b7a7-a17376ca1226" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/.jhipster/ViewPonude.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tender/repository/ViewPonudeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewPonudeQueryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tender/service/ViewPonudeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tender/web/rest/ViewPonudeResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config/liquibase/changelog/20220813064048_added_entity_ViewPonude.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/en/viewPonude.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/i18n/sr/viewPonude.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tender/domain/ViewPonudeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tender/web/rest/ViewPonudeResourceIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/list/ponude-ponudjaci.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/service/prvorangirani.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/prvorangirani/service/prvorangirani.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/specifikacije/list/specifikacije.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/service/ponude-ponudjaci.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/app/entities/ponude-ponudjaci/service/ponude-ponudjaci.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,20 +186,6 @@
       <workItem from="1669800292165" duration="1082000" />
       <workItem from="1670173465928" duration="1469000" />
       <workItem from="1670435896059" duration="10174000" />
-    </task>
-    <task id="LOCAL-00086" summary="init">
-      <created>1666851122562</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1666851122566</updated>
-    </task>
-    <task id="LOCAL-00087" summary="init">
-      <created>1666941796976</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1666941796976</updated>
     </task>
     <task id="LOCAL-00088" summary="init">
       <created>1667117149197</created>
@@ -525,7 +516,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670660320296</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="init">
+      <created>1670702346129</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1670702346129</updated>
+    </task>
+    <task id="LOCAL-00136" summary="init">
+      <created>1670702815161</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1670702815161</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
