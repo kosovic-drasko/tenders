@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
-    <mat-form-field *ngIf="!postupak">
+    <mat-form-field>
       <input matInput [(ngModel)]="sifraPonude" placeholder="Sifra Ponude" (keyup)="nadji()" />
       <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="ponisti()">
         <mat-icon>close</mat-icon>
@@ -11,7 +11,7 @@
     <div iclass="btn-group" role="group" aria-label="Basic example">
       <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
         <input hidden #fileInput type="file" id="file" />
-        <mat-button-toggle *ngIf="!postupak" class="nadji" (click)="sidenav.toggle()">
+        <mat-button-toggle class="nadji" (click)="sidenav.toggle()">
           <mat-icon>search</mat-icon>
         </mat-button-toggle>
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_MANAGER']" (click)="add()" matTooltip="Dodaj novu ponudu"
@@ -61,7 +61,7 @@
           cl="loadPageSifraPonude()"
         >
           <option [ngValue]="null">Izaberi ponudjaca</option>
-          <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaciPostupak">
+          <option id="ponudjac" [ngValue]="ponudjaciOption.sifraPonude" *ngFor="let ponudjaciOption of ponudjaci">
             {{ ponudjaciOption.nazivPonudjaca }}
           </option>
         </select>

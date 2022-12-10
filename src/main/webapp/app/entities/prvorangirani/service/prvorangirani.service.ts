@@ -14,6 +14,7 @@ export type EntityArrayResponseType = HttpResponse<IPrvorangirani[]>;
 @Injectable({ providedIn: 'root' })
 export class PrvorangiraniService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/view-prvorangiranis');
+
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/prvorangirani');
   protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/prvorangirani-postupci');
   protected resourceUrlPonude = this.applicationConfigService.getEndpointFor('api/prvorangirani-ponude');
