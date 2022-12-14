@@ -83,12 +83,12 @@ public class PrvorangiraniResource {
     //        return prvorangirani;
     //    }
 
-    @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
-    public List<Prvorangirani> getPPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
-        log.debug("REST request to get Ponude : {}", sifraPostupka);
-        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPostupkaListPrvorangirani(sifraPostupka);
-        return prvorangirani;
-    }
+    //    @GetMapping("/prvorangirani-postupci/{sifraPostupka}")
+    //    public List<Prvorangirani> getPPrvorangiraniPostupak(@PathVariable Integer sifraPostupka) {
+    //        log.debug("REST request to get Ponude : {}", sifraPostupka);
+    //        List<Prvorangirani> prvorangirani = prvorangiraniRepository.findBySifraPostupkaListPrvorangirani(sifraPostupka);
+    //        return prvorangirani;
+    //    }
 
     @GetMapping("/prvorangirani-ponude/{sifraPonude}")
     public List<Prvorangirani> getPPrvorangiraniPonude(@PathVariable Integer sifraPonude) {

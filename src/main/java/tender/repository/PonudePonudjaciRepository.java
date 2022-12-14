@@ -38,8 +38,7 @@ public interface PonudePonudjaciRepository extends JpaRepository<PonudePonudjaci
         "        ponude\n" +
         "        INNER JOIN ponudjaci ON ponude.sifra_ponudjaca = ponudjaci.id\n" +
         "        INNER JOIN specifikacije ON ponude.sifra_postupka = specifikacije.sifra_postupka\n" +
-        "        INNER JOIN postupci ON ponude.sifra_postupka = postupci.sifra_postupka\n" +
-        "        GROUP BY ponude.id",
+        "        INNER JOIN postupci ON ponude.sifra_postupka = postupci.sifra_postupka\n",
         nativeQuery = true
     )
     List<PonudePonudjaci> findNativeAll();
@@ -71,7 +70,7 @@ public interface PonudePonudjaciRepository extends JpaRepository<PonudePonudjaci
         "\t  INNER JOIN specifikacije\n" +
         "\t    ON ponude.sifra_postupka = specifikacije.sifra_postupka\n" +
         "\t  INNER JOIN postupci\n" +
-        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka where ponude.sifra_postupka=:sifraPostupka GROUP BY ponude.id",
+        "\t    ON specifikacije.sifra_postupka = postupci.sifra_postupka where ponude.sifra_postupka=:sifraPostupka ",
         nativeQuery = true
     )
     List<PonudePonudjaci> findBySifraPostupkaList(@Param("sifraPostupka") Integer sifraPostupka);

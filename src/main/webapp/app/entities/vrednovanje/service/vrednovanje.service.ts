@@ -12,7 +12,7 @@ export type EntityArrayResponseType = HttpResponse<IVrednovanje[]>;
 
 @Injectable({ providedIn: 'root' })
 export class VrednovanjeService {
-  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/vrednovanjes');
+  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/view-vrednovanjes');
 
   protected resourceUrlNative = this.applicationConfigService.getEndpointFor('api/vrednovanje');
   protected resourceUrlPostupak = this.applicationConfigService.getEndpointFor('api/vrednovanje-postupak');

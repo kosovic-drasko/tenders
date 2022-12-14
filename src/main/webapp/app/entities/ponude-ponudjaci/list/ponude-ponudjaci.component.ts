@@ -18,6 +18,7 @@ import { PonudeUpdateComponent } from '../../ponude/update/ponude-update.compone
 import { TableUtil } from '../../tableUtil';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { IVrednovanje } from '../../vrednovanje/vrednovanje.model';
 
 @Component({
   selector: 'jhi-ponude-ponudjaci',
@@ -30,13 +31,14 @@ export class PonudePonudjaciComponent implements OnInit {
   ponude?: HttpResponse<IPonude[]>;
   ponudjaciPostupak?: any;
   currentAccount: Account | null = null;
-  ponudjaci?: IPonudjaci[] = [];
+  ponudjaci?: IPonudePonudjaci[] = [];
   ukupno?: number;
   brojObrazac?: number = 0;
   sifraPonude?: any;
   obrisanoSelektovano?: boolean = false;
   obrisanoSifraPonude?: boolean = false;
   sakrij?: boolean = true;
+
   private readonly destroy$ = new Subject<void>();
   public displayedColumns = [
     'sifra postupka',
@@ -93,18 +95,24 @@ export class PonudePonudjaciComponent implements OnInit {
     });
   }
   loadPageSifraPostupka(): void {
-    this.ponudePonudjaciService.queryPonudePonudjaciPostupak(this.postupak).subscribe({
-      next: (res: HttpResponse<IPonudePonudjaci[]>) => {
-        this.isLoading = false;
-        this.dataSource.data = res.body ?? [];
-        this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
-        this.sifraPonude = null;
-      },
-      error: () => {
-        this.isLoading = false;
-        this.onError();
-      },
-    });
+    this.ponudePonudjaciService
+      .query({
+        'sifraPostupka.in': this.postupak,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IPonudePonudjaci[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.ponudjaci = res.body ?? [];
+          console.log('====================>', this.ponudjaci);
+          this.ukupno = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+          this.sifraPonude = null;
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
   }
   ponisti(): void {
     if (this.postupak !== undefined) {
@@ -126,18 +134,18 @@ export class PonudePonudjaciComponent implements OnInit {
     }
   }
 
-  loadPonudePonudjaci(sifraPostupka: number): void {
-    this.ponudePonudjaciService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
-      next: res => {
-        this.ponudjaciPostupak = res;
-        this.sifraPonude = null;
-      },
-    });
-  }
+  // loadPonudePonudjaci(sifraPostupka: number): void {
+  //   this.ponudePonudjaciService.ponudePonudjaciPostupci(sifraPostupka).subscribe({
+  //     next: res => {
+  //       this.ponudjaciPostupak = res;
+  //       this.sifraPonude = null;
+  //     },
+  //   });
+  // }
 
   loadPageSifraPonude(): void {
     this.isLoading = true;
-    this.ponudePonudjaciService.queryPonudePonudjaciPonude(this.sifraPonude).subscribe({
+    this.ponudePonudjaciService.query({ 'sifraPonude.in': this.sifraPonude }).subscribe({
       next: (res: HttpResponse<IPonudePonudjaci[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
@@ -154,7 +162,6 @@ export class PonudePonudjaciComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     if (this.postupak !== undefined) {
-      this.loadPonudePonudjaci(this.postupak);
       this.loadPageSifraPostupka();
     } else {
       this.loadPage();

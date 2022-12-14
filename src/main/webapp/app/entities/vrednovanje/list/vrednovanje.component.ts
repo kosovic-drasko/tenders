@@ -17,10 +17,12 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   vrednovanjes?: HttpResponse<IVrednovanje[]>;
   isLoading = false;
   ukupno?: number;
+  brPostupka?: null;
   ponudjaciPostupak?: any;
   ukupnaProcijenjena?: number;
   ukupnoPonudjena?: number;
   sifraPonude?: any;
+  ponudjaci?: IVrednovanje[];
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -49,11 +51,12 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
 
   loadPage(): void {
     this.isLoading = true;
-    this.vrednovanjeService.queryNative().subscribe({
+    this.vrednovanjeService.query().subscribe({
       next: (res: HttpResponse<IVrednovanje[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
         this.vrednovanjes = res;
+
         this.sifraPonude = null;
         this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
         this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
@@ -71,7 +74,6 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
       console.log(this.postupak);
     } else {
       this.sifraPonude = null;
-
       this.loadPage();
     }
   }
@@ -84,23 +86,29 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
     });
   }
   loadPageSifraPostupka(): void {
-    this.vrednovanjeService.queryVrednovanjePostupak(this.postupak).subscribe({
-      next: (res: HttpResponse<IVrednovanje[]>) => {
-        this.isLoading = false;
-        this.dataSource.data = res.body ?? [];
-        this.vrednovanjes = res;
-        this.sifraPonude = null;
-        this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
-        this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
-      },
-      error: () => {
-        this.isLoading = false;
-        this.onError();
-      },
-    });
+    this.vrednovanjeService
+      .query({
+        'sifraPostupka.in': this.postupak,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IVrednovanje[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.vrednovanjes = res;
+          this.ponudjaci = res.body ?? [];
+          console.log('====================>', this.ponudjaci);
+          this.sifraPonude = null;
+          this.ukupnoPonudjena = res.body?.reduce((acc, ponude) => acc + ponude.ponudjenaVrijednost!, 0);
+          this.ukupnaProcijenjena = res.body?.reduce((acc, ponude) => acc + ponude.procijenjenaVrijednost!, 0);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
   }
   loadPageSifraPonude(): void {
-    this.vrednovanjeService.queryVrednovanjePonude(this.sifraPonude).subscribe({
+    this.vrednovanjeService.query({ 'sifraPonude.in': this.sifraPonude }).subscribe({
       next: (res: HttpResponse<IVrednovanje[]>) => {
         this.isLoading = false;
         this.dataSource.data = res.body ?? [];
