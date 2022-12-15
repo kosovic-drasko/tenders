@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './specifikacije.component.html',
   styleUrls: ['./specifikacije.scss'],
 })
-export class SpecifikacijeComponent implements OnInit {
+export class SpecifikacijeComponent implements OnInit, AfterViewInit {
   specifikacijes?: HttpResponse<ISpecifikacije[]>;
   isLoading = false;
   brojObrazac?: number = 0;
@@ -221,6 +221,11 @@ export class SpecifikacijeComponent implements OnInit {
       'jedinicna cijena': x.jedinicnaCijena,
     }));
     TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, 'Specifikacija');
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }
 
